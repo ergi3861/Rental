@@ -1,0 +1,63 @@
+.bodyAuth {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background: linear-gradient(#100171 0%, #000c68 70%, #3a3a3a 70%, #3a3a3a 100%);
+  font-family: Arial, sans-serif;
+}
+
+.highway {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.car {
+  position: absolute;
+  bottom: 135px;
+  width: 420px;
+  height: 200px;
+  left: 0;
+}
+
+.car img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: rotateY(180deg);
+}
+
+.wheels {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.wheel {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: 28px;
+  border-radius: 50%;
+  background-image: url('https://i.postimg.cc/fLhnTX75/wheel.png');
+  background-size: cover;
+  background-position: center;
+  transform-origin: center center;
+  animation: spin 0.9s linear infinite;
+}
+
+.front-wheel {
+  left: 50px;
+}
+
+.back-wheel {
+  right: 35px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

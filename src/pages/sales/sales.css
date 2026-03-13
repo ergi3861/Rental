@@ -1,0 +1,136 @@
+
+
+.sell-page {
+  max-width: 900px;
+  margin: 100px auto;
+  padding: 0 24px;
+}
+
+/* HEADER */
+.sell-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sell-header h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.sell-header p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* STEPS */
+.sell-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.step {
+  text-align: center;
+  flex: 1;
+}
+
+.step span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ff4d1a;
+  color: #fff;
+  font-weight: 700;
+  line-height: 40px;
+  margin-bottom: 8px;
+}
+
+.step p {
+  font-size: 14px;
+  color: #475569;
+}
+
+/* FORM */
+.sell-form {
+  background: #020617;
+  color: #fff;
+  padding: 40px;
+  border-radius: 24px;
+}
+
+.sell-form h2 {
+  margin: 0 0 24px;
+  font-size: 22px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+}
+
+.form-group textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* BUTTON */
+.sell-btn {
+  margin-top: 32px;
+  width: 100%;
+  padding: 16px;
+  background: #ff4d1a;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* GUARANTEES */
+.sell-guarantees {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #475569;
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .sell-steps {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .sell-guarantees {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,553 @@
+{/* 
+<div class="container">
+  <div class="section-title">What type of vehicle?</div>
+  <div class="row vehicle-type">
+    <button class="active">Cars</button>
+    <button>Vans & Trucks</button>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="input-group" style={{flex:2}}>
+      <label>Pickup and return location</label>
+      <input type="text" placeholder="City, address, point of interest" />
+    </div>
+
+    <div class="input-group">
+      <label>Pickup date</label>
+      <input type="date" />
+    </div>
+
+    <div class="input-group">
+      <label>Time</label>
+      <input type="time" />
+    </div>
+
+    <div class="input-group">
+      <label>Return date</label>
+      <input type="date" />
+    </div>
+
+    <div class="input-group">
+      <label>Time</label>
+      <input type="time" />
+    </div>
+
+    <button class="search-btn">Search</button>
+  </div>
+
+  <div class="meta">
+    <div class="input-group" style={{maxWidth:140}}>
+      <label>Age</label>
+      <select>
+        <option value="">Select</option>
+    
+      </select>
+    </div>
+
+    <div class="input-group" style={{maxWidth:260}}>
+      <label>Country</label>
+      <input list="countries" placeholder="Search country" />
+      <datalist id="countries">
+        <option value="Albania" />
+        <option value="Germany" />
+        <option value="Italy" />
+        <option value="France" />
+        <option value="United Kingdom" />
+        <option value="United States" />
+        <option value="Canada" />
+        <option value="Spain" />
+        <option value="Greece" />
+        <option value="Turkey" />
+        <option value="Switzerland" />
+        <option value="Austria" />
+        <option value="Netherlands" />
+        <option value="Belgium" />
+        <option value="Sweden" />
+        <option value="Norway" />
+        <option value="Denmark" />
+        <option value="Finland" />
+        <option value="Australia" />
+        <option value="New Zealand" />
+      </datalist>
+    </div>
+
+    <div class="checkbox">
+      <input type="checkbox" />
+      <label>I have a negotiated rate</label>
+    </div>
+  </div>
+</div>
+
+<section class="flota">
+    <h2>Flota Jonë</h2>
+
+    <div class="flota-grid">
+
+        <a href="#" class="flota-card">
+            <img src={Mirage} alt="Ekonomike" />
+            <span>Ekonomike</span>
+        </a>
+
+        <a href="#" class="flota-card">
+            <img src={Toyota} alt="Kompakt" />
+            <span>Kompakt</span>
+        </a>
+
+        <a href="#" class="flota-card">
+            <img src={Hyundai} alt="SUV" />
+            <span>SUV</span>
+        </a>
+
+        <a href="#" class="flota-card">
+            <img src={Glc300} alt="Luksoze" />
+            <span>Luksoze</span>
+        </a>
+
+        <a href="#" class="flota-card">
+            <img src={Tesla} alt="Elektrike" />
+            <span>Elektrike</span>
+        </a>
+
+        <a href="#" class="flota-card">
+            <img src={volvo} alt="Hibride" />
+            <span>Hibride</span>
+        </a>
+
+    </div>
+</section>
+
+<section class="makina-popullore">
+  <h2>Hot Now</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Volkswagen Golf" />
+      <h3>Volkswagen Golf</h3>
+      <ul>
+        <li><strong>Transmetimi:</strong> Manual</li>
+        <li><strong>Karburanti:</strong> Naftë</li>
+        <li><strong>Persona:</strong> 5</li>
+      </ul>
+      <div class="price">35€ / ditë</div>
+      <button>Shiko Detaje</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Skoda Octavia" />
+      <h3>Skoda Octavia</h3>
+      <ul> 
+        <li><strong>Transmetimi:</strong> Automatik</li>
+        <li><strong>Karburanti:</strong> Benzinë</li>
+        <li><strong>Persona:</strong> 5</li>
+      </ul>
+      <div class="price">40€ / ditë</div>
+      <button>Shiko Detaje</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Ford Focus" />
+      <h3>Ford Focus</h3>
+      <ul>
+        <li><strong>Transmetimi:</strong> Manual</li>
+        <li><strong>Karburanti:</strong> Naftë</li>
+        <li><strong>Persona:</strong> 5</li>
+      </ul>
+      <div class="price">32€ / ditë</div>
+      <button>Shiko Detaje</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Toyota Corolla" />
+      <h3>Toyota Corolla</h3>
+      <ul> 
+        <li><strong>Transmetimi:</strong> Automatik</li>
+        <li><strong>Karburanti:</strong> Hibrid</li>
+        <li><strong>Persona:</strong> 5</li>
+      </ul>
+      <div class="price">45€ / ditë</div>
+      <button>Shiko Detaje</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Hyundai i30" />
+      <h3>Hyundai i30</h3>
+      <ul>
+        <li><strong>Transmetimi:</strong> Manual</li>
+        <li><strong>Karburanti:</strong> Benzinë</li>
+        <li><strong>Persona:</strong> 5</li>
+      </ul>
+      <div class="price">30€ / ditë</div>
+      <button>Shiko Detaje</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Peugeot 308" />
+      <h3>Peugeot 308</h3>
+      <ul>
+        <li><strong>Transmetimi:</strong> Automatik</li>
+        <li><strong>Karburanti:</strong> Naftë</li>
+        <li><strong>Persona:</strong> 5</li>
+      </ul>
+      <div class="price">38€ / ditë</div>
+      <button>Shiko Detaje</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Renault Megane" />
+      <h3>Renault Megane</h3>
+      <ul>
+        <li><strong>Transmetimi:</strong> Manual</li>
+        <li><strong>Karburanti:</strong> Benzinë</li>
+        <li><strong>Persona:</strong> 5</li>
+      </ul>
+      <div class="price">33€ / ditë</div>
+      <button>Shiko Detaje</button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Opel Astra" />
+      <h3>Opel Astra</h3>
+      <ul>
+        <li><strong>Transmetimi:</strong> Automatik</li>
+        <li><strong>Karburanti:</strong> Naftë</li>
+        <li><strong>Persona:</strong> 5</li>
+      </ul>
+      <div class="price">36€ / ditë</div>
+      <button>Shiko Detaje</button>
+    </div>
+
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x180" alt="Kia Ceed" />
+      <h3>Kia Ceed</h3>
+      <ul>
+        <li><strong>Transmetimi:</strong> Manual</li>
+        <li><strong>Karburanti:</strong> Benzinë</li>
+        <li><strong>Persona:</strong> 5</li>
+      </ul>
+      <div class="price">31€ / ditë</div>
+      <button>Shiko Detaje</button>
+    </div>
+
+  </div>
+</section>
+<section id="why-us">
+        <h2 class="section-title">Pse Ne?</h2>
+        <div class="grid">
+            <div class="feature"><i class="fas fa-tag"></i><h3>Çmime Transparente</h3><p>Pa tarifa të fshehura</p></div>
+            <div class="feature"><i class="fas fa-car"></i><h3>Makina të Mirëmbajtura</h3><p>Kontroll i plotë para çdo qeraje</p></div>
+            <div class="feature"><i class="fas fa-shield-alt"></i><h3>Sigurim i Përfshirë</h3><p>Mbrojtje e plotë për qetësi mendore</p></div>
+            <div class="feature"><i class="fas fa-headset"></i><h3>Mbështetje 24/7</h3><p>Ndihmë në çdo moment</p></div>
+            <div class="feature"><i class="fas fa-bolt"></i><h3>Rezervim i Shpejtë</h3><p>Konfirmim brenda pak minutash</p></div>
+        </div>
+    </section>
+
+
+    <section id="how-it-works">
+        <h2 class="section-title">Si Funksionon</h2>
+        <div class="grid">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Zgjidh Makinën</h3>
+                <p>Krahaso dhe zgjidh nga flota jonë e gjerë</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Rezervo Online</h3>
+                <p>Plotëso formularin dhe konfirmo rezervimin</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Merr Makinën</h3>
+                <p>Na e dorëzojmë në lokacionin e zgjedhur</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Kthe pa Komplikime</h3>
+                <p>Kthe në kohë dhe pa procedura të gjata</p>
+            </div>
+        </div>
+    </section>
+<section>
+<h2>Besueshmëri & Siguri</h2>
+<div class="trust">
+<div>✔ Pagesë e sigurt</div>
+<div>✔ SSL i certifikuar</div>
+<div>✔ Partnerë zyrtarë</div>
+<div>✔ Mirëmbajtje profesionale</div>
+</div>
+</section> */}
+
+/* .carousel{ */
+    /* overflow:hidden; */
+    /* width: 100%; */
+    /* height: 76%; */
+    /* position:absolute; */
+    /* left:0; */
+    /* top: 130px; */
+/* } */
+/* .panes{ */
+    /* list-style:none; */
+    /* position:relative; */
+    /*  */
+    /* height:100%; */
+    /* width:500%; Number of panes * 100% */
+    /* overflow:hidden; This is used solely to clear floats, it does not add functionality. */
+            /* animation:carousel 30s infinite; */
+/* } */
+/* .panes > li{ */
+    /* position:relative; */
+    /* float:left; */
+    /* width:20%;  */
+/* } */
+/* .panes > li > a{ */
+    /* display:block; */
+/* } */
+/* .carousel img{ */
+    /* display:block; */
+    /* width:100%; */
+    /* max-width:100%; */
+/* } */
+/* @keyframes carousel{ */
+    /* 0%    { left:0; } */
+    /* 11%   { left:0; } */
+    /* 12.5% { left:-100%; } */
+    /* 23.5% { left:-100%; } */
+    /* 25%   { left:-200%; } */
+    /* 36%   { left:-200%; } */
+    /* 37.5% { left:-300%; } */
+    /* 48.5% { left:-300%; } */
+    /* 50%   { left:-400%; } */
+    /* 61%   { left:-400%; } */
+    /* 62.5% { left:-300%; } */
+    /* 73.5% { left:-300%; } */
+    /* 75%   { left:-200%; } */
+    /* 86%   { left:-200%; } */
+    /* 87.5% { left:-100%; } */
+    /* 98.5% { left:-100%; } */
+    /* 100%  { left:0; } */
+/* } */
+/*  */
+
+.container{
+    background: rgba(0, 0, 0, 0.5);
+    padding:30px;
+    position: absolute;
+    top: 130%;
+    border-radius:8px;
+    left: 13%;
+
+}
+.row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end}
+.section-title{font-weight:700;margin-bottom:12px}
+.vehicle-type button{
+  border:1px solid #ddd;padding:12px 20px;background:#fff;
+  cursor:pointer;border-radius:6px
+}
+.vehicle-type .active{background:#2ecc71;color:#fff;border-color:#2ecc71}
+.input-group{display:flex;flex-direction:column;flex:1}
+.input-group input,.input-group select{
+  padding:12px;border:1px solid #ccc;border-radius:6px
+}
+.search-btnn{
+  background:#f5c400;border:none;padding:14px 30px;
+  font-weight:700;border-radius:6px;cursor:pointer
+}
+.meta{display:flex;gap:30px;margin-top:20px;font-size:14px;align-items:center}
+.checkbox{display:flex;align-items:center;gap:8px}
+
+
+.flota {
+    padding: 80px 6%;
+    margin-top: 25%;
+}
+
+.flota h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.flota-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 30px;
+}
+
+.flota-card {
+    position: relative;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+}
+
+.flota-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0.15));
+    z-index: 1;
+}
+
+.flota-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.flota-card span {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    z-index: 2;
+    font-size: 26px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.flota-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+
+.flota-card:hover img {
+    transform: scale(1.15);
+}
+
+.flota-card:nth-child(1){animation-delay:.1s}
+.flota-card:nth-child(2){animation-delay:.2s}
+.flota-card:nth-child(3){animation-delay:.3s}
+.flota-card:nth-child(4){animation-delay:.4s}
+.flota-card:nth-child(5){animation-delay:.5s}
+.flota-card:nth-child(6){animation-delay:.6s}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+.makina-popullore {
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.makina-popullore h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin: 12px 0 8px;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.card ul li {
+  margin-bottom: 5px;
+}
+
+.price {
+  margin: 12px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card button {
+  margin-top: auto;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #0056b3;
+}
+
+        section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #1a1a1a; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+
+        /* Why Us */
+        .feature { text-align: center; padding: 2rem; background: #f9f9f9; border-radius: 10px; }
+        .feature i { font-size: 3rem; color: #ff6b00; margin-bottom: 1rem; }
+
+        .step { text-align: center; }
+        .step-number { font-size: 4rem; color: #ff6b00; opacity: 0.2; margin-bottom: 1rem; }
+        .step h3 { margin-bottom: 1rem; }
+
+        .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;font-weight:600}
+
+
+
+
+//         <div class="carousel">
+//   <ul class="panes">
+    
+//     <li id="s1">
+//       <img src="https://www.gstatic.com/webp/gallery/5.jpg" />   
+      
+          
+//     </li>
+      
+//     <li id="s2">
+//       <img src="https://www.gstatic.com/webp/gallery/4.jpg" />
+//        </li>
+      
+//     <li id="s3">
+//       <img src="https://www.gstatic.com/webp/gallery/3.jpg" />
+      
+//     </li>
+      
+//     <li id="s4">
+//       <img src="https://www.gstatic.com/webp/gallery/2.jpg" />
+      
+//     </li>
+      
+//     <li id="s5">
+//       <img src="https://www.gstatic.com/webp/gallery/1.jpg" />
+      
+//     </li>
+//   </ul>
+// </div>

@@ -1,0 +1,1571 @@
+body {
+    font-size: 12px;
+    max-width: 10000px;
+    background: #F5F5F5;
+    min-width: 960px;
+    width: 100%;
+    font-family: Roboto;
+    text-rendering: optimizeLegibility;
+ /* 2 */
+    -webkit-font-smoothing: antialiased;
+ /* 3 */
+    -moz-osx-font-smoothing: grayscale;
+ /* 4 */
+}
+
+p {
+    font-feature-settings: "kern" 1;
+ /* 5 */
+    font-kerning: normal;
+ /* 5 */
+    hyphens: auto;
+ /* 6 */
+}
+
+.fullwidth,
+body#bp-default #wp-admin-bar .padder {
+    width: 100% !important;
+    max-width: 10000px !important;
+    min-width: 960px;
+    margin: 0 auto;
+    clear: both;
+    float: left;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 300;
+    color: #03A9F4;
+}
+
+.form-group {
+    height: 55px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    margin-top: -10px;
+}
+
+.control-label {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.4;
+    pointer-events: none;
+    position: absolute;
+    -webkit-transform: translate3d(0, 22px, 0) scale(1);
+    -moz-transform: translate3d(0, 22px, 0) scale(1);
+    transform: translate3d(0, 22px, 0) scale(1);
+    -webkit-transform-origin: left top;
+    -moz-transform-origin: left top;
+    transform-origin: left top;
+    -webkit-transition: 240ms;
+    -moz-transition: 240ms;
+    transition: 240ms;
+}
+
+.form-group.focused .control-label {
+    opacity: 1;
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    transform: scale(0.75);
+    color: #03A9F4 !important;
+}
+
+.form-control {
+    align-self: flex-end;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: transparent;
+    -webkit-transition: 240ms;
+    -moz-transition: 240ms;
+    transition: 240ms;
+}
+
+.form-control:focus::-webkit-input-placeholder {
+    -webkit-transition: none
+    -moz-transition: none;
+    transition: none;
+}
+
+.form-group.focused .form-control::-webkit-input-placeholder {
+    color: #bbb;
+}
+
+#textbox {
+    width: 50%;
+    max-height: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-left: 50%;
+    position: absolute;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.toplam {
+    width: 200%;
+    height: 100%;
+    position: relative;
+    left: 0;
+    left: -100%;
+}
+
+.left {
+    width: 50%;
+    height: 100%;
+    background: #2C3034;
+    left: 0;
+    position: absolute;
+}
+
+.right {
+    width: 50%;
+    height: 100%;
+    background: #F9F9F9;
+    right: 0;
+    position: absolute;
+}
+
+#ic {
+    width: 250px;
+    margin: 0 auto;
+    top: 50%;
+    margin-top: -162px;
+    position: absolute;
+    left: 50%;
+    margin-left: -125px;
+}
+
+.left #ic {
+    margin-top: -232px;
+}
+
+#ic p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #757575;
+    margin-bottom: 30px;
+}
+
+form#girisyap input {
+    border-bottom: 1px solid #cdcdcd;
+    color: #959595;
+    font-size: 14px;
+    width: 100%;
+    resize: none;
+    max-height: 20px;
+    outline: 0;
+    border-left: 0;
+    border-right: 0;
+    padding: 8px 0;
+    margin-top: 20px !important;
+    background: none;
+    border-top: 0;
+    overflow: hidden;
+    transition: border .2s;
+    -webkit-transition: border .2s;
+}
+
+#girisyap .form-group {
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+}
+
+#girisyap h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #0BAFBF;
+    line-height: 35px;
+}
+
+#girisyap .soninpt {
+    margin-bottom: 30px;
+}
+
+.left form#girisyap input {
+    border-bottom: 1px solid #45494C;
+}
+
+.left .control-label {
+    color: #959595;
+}
+
+.left .yarim {
+    width: 46% !important;
+    float: left;
+    margin-right: 8%;
+}
+
+.left .sn {
+    margin-right: 0;
+}
+
+form#girisyap .girisbtn {
+    width: auto;
+    float: right;
+    background: #03A9F4;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 !important;
+    line-height: 16px;
+    font-family: Roboto;
+    text-transform: uppercase;
+    max-height: 36px;
+    height: 36px;
+    letter-spacing: 0.5px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    -webkit-transition-property: background-color,-webkit-box-shadow;
+    transition-property: background-color,box-shadow;
+    border: 0;
+}
+
+form#girisyap .girisbtn:hover {
+    background: #0288D1;
+    -webkit-box-shadow: 0 4px 7px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 4px 7px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 7px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+}
+
+#moveleft, #moveright {
+    width: auto;
+    float: right;
+    background: none;
+    padding: 10px 16px;
+    font-family: Roboto;
+    font-size: 14px;
+    color: #03A9F4;
+    font-weight: 600;
+    margin: 0 10px !important;
+    line-height: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    max-height: 36px;
+    height: 36px;
+    letter-spacing: 0.5px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    -webkit-transition-property: background-color;
+    transition-property: background-color;
+    border: 0;
+    outline: 0;
+}
+
+#moveleft:hover {
+    background: #eee;
+}
+
+#moveright:hover {
+    background: #363A3D;
+}
+
+#fback {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -9999;
+}
+
+.girisback {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #03A9F4 url(http://ertekinn.com/loginsignup/signup.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.kayitback {
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #03A9F4 url(http://ertekinn.com/loginsignup/login.png);
+    background-size: cover;
+    background-position: 50% 50%;
+}
+$('#moveleft').click(function() {
+  setTimeout(function() {
+    $('#textbox').animate({
+      marginLeft: "0"
+    }, 1000);
+
+    $('.toplam').animate({
+      marginLeft: "100%"
+    }, 1000);
+  }, 1000);
+});
+
+$('#moveright').click(function() {
+  setTimeout(function() {
+    $('#textbox').animate({
+      marginLeft: "50%"
+    }, 1000);
+
+    $('.toplam').animate({
+      marginLeft: "0"
+    }, 1000);
+  }, 1000);
+});
+<link href='https://fonts.googleapis.com/css?family=Roboto:900,900italic,500,400italic,100,700italic,300,700,500italic,100italic,300italic,400' rel='stylesheet' type='text/css'>
+<div id="wheel"></div>
+
+<div id="fback"><div class="girisback">
+</div><div class="kayitback"></div>
+</div>
+
+<div id="textbox">
+  <div class="toplam">
+
+    <div class="left">
+      <div id="ic">
+        <h2>Sign Up</h2>
+        <p>Synth polaroid bitters chillwave pickled. Vegan disrupt tousled.</p>
+        <form id="girisyap" name="signup_form" id="signup_form" method="post" enctype="multipart/form-data" onsubmit="return false;">
+
+          <div class="yarim form-group">
+            <label class="control-label" for="inputNormal">Username</label>
+            <input type="text" name="signup_username" id="signup_username" class="bp-suggestions form-control" cols="50" rows="10" ></input>
+          </div>
+        <div class="yarim sn form-group">
+          <label class="control-label" for="inputNormal">Full Name</label>
+          <input type="text" name="field_1" id="field_1" value="" class="bp-suggestions form-control" cols="50" rows="10"></input>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="inputNormal">Email</label>
+        <input type="text" name="signup_email" id="signup_email" class="bp-suggestions form-control" cols="50" rows="10"></input>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="inputNormal">Password</label>
+      <input type="password" name="signup_password" id="signup_password" value="" class="bp-suggestions form-control" cols="50" rows="10" ></input>
+  </div>
+  <div class="form-group soninpt">
+    <label class="control-label" for="inputNormal">About</label>
+    <input type="text" name="field_2" id="field_2" class="bp-suggestions form-control" cols="50" rows="10"></input>
+</div>
+<input type="submit" name="signup_submit" id="signup_submit" value="Sign Up" class="girisbtn"  />
+</form>
+
+<button id="moveright">Login</button>
+</div>
+</div>
+
+<div class="right">
+  <div id="ic">
+    <h2>Login</h2>
+    <p>Synth polaroid bitters chillwave pickled. Vegan disrupt tousled.</p>
+    <form name="login-form" id="girisyap" id="sidebar-user-login" method="post" onsubmit="return false;">
+
+      <div class="form-group">
+        <label class="control-label" for="inputNormal">Username</label>
+        <input type="text" name="log" class="bp-suggestions form-control" cols="50" rows="10" ></input>
+      </div>
+    <div class="form-group soninpt">
+      <label class="control-label" for="inputNormal">Password</label>
+      <input type="password" name="pwd" class="bp-suggestions form-control" cols="50" rows="10"></input>
+  </div>
+  <input type="submit" value="Login" class="girisbtn" tabindex="100" />
+  </form>
+
+<button id="moveleft">Sign Up</button>
+</div>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="surface" data-state="idle">
+
+  <div class="nav recover">RECOVER ACCESS</div>
+
+  <div class="inputs">
+    <div class="line">
+      <input type="text" placeholder="USERNAME">
+    </div>
+    <div class="line">
+      <input type="password" placeholder="PASSWORD">
+    </div>
+  </div>
+
+  <div class="nav enter">ENTER</div>
+
+  <div class="nav create">CREATE IDENTITY</div>
+
+</div>
+
+<script src="login.js"></script>
+</body>
+</html>
+
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #070707;
+  font-family: system-ui;
+  color: #b5b5b5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.surface {
+  width: 100%;
+  height: 100%;
+  padding: 80px;
+  position: relative;
+}
+
+.nav {
+  position: absolute;
+  letter-spacing: 0.4em;
+  font-size: 13px;
+  cursor: default;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.recover { top: 80px; left: 80px; }
+.enter { right: 80px; bottom: 80px; }
+.create { left: 80px; bottom: 80px; }
+
+.nav:hover {
+  transform: translateY(-4px);
+}
+
+.inputs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.surface[data-state="active"] .inputs {
+  opacity: 1;
+}
+
+.line {
+  width: 260px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid #666;
+  transition: width 0.4s ease;
+}
+
+.line:focus-within {
+  width: 320px;
+}
+
+input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 6px 0;
+  color: inherit;
+  letter-spacing: 0.35em;
+  font-size: 12px;
+}
+
+
+
+const surface = document.querySelector('.surface');
+const inputs = document.querySelectorAll('input');
+const enter = document.querySelector('.enter');
+const create = document.querySelector('.create');
+
+enter.onclick = () => {
+  surface.dataset.state = 'active';
+};
+
+inputs.forEach(i => {
+  i.addEventListener('input', () => {
+    if ([...inputs].every(f => f.value.length > 2)) {
+      surface.style.opacity = '0.5';
+      surface.style.transform = 'scale(0.96)';
+    }
+  });
+});
+
+create.onclick = () => {
+  surface.style.opacity = '0';
+  surface.style.transform = 'scale(0.92)';
+  setTimeout(() => location.href = 'signup.html', 500);
+};
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+
+<div class="scene">
+  <div class="header">CREATE IDENTITY</div>
+
+  <div class="stack">
+    <div class="row" data-step>
+      <span>NAME</span>
+      <input type="text" />
+      <div class="line"></div>
+    </div>
+
+    <div class="row" data-step>
+      <span>SURNAME</span>
+      <input type="text" />
+      <div class="line"></div>
+    </div>
+
+    <div class="row" data-step>
+      <span>AGE</span>
+      <input type="number" />
+      <div class="line"></div>
+    </div>
+
+    <div class="row" data-step>
+      <span>NATIONALITY</span>
+      <select>
+        <option></option>
+        <option>ALBANIAN</option>
+        <option>OTHER</option>
+      </select>
+      <div class="line"></div>
+    </div>
+
+    <div class="row" data-step>
+      <span>LICENSE TYPE</span>
+      <select>
+        <option></option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <div class="line"></div>
+    </div>
+
+    <div class="row" data-step>
+      <span>EMAIL</span>
+      <input type="email" />
+      <div class="line"></div>
+    </div>
+
+    <div class="row" data-step>
+      <span>PHONE</span>
+      <input type="tel" />
+      <div class="line"></div>
+    </div>
+
+    <div class="row" data-step>
+      <span>PASSWORD</span>
+      <input type="password" />
+      <div class="line"></div>
+    </div>
+
+    <div class="row" data-step>
+      <span>REPEAT PASSWORD</span>
+      <input type="password" />
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <div class="footer" id="back">RETURN</div>
+</div>
+
+<script src="signup.js"></script>
+</body>
+</html>
+body {
+  background: #0b0b0b;
+  color: #bfbfbf;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.scene {
+  padding: 8vh 8vw;
+}
+
+.header {
+  font-size: 12px;
+  margin-bottom: 8vh;
+  opacity: 0.7;
+}
+
+.stack {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.row {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.row.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.row span {
+  font-size: 10px;
+  opacity: 0.4;
+}
+
+.row input,
+.row select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #bfbfbf;
+  margin-top: 10px;
+}
+
+.line {
+  width: 0%;
+  height: 1px;
+  background: #bfbfbf;
+  margin-top: 6px;
+  transition: width 0.5s ease;
+}
+
+.row.focused .line {
+  width: 100%;
+}
+
+.footer {
+  margin-top: 10vh;
+  font-size: 10px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.footer:hover {
+  transform: translateX(-6px);
+}
+const steps = document.querySelectorAll('[data-step]');
+let current = 0;
+
+function activateStep(index) {
+  if (steps[index]) steps[index].classList.add('active');
+}
+
+activateStep(0);
+
+steps.forEach((step, index) => {
+  const input = step.querySelector('input, select');
+
+  input.addEventListener('focus', () => {
+    step.classList.add('focused');
+  });
+
+  input.addEventListener('blur', () => {
+    step.classList.remove('focused');
+    if (input.value && index === current) {
+      current++;
+      activateStep(current);
+    }
+  });
+});
+
+document.getElementById('back').addEventListener('click', () => {
+  document.body.style.opacity = '0';
+  document.body.style.transform = 'scale(1.02)';
+  setTimeout(() => {
+    window.location.href = 'login.html';
+  }, 600);
+});
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <div class="auth-container stagger">
+    <h1>Create Account</h1>
+
+    <form id="signupForm" novalidate>
+      <div class="field"><input required id="firstName"><label>First Name</label></div>
+      <div class="field"><input required id="lastName"><label>Last Name</label></div>
+      <div class="field"><input type="number" id="age" min="18"><label>Age</label></div>
+
+      <div class="field">
+        <select id="nationality" required>
+          <option value=""></option>
+          <option>Albanian</option>
+          <option>Italian</option>
+          <option>German</option>
+        </select>
+        <label>Nationality</label>
+      </div>
+
+      <div class="field">
+        <select id="license" required>
+          <option value=""></option>
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+        </select>
+        <label>License Type</label>
+      </div>
+
+      <div class="field"><input type="email" id="email"><label>Email</label></div>
+      <div class="field"><input type="tel" id="phone"><label>Phone</label></div>
+      <div class="field"><input type="password" id="pass"><label>Password</label></div>
+      <div class="field"><input type="password" id="repeat"><label>Repeat Password</label></div>
+
+      <button disabled>Create Account</button>
+    </form>
+
+    <p class="switch">
+      <a href="login.html">Back to Login</a>
+    </p>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #05060f, #11163a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.auth-container {
+  width: 420px;
+  padding: 40px;
+  background: rgba(15,20,50,.7);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 30px 80px rgba(0,0,0,.7);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.field {
+  position: relative;
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: stagger 0.6s forwards;
+}
+
+.field:nth-child(n) {
+  animation-delay: calc(var(--i) * 0.08s);
+}
+
+@keyframes stagger {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.field input,
+.field select {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #7a5cff;
+  box-shadow: 0 0 12px #7a5cff;
+  outline: none;
+}
+
+.field label {
+  position: absolute;
+  left: 12px;
+  top: -8px;
+  font-size: 12px;
+  color: #7a5cff;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #7a5cff, #5cf);
+  font-weight: 600;
+  cursor: pointer;
+  opacity: .6;
+}
+
+button:enabled {
+  opacity: 1;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.switch a {
+  color: #5cf;
+  text-decoration: none;
+}
+
+
+const form = document.getElementById('loginForm');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const toggle = document.getElementById('togglePassword');
+const button = form.querySelector('button');
+
+function validate() {
+  let valid = true;
+
+  if (username.value.length < 3) {
+    showError(username, 'Min 3 characters');
+    valid = false;
+  } else hideError(username);
+
+  if (password.value.length < 6) {
+    showError(password, 'Min 6 characters');
+    valid = false;
+  } else hideError(password);
+
+  button.disabled = !valid;
+}
+
+function showError(input, msg) {
+  const error = input.parentElement.querySelector('.error');
+  error.textContent = msg;
+  error.classList.add('show');
+}
+
+function hideError(input) {
+  const error = input.parentElement.querySelector('.error');
+  error.classList.remove('show');
+}
+
+toggle.addEventListener('click', () => {
+  password.type = password.type === 'password' ? 'text' : 'password';
+});
+
+username.addEventListener('input', validate);
+password.addEventListener('input', validate);
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  button.textContent = 'Success';
+});
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <div id="scene">
+    <div id="flow"></div>
+    <div class="nav-text primary" id="submit">CREATE</div>
+    <div class="nav-text" id="back">BACK TO LOGIN</div>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>
+
+* { margin:0; padding:0; box-sizing:border-box }
+
+html,body {
+  height:100%;
+  background:#0b0b0b;
+  font-family:'Inter',system-ui,sans-serif;
+}
+
+#scene {
+  height:100%;
+  padding:10vh 8vw;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+#flow {
+  display:flex;
+  flex-direction:column;
+  gap:50px;
+}
+
+.block {
+  width:360px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+.block.active {
+  opacity:1;
+  transform:translateY(0);
+}
+
+.block input, .block select {
+  width:100%;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:rgba(255,255,255,0.6);
+  font-size:13px;
+  letter-spacing:0.3em;
+  padding:10px 0;
+}
+
+.block .line {
+  height:1px;
+  width:100%;
+  background:rgba(255,255,255,0.35);
+}
+
+.nav-text {
+  color:rgba(255,255,255,0.55);
+  font-size:14px;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  width:fit-content;
+  transition:transform 0.6s ease;
+}
+
+.nav-text:hover {
+  transform:translateX(8px);
+}
+const flow = document.getElementById('flow');
+const fields = [
+  'FIRST NAME',
+  'LAST NAME',
+  'AGE',
+  'NATIONALITY',
+  'LICENSE TYPE',
+  'EMAIL',
+  'PHONE',
+  'PASSWORD',
+  'REPEAT PASSWORD'
+];
+
+let current = 0;
+let values = {};
+
+function createBlock(label) {
+  const div = document.createElement('div');
+  div.className = 'block';
+
+  const input = document.createElement('input');
+  input.placeholder = label;
+  input.type = label.includes('PASSWORD') ? 'password' : 'text';
+
+  const line = document.createElement('div');
+  line.className = 'line';
+
+  div.appendChild(input);
+  div.appendChild(line);
+
+  input.addEventListener('input', () => {
+    if (input.value.trim().length > 1 && !values[label]) {
+      values[label] = input.value;
+      revealNext();
+    }
+  });
+
+  return div;
+}
+
+function revealNext() {
+  if (current >= fields.length) return;
+  const block = createBlock(fields[current]);
+  flow.appendChild(block);
+  setTimeout(() => block.classList.add('active'), 50);
+  current++;
+}
+
+revealNext();
+
+document.getElementById('submit').addEventListener('click', () => {
+  if (Object.keys(values).length !== fields.length) return;
+  document.body.style.opacity = '0';
+});
+
+document.getElementById('back').addEventListener('click', () => {
+  document.body.style.opacity = '0';
+  setTimeout(() => location.href = 'login.html', 600);
+});
+
+
+
+
+
+
+
+**PROMPT I FINALIZUAR – NIVEL EKSPERT / UI STRUKTURORE + ANIMACIONE KOGNITIVE**
+
+---
+
+Krijo **dy faqe të ndara**: `login.html` dhe `signup.html`, secila me `CSS` dhe `JS` përkatës (`login.css`, `login.js`, `signup.css`, `signup.js`). Përdor **vetëm Vanilla HTML, CSS dhe JavaScript**. Asnjë framework, asnjë librari, asnjë komponent i gatshëm.
+**PROMPT (gati për t’u përdorur):**
+
+Krijo dy faqe të ndara **Login** dhe **Sign Up**, secila në file të veçantë (**HTML, CSS, JavaScript**), me fokus maksimal në **UI moderne**, **background të errët**, dhe **animacione të avancuara**. Projekti duhet të jetë plotësisht funksional në frontend, pa backend.
+
+---
+
+### 1. STRUKTURA E FILEVE
+
+* `login.html`, `login.css`, `login.js`
+* `signup.html`, `signup.css`, `signup.js`
+* CSS dhe JS të ndara për secilën faqe
+* Kod i pastër, i modularizuar, i lexueshëm
+
+---
+
+### 2. LOGIN PAGE
+
+**Fushat dhe elementët:**
+
+* Input: `Username`
+* Input: `Password`
+* Link: `Forgot Password`
+* Button: `Submit / Login`
+* Link: `Sign Up` (drejton te signup.html)
+
+**Funksionalitet:**
+
+* Validim real-time (empty fields, minimum characters)
+* Toggle show/hide password
+* Prevent submit nëse validimi dështon
+* Feedback vizual për error/success
+
+**Animacione:**
+
+* Fade + slide-in në load
+* Floating labels për inputet
+* Hover & ripple effect për button
+* Smooth transition kur shfaqen errorët
+* Micro-animations në focus/blur të inputeve
+
+---
+
+### 3. SIGN UP PAGE
+
+**Fushat dhe elementët:**
+
+* Input: `Emër`
+* Input: `Mbiemër`
+* Input: `Mosha` (numeric, validation)
+* Select: `Nacionaliteti`
+* Select: `Lloji i Patentës`
+* Input: `Email`
+* Input: `Numër Telefoni`
+* Input: `Password`
+* Input: `Repeat Password`
+* Button: `Create Account`
+* Link: `Back to Login`
+
+**Funksionalitet:**
+
+* Validim i avancuar për çdo fushë
+* Kontroll për përputhje password / repeat password
+* Email & phone format validation
+* Disabled submit derisa të gjitha kushtet të plotësohen
+* Mesazhe error/success dinamike
+
+**Animacione:**
+
+* Step-by-step reveal ose stagger animation për inputet
+* Smooth scaling & glow effects në focus
+* Animated progress feedback gjatë plotësimit
+* Button loading animation në submit
+
+---
+
+### 4. DESIGN & UI
+
+* Dark theme (gradient ose glassmorphism)
+* Ngjyra akcenti neon (blu, purple ose cyan)
+* Rounded corners, soft shadows
+* Responsive për mobile, tablet, desktop
+* Typography moderne (Google Fonts)
+
+---
+
+### 5. JAVASCRIPT
+
+* Pa libra të jashtëm
+* Event listeners për çdo input
+* Animacionet të kontrolluara edhe nga JS kur është e nevojshme
+* Strukturë logjike, pa kod të panevojshëm
+
+---
+
+### 6. KËRKESA SHTESË
+
+* Asnjë backend
+* Asnjë framework
+* Fokus ekstrem në animacione dhe përvojë vizuale
+* UI të duket premium dhe futuristike
+
+---
+
+Gjenero kodin komplet për të dyja faqet sipas këtij përshkrimi.
+Me krijo nje prompt per te ndertuar nje login dhe sign up page ne dy file te ndryshme dmth do me krijosh dy faqe dua te jene me html css dhe js do krijohen me animacione do jene funksionale dhe do jene shume te bukura per UI por do jene me shume animacione cdo gje login do perfshije{username, password,link per forgot password, button submit, link per sign up} ndersa sign up do jete {emer, mbiemer, mosha,nacionaliteti,lloji i patentes,email, numer telefoni, password, repeat password}
+te me krijohet prompti i ndare me cdo karakteristike qe kam thene dhe duke shtuar karakteristikat qe duhet por mos me harro animacionet do jete me background te erret
+
+PROMPT I RIFORMULUAR – NIVEL I AVANCUAR (JO BAZIK, JO EFEKTE TË LIRA)
+
+Krijo dy faqe **Login** dhe **Sign Up** në file të ndara (**HTML, CSS, JavaScript**), me objektiv ndërtimin e një **UI eksperimentale, kinematike, jo-konvencionale**, me **animacione strukturore**, jo efekte kozmetike. Ndalo përdorimin e glow, neon, box-shadow, hover-color-change primitive, ose link-e tradicionale.
+
+---
+
+### 1. FILOZOFIA E DIZAJNIT
+
+* Dark background solid ose procedural (noise, gradient matematikor, shader-like)
+* Zero box-shadow, zero glow, zero neon
+* Kontrast i ndërtuar me:
+
+  * motion
+  * spacing
+  * layering
+  * maska
+  * clip-path
+  * transform
+* UI nuk duhet të “duket si form”, por si **interface dinamike**
+
+---
+
+### 2. LINK-E (KRITIKE)
+
+* ASNJË `<a>` që duket si link
+* Navigimi realizohet përmes:
+
+  * elementëve `div/button` me role semantike
+  * transition full-page (scale, slide, wipe, morph)
+* Asnjë underline, asnjë hover-color
+* Ndryshimi i gjendjes realizohet me:
+
+  * transform
+  * opacity
+  * letter-spacing
+  * motion direction
+* Link-et duhet të duken si pjesë e layout-it, jo si tekst interaktiv
+
+---
+
+### 3. LOGIN PAGE – STRUKTURË
+
+Elemente:
+
+* Username
+* Password
+* Forgot password (jo link klasik)
+* Submit
+* Switch to Sign Up (transition animuar)
+
+Sjellje:
+
+* Input-et shfaqen me **mask reveal animation**
+* Label-et janë pjesë e animacionit, jo tekst statik
+* Fokus = layout shift i lehtë, jo highlight
+* Errorët nuk janë text; janë:
+
+  * deformime
+  * vibrime subtile
+  * delay të qëllimshme
+* Submit triggeron **state animation**, jo alert
+
+---
+
+### 4. SIGN UP PAGE – STRUKTURË
+
+Fusha:
+
+* Emër
+* Mbiemër
+* Mosha
+* Nacionaliteti
+* Lloji i Patentës
+* Email
+* Numër Telefoni
+* Password
+* Repeat Password
+
+Sjellje:
+
+* Fushat nuk shfaqen njëherësh
+* Progressive disclosure bazuar në completion
+* Password match feedback përmes motion, jo tekst
+* Invalid input = regres animacioni
+* Submit = sequence animuar (lock → validate → resolve)
+
+---
+
+### 5. ANIMACIONE (THELBËSORE)
+
+* CSS: `transform`, `clip-path`, `mask-image`, `keyframes`
+* JS përdoret për:
+
+  * state management
+  * orchestration të animacioneve
+* Animacionet duhet të:
+
+  * ndryshojnë strukturën e layout-it
+  * komunikojnë gjendje logjike
+* Asnjë animacion dekorativ pa funksion kognitiv
+
+---
+
+### 6. INTERAKSION
+
+* Hover nuk ndryshon ngjyrë
+* Hover ndryshon:
+
+  * dimension
+  * pozicion
+  * ritëm
+* Fokus nuk është vizual klasik, por perceptiv
+* UI reagon si sistem, jo si faqe web
+
+---
+
+### 7. KODIM
+
+* Vanilla HTML, CSS, JS
+* Pa framework, pa libra
+* CSS i ndarë, JS i ndarë
+* Arkitekturë e qartë state-based
+
+---
+
+### 8. NDALIME ABSOLUTE
+
+* Pa box-shadow
+* Pa glow
+* Pa neon
+* Pa underline
+* Pa hover-color-change
+* Pa link-e tradicionale
+* Pa animacione “pretty”
+
+---
+
+Gjenero kodin komplet për të dyja faqet duke ndjekur strikt këtë përshkrim.**PROMPT (gati për t’u përdorur):**
+
+Krijo dy faqe të ndara **Login** dhe **Sign Up**, secila në file të veçantë (**HTML, CSS, JavaScript**), me fokus maksimal në **UI moderne**, **background të errët**, dhe **animacione të avancuara**. Projekti duhet të jetë plotësisht funksional në frontend, pa backend.
+
+---
+
+### 1. STRUKTURA E FILEVE
+
+* `login.html`, `login.css`, `login.js`
+* `signup.html`, `signup.css`, `signup.js`
+* CSS dhe JS të ndara për secilën faqe
+* Kod i pastër, i modularizuar, i lexueshëm
+
+---
+
+### 2. LOGIN PAGE
+
+**Fushat dhe elementët:**
+
+* Input: `Username`
+* Input: `Password`
+* Link: `Forgot Password`
+* Button: `Submit / Login`
+* Link: `Sign Up` (drejton te signup.html)
+
+**Funksionalitet:**
+
+* Validim real-time (empty fields, minimum characters)
+* Toggle show/hide password
+* Prevent submit nëse validimi dështon
+* Feedback vizual për error/success
+
+**Animacione:**
+
+* Fade + slide-in në load
+* Floating labels për inputet
+* Hover & ripple effect për button
+* Smooth transition kur shfaqen errorët
+* Micro-animations në focus/blur të inputeve
+
+---
+
+### 3. SIGN UP PAGE
+
+**Fushat dhe elementët:**
+
+* Input: `Emër`
+* Input: `Mbiemër`
+* Input: `Mosha` (numeric, validation)
+* Select: `Nacionaliteti`
+* Select: `Lloji i Patentës`
+* Input: `Email`
+* Input: `Numër Telefoni`
+* Input: `Password`
+* Input: `Repeat Password`
+* Button: `Create Account`
+* Link: `Back to Login`
+
+**Funksionalitet:**
+
+* Validim i avancuar për çdo fushë
+* Kontroll për përputhje password / repeat password
+* Email & phone format validation
+* Disabled submit derisa të gjitha kushtet të plotësohen
+* Mesazhe error/success dinamike
+
+**Animacione:**
+
+* Step-by-step reveal ose stagger animation për inputet
+* Smooth scaling & glow effects në focus
+* Animated progress feedback gjatë plotësimit
+* Button loading animation në submit
+
+---
+
+### 4. DESIGN & UI
+
+* Dark theme (gradient ose glassmorphism)
+* Ngjyra akcenti neon (blu, purple ose cyan)
+* Rounded corners, soft shadows
+* Responsive për mobile, tablet, desktop
+* Typography moderne (Google Fonts)
+
+---
+
+### 5. JAVASCRIPT
+
+* Pa libra të jashtëm
+* Event listeners për çdo input
+* Animacionet të kontrolluara edhe nga JS kur është e nevojshme
+* Strukturë logjike, pa kod të panevojshëm
+
+---
+
+### 6. KËRKESA SHTESË
+
+* Asnjë backend
+* Asnjë framework
+* Fokus ekstrem në animacione dhe përvojë vizuale
+* UI të duket premium dhe futuristike
+
+---
+
+Gjenero kodin komplet për të dyja faqet sipas këtij përshkrimi.
+
+PROMPT I RIFORMULUAR – NIVEL I AVANCUAR (JO BAZIK, JO EFEKTE TË LIRA)
+
+Krijo dy faqe **Login** dhe **Sign Up** në file të ndara (**HTML, CSS, JavaScript**), me objektiv ndërtimin e një **UI eksperimentale, kinematike, jo-konvencionale**, me **animacione strukturore**, jo efekte kozmetike. Ndalo përdorimin e glow, neon, box-shadow, hover-color-change primitive, ose link-e tradicionale.
+
+---
+
+### 1. FILOZOFIA E DIZAJNIT
+
+* Dark background solid ose procedural (noise, gradient matematikor, shader-like)
+* Zero box-shadow, zero glow, zero neon
+* Kontrast i ndërtuar me:
+
+  * motion
+  * spacing
+  * layering
+  * maska
+  * clip-path
+  * transform
+* UI nuk duhet të “duket si form”, por si **interface dinamike**
+
+---
+
+### 2. LINK-E (KRITIKE)
+
+* ASNJË `<a>` që duket si link
+* Navigimi realizohet përmes:
+
+  * elementëve `div/button` me role semantike
+  * transition full-page (scale, slide, wipe, morph)
+* Asnjë underline, asnjë hover-color
+* Ndryshimi i gjendjes realizohet me:
+
+  * transform
+  * opacity
+  * letter-spacing
+  * motion direction
+* Link-et duhet të duken si pjesë e layout-it, jo si tekst interaktiv
+
+---
+
+### 3. LOGIN PAGE – STRUKTURË
+
+Elemente:
+
+* Username
+* Password
+* Forgot password (jo link klasik)
+* Submit
+* Switch to Sign Up (transition animuar)
+
+Sjellje:
+
+* Input-et shfaqen me **mask reveal animation**
+* Label-et janë pjesë e animacionit, jo tekst statik
+* Fokus = layout shift i lehtë, jo highlight
+* Errorët nuk janë text; janë:
+
+  * deformime
+  * vibrime subtile
+  * delay të qëllimshme
+* Submit triggeron **state animation**, jo alert
+
+---
+
+### 4. SIGN UP PAGE – STRUKTURË
+
+Fusha:
+
+* Emër
+* Mbiemër
+* Mosha
+* Nacionaliteti
+* Lloji i Patentës
+* Email
+* Numër Telefoni
+* Password
+* Repeat Password
+
+Sjellje:
+
+* Fushat nuk shfaqen njëherësh
+* Progressive disclosure bazuar në completion
+* Password match feedback përmes motion, jo tekst
+* Invalid input = regres animacioni
+* Submit = sequence animuar (lock → validate → resolve)
+
+---
+
+### 5. ANIMACIONE (THELBËSORE)
+
+* CSS: `transform`, `clip-path`, `mask-image`, `keyframes`
+* JS përdoret për:
+
+  * state management
+  * orchestration të animacioneve
+* Animacionet duhet të:
+
+  * ndryshojnë strukturën e layout-it
+  * komunikojnë gjendje logjike
+* Asnjë animacion dekorativ pa funksion kognitiv
+
+---
+
+### 6. INTERAKSION
+
+* Hover nuk ndryshon ngjyrë
+* Hover ndryshon:
+
+  * dimension
+  * pozicion
+  * ritëm
+* Fokus nuk është vizual klasik, por perceptiv
+* UI reagon si sistem, jo si faqe web
+
+---
+
+### 7. KODIM
+
+* Vanilla HTML, CSS, JS
+* Pa framework, pa libra
+* CSS i ndarë, JS i ndarë
+* Arkitekturë e qartë state-based
+
+---
+
+### 8. NDALIME ABSOLUTE
+
+* Pa box-shadow
+* Pa glow
+* Pa neon
+* Pa underline
+* Pa hover-color-change
+* Pa link-e tradicionale
+* Pa animacione “pretty”
+
+---
+
+Gjenero kodin komplet për të dyja faqet duke ndjekur strikt këtë përshkrim.
