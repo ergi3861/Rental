@@ -112,6 +112,7 @@ function CarBrands(){
     <div className="carousel-tag"><img src={lancia} /></div>
     <div className="carousel-tag"><img src={landRover} /></div>
     <div className="carousel-tag"><img src={lexus} /></div>
+    <div className="carousel-tag"><img src={lincoln} /></div>
     <div className="carousel-tag"><img src={maserati} /></div>
     <div className="carousel-tag"><img src={maybach} /></div>
     <div className="carousel-tag"><img src={mazda} /></div>

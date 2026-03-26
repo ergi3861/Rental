@@ -61,7 +61,7 @@ const [fingerActive, setFingerActive] = useState(false);
       setFingerActive(true);
 
 setTimeout(() => {
-  navigate("/");
+    navigate("/");
 }, 6000);
     } catch (err) {
       setBtnText("Kyçu");

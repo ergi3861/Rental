@@ -1,332 +1,235 @@
 import Navigimi from "../../components/navbar/navbar";
 import "./cars.css";
 import CarBrands from "../../components/carousel/carousel";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import ReservationForm from "../../components/reservation/reservation";
 import Footer from "../../components/footer/footer";
-function Cars(){
+import { useEffect, useState, useRef } from "react";
+import API from "../../pages/auth/api";
+import CarCard from "../../components/carCard/carCard";
+import Sidebar from "../../components/filters/filter";
 
-const carBrands = [
-  "Audi",
-  "BMW",
-  "Mercedes-Benz",
-  "Volkswagen",
-  "Toyota",
-  "Ford",
-  "Hyundai",
-  "Kia",
-  "Nissan",
-  "Peugeot",
-  "Renault",
-  "Skoda",
-  "Volvo",
-  "Porsche",
-  "Lexus",
-  "Mazda",
-  "Mini",
-  "Tesla",
-  "Land Rover",
-  "Jaguar",
-  // +100 pa prekur JSX
+const SORT_OPTIONS = [
+  { value: "default", label: "Default" },
+  { value: "price_desc", label: "Cmimi me i shtrenjte" },
+  { value: "price_asc", label: "Cmimi me i lire" },
+  { value: "newest", label: "Te rejat" },
 ];
+const PER_PAGE_OPTIONS = [24, 48, 72, 96];
 
-const currentYear = new Date().getFullYear();
+function Dropdown({ label, options, value, onChange }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
 
-const years = Array.from(
-  { length: currentYear - 1999 },
-  (_, i) => currentYear - i
-);
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
+  const selected = options.find((o) => (o.value ?? o) === value);
 
-  
- const carsData = [
-  {
-    id: 1,
-    brand: "BMW",
-    name: "BMW X5",
-    year: 2021,
-    fuel: "Dizel",
-    transmission: "Automatik",
-    km: "45,000 km",
-    price: "€32,500",
-    image: "/bmw-x5.jpg"
-  },
-  {
-    id: 2,
-    brand: "Audi",
-    name: "Audi Q7",
-    year: 2020,
-    fuel: "Benzinë",
-    transmission: "Automatik",
-    km: "38,000 km",
-    price: "€29,800",
-    image: "/audi-q7.jpg"
-  }
-];
+  return (
+    <div ref={ref} className="dropdown">
+      <button className="dropdown-btn" onClick={() => setOpen((p) => !p)}>
+        <span>{label}: <strong>{selected?.label ?? selected ?? value}</strong></span>
+        <span className="dropdown-arrow">{open ? "▲" : "▼"}</span>
+      </button>
 
-
-    const Pagination = () => (
-  <div className="pagination">
-    <button
-      disabled={page === 1}
-      onClick={() => setPage(p => p - 1)}
-    >
-      ‹
-    </button>
-
-    <span>{page} / {totalPages}</span>
-
-    <button
-      disabled={page === totalPages}
-      onClick={() => setPage(p => p + 1)}
-    >
-      ›
-    </button>
-  </div>
-);
-
-  const MIN = 20;
-  const MAX = 200;
-  const GAP = 10;
-
-  const [minPrice, setMinPrice] = useState(20);
-  const [maxPrice, setMaxPrice] = useState(200);
-
-  const minPercent = ((minPrice - MIN) / (MAX - MIN)) * 100;
-  const maxPercent = ((maxPrice - MIN) / (MAX - MIN)) * 100;
-
- const carModels = [
-  { brand: "BMW", model: "X5" },
-  { brand: "BMW", model: "X3" },
-  { brand: "Audi", model: "Q7" },
-  { brand: "Audi", model: "A6" },
-  { brand: "Mercedes", model: "GLC" },
-  { brand: "Mercedes", model: "E-Class" },
-  { brand: "Toyota", model: "RAV4" },
-  { brand: "Volkswagen", model: "Tiguan" }
-];
-
-const fuels = ["Dizel", "Benzinë", "Elektrike", "Hibride"];
-const transmissions = ["Automatik", "Manual"];
-const images = ["/bmw.jpg", "/audi.jpg", "/mercedes.jpg"];
-
-const [perPage, setPerPage] = useState(20);
-
-  const [page, setPage] = useState(1);
-
-  const start = (page - 1) * perPage;
-  const end = start + perPage;
-
-  const visibleCars = carsData.slice(start, end);
-  const totalPages = Math.ceil(carsData.length / perPage);
-
-  const handlePerPageChange = (e) => {
-  setPerPage(Number(e.target.value));
-  setPage(1);
-};
-
-    return(
-        <>
-        <Navigimi />
-        <div className="carsMarquee">
-        <CarBrands /></div>
-        <section className="cars-page">
-
-  {/* HEADER */}
-  <div className="cars-header">
-  <div>
-    <h1>Flota jonë</h1>
-    <span className="cars-count">
-      {carsData.length} makina të disponueshme
-    </span>
-  </div>
-
-  <div className="cars-header-controls">
-    <select className="cars-sort">
-      <option>Më të rejat</option>
-      <option>Çmimi: Ulët → Lartë</option>
-      <option>Çmimi: Lartë → Ulët</option>
-      <option>Viti</option>
-      <option>Kilometra</option>
-    </select>
-
-    <select
-      className="cars-limit"
-      value={perPage}
-      onChange={handlePerPageChange}
-    >
-      <option value={20}>20</option>
-      <option value={40}>40</option>
-      <option value={60}>60</option>
-      <option value={80}>80</option>
-      <option value={100}>100</option>
-    </select>
-
-    <Pagination />
-  </div>
-</div>
-
-  {/* MAIN */}
-  <div className="cars-layout">
-
-    {/* FILTERS */}
-    <aside className="cars-filters">
-      <h3>Filtra</h3>
-   <div className="price-filter">
-      <h3>Çmimi</h3>
-
-      <div className="price-values">
-        <span>${minPrice}</span>
-        <span>${maxPrice}</span>
-      </div>
-
-      <div className="range-container">
-        <div className="track"></div>
-        <div
-          className="range-fill"
-          style={{
-            left: `${minPercent}%`,
-            width: `${maxPercent - minPercent}%`,
-          }}
-        ></div>
-
-        <input
-          type="range"
-          min={MIN}
-          max={MAX}
-          step="5"
-          value={minPrice}
-          onChange={(e) => {
-            const val = Math.min(+e.target.value, maxPrice - GAP);
-            setMinPrice(val);
-          }}
-        />
-
-        <input
-          type="range"
-          min={MIN}
-          max={MAX}
-          step="5"
-          value={maxPrice}
-          onChange={(e) => {
-            const val = Math.max(+e.target.value, minPrice + GAP);
-            setMaxPrice(val);
-          }}
-        />
-      </div>
-
-      <p className="per-day">për ditë</p>
+      {open && (
+        <div className="dropdown-menu">
+          {options.map((o) => {
+            const val = o.value ?? o;
+            const lbl = o.label ?? o;
+            return (
+              <label key={val} className="dropdown-item">
+                <input
+                  type="checkbox"
+                  checked={value === val}
+                  onChange={() => { onChange(val); setOpen(false); }}
+                />
+                {lbl}
+              </label>
+            );
+          })}
+        </div>
+      )}
     </div>
+  );
+}
 
-<div className="filter-group">
-  <label>Marka</label>
+function Pagination({ currentPage, totalPages, onPageChange }) {
+  if (totalPages <= 1) return null;
 
-  <input
-    list="car-brands"
-    placeholder="Zgjidh ose kërko markën"
-    className="filter-input"
-  />
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
+    .filter((p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1)
+    .reduce((acc, p, i, arr) => {
+      if (i > 0 && p - arr[i - 1] > 1) acc.push("...");
+      acc.push(p);
+      return acc;
+    }, []);
 
-  <datalist id="car-brands">
-    {carBrands.map(brand => (
-      <option key={brand} value={brand} />
-    ))}
-  </datalist>
-</div>
+  return (
+    <div className="pagination">
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="page-btn"
+      >
+        &lt;
+      </button>
 
+      {pages.map((p, i) =>
+        p === "..." ? (
+          <span key={"d" + i} className="dots">...</span>
+        ) : (
+          <button
+            key={p}
+            onClick={() => onPageChange(p)}
+            className={`page-btn ${currentPage === p ? "active" : ""}`}
+          >
+            {p}
+          </button>
+        )
+      )}
 
-<div className="filter-group">
-  <label>Viti</label>
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="page-btn"
+      >
+        &gt;
+      </button>
+    </div>
+  );
+}
 
-  <input
-    list="car-years"
-    placeholder="Viti i makinës"
-    className="filter-input"
-  />
+function Cars() {
+  const [filters, setFilters] = useState({});
+  const [cars, setCars] = useState([]);
+  const [activeFilters, setActiveFilters] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [sortValue, setSortValue] = useState("default");
+  const [perPage, setPerPage] = useState(24);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalCars, setTotalCars] = useState(0);
 
-  <datalist id="car-years">
-    {years.map(year => (
-      <option key={year} value={year} />
-    ))}
-  </datalist>
-</div>
+  useEffect(() => {
+    API.get("/cars/filters")
+      .then((res) => setFilters(res.data))
+      .catch((err) => console.error("Filters error:", err));
+  }, []);
 
-      <div className="filter-group">
-  <label>Karburanti</label>
+  useEffect(() => {
+    setLoading(true);
+    const params = new URLSearchParams();
 
-  <input
-    list="fuel-types"
-    placeholder="Zgjidh ose kërko"
-    className="filter-input"
-  />
+    Object.entries(activeFilters).forEach(([k, v]) => {
+      if (v) params.append(k, v);
+    });
 
-  <datalist id="fuel-types">
-    {[
-      "Naftë",
-      "Gaz",
-      "Benzinë",
-      "Elektrike",
-      "Hibride"
-    ].map(fuel => (
-      <option key={fuel} value={fuel} />
-    ))}
-  </datalist>
-</div>
+    params.append("page", currentPage);
+    params.append("limit", perPage);
+    if (sortValue !== "default") params.append("sort", sortValue);
 
+    API.get("/cars?" + params.toString())
+      .then((res) => {
+        setCars(res.data.data || []);
+        setTotalCars(res.data.total || 0);
+      })
+      .catch((err) => console.error("Cars error:", err))
+      .finally(() => setLoading(false));
+  }, [activeFilters, sortValue, perPage, currentPage]);
 
-      <div className="filter-group">
-  <label>Transmisioni</label>
+  const handleFilterChange = (key, value) => {
+    if (key === "__reset__") {
+      setActiveFilters({});
+      setCurrentPage(1);
+      return;
+    }
+    setCurrentPage(1);
+    setActiveFilters((prev) => ({ ...prev, [key]: value }));
+  };
 
-  <input
-    list="transmission-types"
-    placeholder="Zgjidh ose kërko"
-    className="filter-input"
-  />
+  const totalPages = Math.ceil(totalCars / perPage);
 
-  <datalist id="transmission-types">
-    {[
-      "Automatik",
-      "Manual",
-      "Robotik"
-    ].map(type => (
-      <option key={type} value={type} />
-    ))}
-  </datalist>
-</div>
+  return (
+    <>
+      <Navigimi />
 
-    </aside>
+      <div className="carsMarquee">
+        <CarBrands />
+      </div>
 
-     <div className="cars-grid">
-        {visibleCars.map(car => (
-          <div className="car-card" key={car.id}>
-            <img src={car.image} alt={car.name} />
+      <section className="cars-page">
 
-            <div className="car-info">
-              <h4>{car.name}</h4>
+        {/* TOOLBAR */}
+        <div className="toolbar-outer">
+          <h1 className="page-title">Flota jonë</h1>
+        
+          <div className="toolbar">
+            <span className="total">Numri i mjeteve: {totalCars}</span>
 
-              <div className="car-specs">
-                <span>⛽ {car.fuel}</span>
-                <span>⚙ {car.transmission}</span>
-                <span>📏 {car.km}</span>
-              </div>
+            <div className="toolbar-right">
+              <Dropdown
+                label="Rendit sipas"
+                options={SORT_OPTIONS}
+                value={sortValue}
+                onChange={(v) => { setSortValue(v); setCurrentPage(1); }}
+              />
 
-              <div className="car-footer">
-                <strong>{car.price}</strong>
-                <button><Link to="/reservationform">Reservation</Link></button>
-              </div>
+              <Dropdown
+                label="Shiko nga"
+                options={PER_PAGE_OPTIONS}
+                value={perPage}
+                onChange={(v) => { setPerPage(v); setCurrentPage(1); }}
+              />
+
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
             </div>
           </div>
-        ))} </div>
+        </div>
 
-        <Pagination />
+        {/* BODY */}
+        <div className="cars-body">
+          <Sidebar
+            filters={filters}
+            activeFilters={activeFilters}
+            onFilterChange={handleFilterChange}
+          />
 
-  </div>
+          <main className="cars-main">
+            {loading ? (
+              <p>Duke ngarkuar...</p>
+            ) : cars.length === 0 ? (
+              <p className="empty">Nuk u gjeten makina me keto filtra.</p>
+            ) : (
+              <div className="cars-grid">
+                {cars.map((car) => (
+                  <CarCard key={car.id} car={car} />
+                ))}
+              </div>
+            )}
 
+            <div className="pagination-bottom">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </div>
+          </main>
+        </div>
 
-</section>
-<Footer />
-        </>
-    );
+      </section>
+
+      <Footer />
+    </>
+  );
 }
-export default Cars
+
+export default Cars;

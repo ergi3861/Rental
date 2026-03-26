@@ -11,8 +11,10 @@ import Pytje from './pages/faq/faq.js';
 import CarAnimation from './pages/auth/authentication/authentication.js';
 import Login from './pages/auth/login/login.js'
 import Signup from './pages/auth/signup/signup.js';
-import GetCars from "./pages/cars/getCar.js";
 import ReservationForm from "./components/reservation/reservation.js";
+import GetCar from "./pages/cars/getCar.js";
+import Dashboard from "./pages/dashboard/dashboard.js";
+import CarCard from "./components/carCard/carCard.js";
 
 
 function App() {
@@ -20,8 +22,11 @@ function App() {
    <BrowserRouter>
      <Routes>
        <Route path="/auth" element={<CarAnimation />} />
-       <Route path="/api/auth/makinat" element={<GetCars />} />
-        
+       <Route path="/getcar" element={<GetCar />} />
+       <Route path="/rental" element={<GetCar />} />
+       <Route path="/sale" element={<GetCar />} />
+       <Route path="/getcar" element={<CarCard/>}/>
+       <Route path="/dashboard" element={<Dashboard />} />
        <Route path="/login" element={<Login />} />
        <Route path="/signup" element={<Signup/>} />
        <Route path="/" element={<Home/>} />

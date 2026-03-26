@@ -268,9 +268,9 @@ return
         </ul>
       </li>
 
-      <li><Link to="/reservation">Rezervim</Link></li>
-      <li><Link to="/sales">Shitje</Link></li>
-      <li><Link to="/buy">Blerje</Link></li>
+      <li><Link to="/reservation">Rezervo</Link></li>
+      <li><Link to="/sales">Bli nje makine</Link></li>
+      <li><Link to="/buy">Shit makinen tende</Link></li>
       <li><Link to="/services">Shërbime</Link></li>
       <li><Link to="/aboutUs">Rreth nesh</Link></li>
       <li><Link to="/contact">Kontakt</Link></li>
