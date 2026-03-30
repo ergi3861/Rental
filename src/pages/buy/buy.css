@@ -1,5 +1,3 @@
-
-
 .cars-page {
   max-width: 1200px;
   margin: 100px auto;
@@ -150,7 +148,7 @@
   }
 }
 
-.carsMarquee .Marquee{
+.carsMarquee .Marquee {
   width: 100%;
   margin: 0;
   border-radius: 0px;
@@ -162,7 +160,6 @@
   background: linear-gradient(135deg, #051b2e, #020637);
   border-radius: 14px;
   color: #fff;
-  
 }
 
 .price-values {
@@ -234,3 +231,256 @@ input[type="range"]::-webkit-slider-thumb:hover {
   align-items: center;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   SELL PAGE — forma "Shes makinën time"
+═══════════════════════════════════════════════════════════ */
+
+.sell-page {
+  max-width: 680px;
+  margin: 120px auto 80px;
+  padding: 0 24px;
+}
+
+/* Header */
+.sell-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sell-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 8px;
+}
+
+.sell-header p {
+  color: #64748b;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Steps */
+.sell-steps {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.step span {
+  width: 40px;
+  height: 40px;
+  background: #0f172a;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.step p {
+  margin: 0;
+  font-size: 13px;
+  color: #475569;
+  text-align: center;
+}
+
+/* Form */
+.sell-form {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+}
+
+.sell-form h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sell-form h2:not(:first-child) {
+  margin-top: 32px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #3b82f6;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Errors */
+.form-error {
+  display: block;
+  color: #e53e3e;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.form-server-error {
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #c53030;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* Submit button */
+.sell-btn {
+  width: 100%;
+  padding: 14px;
+  background: #0f172a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s, transform 0.1s;
+  font-family: inherit;
+}
+
+.sell-btn:hover {
+  background: #1e3a5f;
+}
+
+.sell-btn:active {
+  transform: scale(0.99);
+}
+
+.sell-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Guarantees */
+.sell-guarantees {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.sell-guarantees span {
+  font-size: 13px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sell-guarantees span::before {
+  content: "✓";
+  color: #22c55e;
+  font-weight: 700;
+}
+
+/* Success screen */
+.sell-success {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.sell-success__icon {
+  width: 72px;
+  height: 72px;
+  background: #22c55e;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.sell-success h2 {
+  font-size: 28px;
+  color: #0f172a;
+  margin: 0 0 8px;
+}
+
+.sell-success p {
+  color: #64748b;
+  margin: 0 0 32px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .sell-form {
+    padding: 24px 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sell-steps {
+    gap: 16px;
+  }
+
+  .sell-guarantees {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+}

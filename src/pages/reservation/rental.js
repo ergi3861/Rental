@@ -104,7 +104,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
   );
 }
 
-function Sale() {
+function Rental() {
   const [filters, setFilters] = useState({});
   const [cars, setCars] = useState([]);
   const [activeFilters, setActiveFilters] = useState({});
@@ -125,7 +125,7 @@ function Sale() {
     const params = new URLSearchParams();
 
     // ── Vetëm makinat RENTAL ─────────────────────────────────
-    params.append("type", "SALE");
+    params.append("type", "RENTAL");
 
     Object.entries(activeFilters).forEach(([k, v]) => {
       if (v) params.append(k, v);
@@ -168,7 +168,7 @@ function Sale() {
 
         {/* TOOLBAR */}
         <div className="toolbar-outer">
-          <h1 className="page-title">Makina per shitje</h1>
+          <h1 className="page-title">Makina me qira</h1>
 
           <div className="toolbar">
             <span className="total">Numri i mjeteve: {totalCars}</span>
@@ -209,7 +209,7 @@ function Sale() {
             {loading ? (
               <p>Duke ngarkuar...</p>
             ) : cars.length === 0 ? (
-              <p className="empty">Nuk u gjeten makina per shitje me keto filtra.</p>
+              <p className="empty">Nuk u gjeten makina me qira me keto filtra.</p>
             ) : (
               <div className="cars-grid">
                 {cars.map((car) => (
@@ -235,4 +235,4 @@ function Sale() {
   );
 }
 
-export default Sale;
+export default Rental;

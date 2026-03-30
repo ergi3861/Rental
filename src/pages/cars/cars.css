@@ -147,3 +147,256 @@
   display: flex;
   justify-content: center;
 }
+
+/* addcar */
+.ac-page {
+  max-width: 900px;
+  margin: 100px auto 80px;
+  padding: 0 24px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #f1f5f9;
+}
+
+.ac-header {
+  margin-bottom: 32px;
+}
+
+.ac-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.ac-header p {
+  font-size: 14px;
+  color: #475569;
+  margin: 0;
+}
+
+/* Type toggle */
+.ac-type-toggle {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.ac-type-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #1e293b;
+  background: #0a1628;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.ac-type-btn.active {
+  background: #0f172a;
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+/* Form */
+.ac-form {
+  background: #0a1628;
+  border: 1px solid #1e293b;
+  border-radius: 20px;
+  padding: 32px;
+}
+
+.ac-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.ac-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ac-field label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ac-field input,
+.ac-field select {
+  padding: 10px 12px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  color: #f1f5f9;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.ac-field input:focus,
+.ac-field select:focus {
+  border-color: #38bdf8;
+}
+
+.ac-field select option {
+  background: #020617;
+}
+
+.ac-error {
+  font-size: 11px;
+  color: #f87171;
+}
+
+/* Images */
+.ac-images-section {
+  margin-bottom: 24px;
+}
+
+.ac-upload-label {
+  cursor: pointer;
+  display: block;
+}
+
+.ac-upload-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 28px;
+  border: 1px dashed #1e293b;
+  border-radius: 14px;
+  transition: border-color 0.2s, background 0.2s;
+  text-align: center;
+}
+
+.ac-upload-box:hover {
+  border-color: #38bdf8;
+  background: rgba(56,189,248,0.04);
+}
+
+.ac-upload-icon { font-size: 28px; }
+
+.ac-upload-box span:nth-child(2) {
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.ac-upload-hint {
+  font-size: 12px;
+  color: #334155;
+}
+
+/* Previews */
+.ac-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.ac-preview {
+  position: relative;
+  width: 100px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #1e293b;
+}
+
+.ac-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ac-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  background: rgba(0,0,0,0.7);
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.ac-main-badge {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  background: #38bdf8;
+  color: #020617;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* Messages */
+.ac-server-error {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #fca5a5;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.ac-success {
+  background: rgba(16,185,129,0.1);
+  border: 1px solid rgba(16,185,129,0.3);
+  color: #6ee7b7;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* Submit */
+.ac-submit {
+  width: 100%;
+  padding: 14px;
+  background: #38bdf8;
+  color: #020617;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.ac-submit:hover { background: #7dd3fc; }
+.ac-submit:active { transform: scale(0.99); }
+.ac-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+@media (max-width: 700px) {
+  .ac-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .ac-grid { grid-template-columns: 1fr; }
+  .ac-form { padding: 20px 16px; }
+}

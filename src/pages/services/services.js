@@ -1,48 +1,250 @@
-// Services.jsx
 import Footer from "../../components/footer/footer";
 import Navigimi from "../../components/navbar/navbar";
 import "./services.css";
+import { useEffect, useRef } from "react";
 
-const services = [
-  { title: "Qira Makine Afatshkurtër", desc: "Makina ditore dhe javore për përdorim urban dhe turistik." },
-  { title: "Qira Makine Afatgjatë", desc: "Zgjidhje mujore dhe vjetore për individë dhe biznese." },
-  { title: "Rezervim Online", desc: "Rezervim i drejtpërdrejtë me datë, orë, vendndodhje dhe konfirmim të menjëhershëm." },
-  { title: "Dorëzim & Marrje Makine", desc: "Dorëzim në aeroport, hotel ose adresë private. Marrje fleksibël." },
-  { title: "Qira Makine me Shofer", desc: "Shërbim premium për evente, udhëtime biznesi dhe transport VIP." },
-  { title: "Flotë e Segmentuar", desc: "Makina ekonomike, familjare dhe luksoze sipas nevojës reale." },
-  { title: "Asistencë 24/7", desc: "Mbështetje teknike dhe rrugore gjatë gjithë kohës së qirasë." },
-  { title: "Siguracione të Plota", desc: "Sigurim bazë dhe opsione shtesë për mbulim maksimal." },
-  { title: "Pa Depozitë / Depozitë e Ulët", desc: "Kushte fleksibël pa barriera financiare." },
-  { title: "Anulim Fleksibël", desc: "Anulim ose ndryshim rezervimi pa penalitete të panevojshme." },
-  { title: "Shërbime Shtesë", desc: "GPS, karrige për fëmijë, Wi-Fi, goma dimri, zinxhirë." },
-  { title: "Ofertë për Biznese", desc: "Kontrata korporative dhe çmime të personalizuara." },
-  { title: "Turizëm & Udhëtime", desc: "Makina për ture, guida lokale dhe udhëtime ndërqytetëse." },
-  { title: "Pagesa të Sigurta", desc: "Cash, kartë dhe pagesa online." },
-
-  /* shtesa strategjike */
-  { title: "Rezervim pa Kartë Krediti", desc: "Alternativë për klientë pa kartë krediti." },
-  { title: "Makina të Reja & të Mirëmbajtura", desc: "Flotë moderne me kontroll teknik të vazhdueshëm." },
-  { title: "Çmime Transparente", desc: "Pa kosto të fshehura, pa surpriza." },
-  { title: "Mbështetje për Turistë të Huaj", desc: "Dokumentacion i thjeshtuar dhe asistencë shumëgjuhëshe." }
+const CATEGORIES = [
+  {
+    id: "qira",
+    label: "Qira",
+    icon: "🚗",
+    color: "#38bdf8",
+    services: [
+      {
+        title: "Qira Afatshkurtër",
+        desc: "Makina ditore dhe javore për lëvizje urbane, udhëtime turistike dhe nevoja të papritura. Rezervim i menjëhershëm, marrje në 30 minuta.",
+        badge: "Popullore"
+      },
+      {
+        title: "Qira Afatgjatë",
+        desc: "Kontrata mujore dhe vjetore për individë dhe biznese. Çmime preferenciale, mirëmbajtje e përfshirë dhe zëvendësim makine pa kosto.",
+      },
+      {
+        title: "Qira me Shofer",
+        desc: "Shërbim premium për evente, takime biznesi dhe transport VIP. Shoferë profesionistë, diskrecion i garantuar.",
+        badge: "Premium"
+      },
+      {
+        title: "Flotë e Segmentuar",
+        desc: "Ekonomike për qytet, SUV për terren, luksoze për impresion. Zgjidhni kategorinë që i përshtatet udhëtimit tuaj.",
+      },
+    ]
+  },
+  {
+    id: "logjistike",
+    label: "Logjistikë",
+    icon: "📍",
+    color: "#a78bfa",
+    services: [
+      {
+        title: "Dorëzim në Derë",
+        desc: "Sjellim makinën direkt tek ju — aeroport, hotel, zyrë ose adresë private. Pa humbje kohe, pa linja pritjeje.",
+        badge: "I ri"
+      },
+      {
+        title: "Marrje Fleksibël",
+        desc: "Ktheni makinën në çdo pikë të rrjetit tonë. Orë të zgjeruara marrje, 7 ditë në javë.",
+      },
+      {
+        title: "Rezervim Online 24/7",
+        desc: "Platforma jonë ju lejon të zgjidhni datën, orën, vendndodhjen dhe kategorinë e makinës — me konfirmim të çastit.",
+      },
+      {
+        title: "Turizëm & Ture",
+        desc: "Paketa speciale për turistë: makina me GPS, harta offline dhe rekomandime lokale të personalizuara.",
+      },
+    ]
+  },
+  {
+    id: "mbrojtje",
+    label: "Mbrojtje",
+    icon: "🛡",
+    color: "#34d399",
+    services: [
+      {
+        title: "Siguracione të Plota",
+        desc: "Sigurimi bazë është i përfshirë në çdo rezervim. Opsione shtesë: zero franshizë, mbrojtje e gomave, xhami dhe pasagjerëve.",
+      },
+      {
+        title: "Asistencë 24/7",
+        desc: "Ekip në dispozicion çdo orë për avari, aksidente ose pyetje gjatë periudhës së qirasë. Zëvendësim brenda 2 orësh.",
+        badge: "Gjithmonë aktiv"
+      },
+      {
+        title: "Pa Depozitë / Depozitë e Ulët",
+        desc: "Kushte financiare fleksibël pa bllokime kapitali. Alternativë për klientë pa kartë krediti.",
+      },
+      {
+        title: "Anulim Falas",
+        desc: "Ndryshoni ose anuloni rezervimin tuaj pa penalitete deri 24 orë para marrjes. Rimbursim i plotë i garantuar.",
+      },
+    ]
+  },
+  {
+    id: "biznese",
+    label: "Biznese",
+    icon: "💼",
+    color: "#fb923c",
+    services: [
+      {
+        title: "Kontrata Korporative",
+        desc: "Çmime të personalizuara për biznese me nevoja të rregullta. Faturim mujor, menaxher llogarie i dedikuar.",
+        badge: "B2B"
+      },
+      {
+        title: "Pagesa të Sigurta",
+        desc: "Cash, kartë debiti/krediti, transfertë bankare dhe faturë elektronike. Procese të certifikuara dhe të sigurta.",
+      },
+      {
+        title: "Çmime Transparente",
+        desc: "Çmimi që shihni është çmimi që paguani. Pa kosto të fshehura, pa tarifa shtesë të papritura.",
+      },
+      {
+        title: "Mbështetje Shumëgjuhëshe",
+        desc: "Stafi ynë flet shqip, anglisht dhe italisht. Dokumentacion i thjeshtuar për turistë dhe klientë të huaj.",
+      },
+    ]
+  },
+  {
+    id: "blerje-shitje",
+    label: "Blerje & Shitje",
+    icon: "🤝",
+    color: "#f472b6",
+    services: [
+      {
+        title: "Blerje Makine",
+        desc: "Shfletoni flotën tonë të makinave për shitje. Çdo makinë vjen me histori shërbimi, inspektim teknik dhe çmim transparent.",
+        badge: "Disponibël tani"
+      },
+      {
+        title: "Shes Makinën Time",
+        desc: "Plotësoni formularin, ne vlerësojmë makinën tuaj falas dhe ju bëjmë ofertë brenda 24 orësh. Pa ndërmjetës, pa komisione.",
+        badge: "Falas"
+      },
+      {
+        title: "Vlerësim i Drejtpërdrejtë",
+        desc: "Ekipi ynë teknik inspekton makinën tuaj dhe ju jep një çmim real bazuar në tregun aktual. Pa surpriza, pa zbritje arbitrare.",
+      },
+      {
+        title: "Transfer i Sigurt",
+        desc: "Dokumentacion i plotë ligjor, pagesë e menjëhershme dhe transferim pronësie i garantuar. E shpejtë, e sigurt, e dokumentuar.",
+      },
+    ]
+  },
 ];
 
+const STATS = [
+  { value: "500+", label: "Makina në flotë" },
+  { value: "12k+", label: "Klientë të kënaqur" },
+  { value: "24/7", label: "Asistencë aktive" },
+  { value: "8+",   label: "Vite eksperiencë" },
+];
+
+function useIntersection(ref, options = {}) {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12, ...options });
+
+    const el = ref.current;
+    if (el) {
+      const items = el.querySelectorAll(".reveal");
+      items.forEach(item => observer.observe(item));
+    }
+    return () => observer.disconnect();
+  }, []);
+}
+
 export default function Services() {
+  const pageRef = useRef(null);
+  useIntersection(pageRef);
+
   return (
     <>
-    <Navigimi />
-    <section className="services">
-      <h2 className="services-title">Shërbimet</h2>
+      <Navigimi />
+      <div className="srv-page" ref={pageRef}>
 
-      <div className="services-grid">
-        {services.map((s, i) => (
-          <div className="service-card" key={i}>
-            <h3>{s.title}</h3>
-            <p>{s.desc}</p>
+        {/* ── HERO ─────────────────────────────────────────── */}
+        <section className="srv-hero">
+          <div className="srv-hero__bg">
+            <div className="srv-hero__orb srv-hero__orb--1" />
+            <div className="srv-hero__orb srv-hero__orb--2" />
           </div>
+          <div className="srv-hero__content reveal">
+            <span className="srv-eyebrow">Çfarë ofrojmë</span>
+            <h1 className="srv-hero__title">
+              Shërbime që<br />
+              <em>funksionojnë</em> me ju
+            </h1>
+            <p className="srv-hero__sub">
+              Nga qira e thjeshtë ditore deri tek kontrata korporative — 
+              çdo shërbim është projektuar për të hequr pengesat, jo për t'i shtuar.
+            </p>
+          </div>
+
+          {/* Stats */}
+          <div className="srv-stats reveal">
+            {STATS.map((s, i) => (
+              <div className="srv-stat" key={i}>
+                <span className="srv-stat__value">{s.value}</span>
+                <span className="srv-stat__label">{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── KATEGORITE ───────────────────────────────────── */}
+        {CATEGORIES.map((cat) => (
+          <section className="srv-category" key={cat.id}>
+            <div className="srv-category__header reveal">
+              <span className="srv-category__icon">{cat.icon}</span>
+              <div>
+                <span className="srv-category__tag" style={{ color: cat.color }}>
+                  {cat.label}
+                </span>
+                <div className="srv-category__line" style={{ background: cat.color }} />
+              </div>
+            </div>
+
+            <div className="srv-grid">
+              {cat.services.map((svc, i) => (
+                <div
+                  className="srv-card reveal"
+                  key={i}
+                  style={{ "--accent": cat.color, animationDelay: `${i * 80}ms` }}
+                >
+                  {svc.badge && (
+                    <span className="srv-card__badge" style={{ background: cat.color }}>
+                      {svc.badge}
+                    </span>
+                  )}
+                  <h3 className="srv-card__title">{svc.title}</h3>
+                  <p className="srv-card__desc">{svc.desc}</p>
+                  <div className="srv-card__line" />
+                </div>
+              ))}
+            </div>
+          </section>
         ))}
+
+        {/* ── CTA ──────────────────────────────────────────── */}
+        <section className="srv-cta reveal">
+          <div className="srv-cta__inner">
+            <h2>Gati të filloni?</h2>
+            <p>Shikoni flotën tonë dhe zgjidhni makinën e duhur për ju.</p>
+            <div className="srv-cta__btns">
+              <button className="srv-btn srv-btn--primary">Shiko Flotën</button>
+              <button className="srv-btn srv-btn--ghost">Na Kontaktoni</button>
+            </div>
+          </div>
+        </section>
+
       </div>
-    </section>
-<Footer />
+      <Footer />
     </>
   );
 }

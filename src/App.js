@@ -1,9 +1,8 @@
 import Buy from "./pages/buy/buy.js"
 import Home from './pages/home/home.js';
 import { BrowserRouter , Route , Routes } from 'react-router-dom';
-import Reservation from './pages/reservation/reservation.js';
+import Reservation from './pages/reservation/rental.js';
 import Cars from './pages/cars/cars.js';
-import Sales from './pages/sales/sales.js';
 import Services from './pages/services/services.js';
 import AboutUs from './pages/aboutUs/aboutUs.js';
 import Contact from './pages/contact/contact.js';
@@ -12,9 +11,11 @@ import CarAnimation from './pages/auth/authentication/authentication.js';
 import Login from './pages/auth/login/login.js'
 import Signup from './pages/auth/signup/signup.js';
 import ReservationForm from "./components/reservation/reservation.js";
-import GetCar from "./pages/cars/getCar.js";
+
 import Dashboard from "./pages/dashboard/dashboard.js";
 import CarCard from "./components/carCard/carCard.js";
+import Sale from "./pages/sales/sales.js";
+import AddCar from "./pages/cars/addCar.js";
 
 
 function App() {
@@ -22,9 +23,9 @@ function App() {
    <BrowserRouter>
      <Routes>
        <Route path="/auth" element={<CarAnimation />} />
-       <Route path="/getcar" element={<GetCar />} />
-       <Route path="/rental" element={<GetCar />} />
-       <Route path="/sale" element={<GetCar />} />
+       <Route path="/addcar" element={<AddCar />} />
+       {/* <Route path="/rental" element={<GetCar />} /> */}
+       {/* <Route path="/sale" element={<GetCar />} /> */}
        <Route path="/getcar" element={<CarCard/>}/>
        <Route path="/dashboard" element={<Dashboard />} />
        <Route path="/login" element={<Login />} />
@@ -32,7 +33,7 @@ function App() {
        <Route path="/" element={<Home/>} />
        <Route path="/cars" element={<Cars />} />
        <Route path="/reservation" element={<Reservation />} />
-       <Route path="/sales" element={<Sales />} />
+       <Route path="/sales" element={<Sale />} />
        <Route path="/reservationform" element={<ReservationForm/>} />
        <Route path="/buy" element={<Buy />} />
        <Route path="/services" element={<Services />} />

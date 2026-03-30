@@ -1,47 +1,56 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../../components/carCard/carCard.css";
 
-
 export default function CarCard({ car = {} }) {
-  const [flipped, setFlipped] = useState(false);
+  const [flipped, setFlipped]       = useState(false);
+  const [imgIndex, setImgIndex]     = useState(0);
+  const autoRef                     = useRef(null);
 
   const {
-    brand = "",
-    model = "",
-    category = "",
-    year = "",
-    fuel = "",
-    transmission = "",
-    seats = "",
-    color = "",
-    status = "",
-    type = "",
-    price_per_day = "",
-    sale_price = "",
-    vin = "",
-    media = [],
+    brand = "", model = "", category = "", year = "",
+    fuel = "", transmission = "", seats = "", color = "",
+    status = "", type = "", price_per_day = "",
+    sale_price = "", vin = "", media = [],
   } = car;
 
+  // ── Auto-play carousel ───────────────────────────────────
+  useEffect(() => {
+    if (media.length <= 1) return;
+    autoRef.current = setInterval(() => {
+      setImgIndex(i => (i + 1) % media.length);
+    }, 3000);
+    return () => clearInterval(autoRef.current);
+  }, [media.length]);
+
+  const goTo = (idx) => {
+    clearInterval(autoRef.current);
+    setImgIndex(idx);
+    // restart auto dopo 5s di pausa
+    autoRef.current = setInterval(() => {
+      setImgIndex(i => (i + 1) % media.length);
+    }, 3000);
+  };
+
+  const prev = (e) => { e.stopPropagation(); goTo((imgIndex - 1 + media.length) % media.length); };
+  const next = (e) => { e.stopPropagation(); goTo((imgIndex + 1) % media.length); };
+
   const fuelLabel =
-    fuel === "nafte" ? "Naftë" :
-    fuel === "benzin" ? "Benzin" :
+    fuel === "nafte" ? "Naftë" : fuel === "benzin" ? "Benzin" :
     fuel === "elektrike" ? "Elektrike" : "Hybrid";
 
   const transLabel =
-    transmission === "automatic" ? "Automatik" :
-    transmission === "manual" ? "Manual" :
+    transmission === "automatic" ? "Automatik" : transmission === "manual" ? "Manual" :
     transmission === "semi-automatic" ? "Semi-auto" : "Tiptronic";
 
   const statusColor =
-    status === "available" ? "#10b981" :
-    status === "reserved" ? "#f59e0b" :
+    status === "available" ? "#10b981" : status === "reserved" ? "#f59e0b" :
     status === "sold" ? "#ef4444" : "#6366f1";
 
   return (
     <div id="card">
       <div className={`carCard ${flipped ? "is-flipped" : ""}`}>
 
-        {/* ===== FRONT ===== */}
+        {/* ── FRONT ──────────────────────────────────────── */}
         <div className="cardFront">
           <div className="carTypology">
             <span className="car-category-badge">{category}</span>
@@ -49,10 +58,36 @@ export default function CarCard({ car = {} }) {
             <h4>{model} · {year}</h4>
           </div>
 
+          {/* Carousel */}
           <div className="car-image-area">
-            {media && media.length > 0 ? (
-              <img src={`http://localhost:5000/uploads/${media[0].image_path}`} 
-              alt={model}  className="car-real-img" />
+            {media.length > 0 ? (
+              <div className="carousel">
+                <img
+                  key={imgIndex}
+                  src={`http://localhost:5000/uploads/${media[imgIndex].image_path}`}
+                  alt={model}
+                  className="car-real-img carousel-img"
+                />
+
+                {/* Shigjeta */}
+                {media.length > 1 && (
+                  <>
+                    <button className="carousel-arrow carousel-arrow--left"  onClick={prev}>‹</button>
+                    <button className="carousel-arrow carousel-arrow--right" onClick={next}>›</button>
+
+                    {/* Dots */}
+                    <div className="carousel-dots">
+                      {media.map((_, i) => (
+                        <button
+                          key={i}
+                          className={`carousel-dot ${i === imgIndex ? "active" : ""}`}
+                          onClick={(e) => { e.stopPropagation(); goTo(i); }}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             ) : (
               <div className="placeholder">Awaiting image</div>
             )}
@@ -61,12 +96,14 @@ export default function CarCard({ car = {} }) {
           <div className="flip">
             <div className="flip-link" onClick={() => setFlipped(true)}>Details</div>
             <div className="flip-price">
-              {type === "RENTAL" ? `${price_per_day}€/ditë` : `${sale_price.toLocaleString()}€`}
+              {type === "RENTAL"
+                ? `${price_per_day}€/ditë`
+                : `${Number(sale_price).toLocaleString()}€`}
             </div>
           </div>
         </div>
 
-        {/* ===== BACK ===== */}
+        {/* ── BACK ───────────────────────────────────────── */}
         <div className="cardBack">
           <div className="back-top">
             <span className="back-title">Detajet</span>
@@ -90,7 +127,7 @@ export default function CarCard({ car = {} }) {
             </div>
             <div className="back-row">
               <div className="back-label">
-                <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="0.2"><path d="M16.9381 23.294C16.9371 21.7738 16.4896 20.2874 15.6511 19.0192C14.8126 17.7509 13.6201 16.7568 12.2215 16.1601C11.2588 15.744 10.221 15.5292 9.17216 15.5298C8.12332 15.5292 7.08548 15.744 6.12277 16.1601C4.72417 16.7568 3.53163 17.7509 2.69315 19.0192C1.85467 20.2874 1.40717 21.7738 1.40618 23.294C1.40461 23.4808 1.32974 23.6595 1.19766 23.7915C1.06558 23.9236 0.886881 23.9984 0.700099 24C0.514283 23.9971 0.336926 23.9215 0.20608 23.7896C0.0752343 23.6576 0.00128471 23.4798 0 23.294C0.00119281 21.6367 0.450563 20.0105 1.30058 18.5876C2.15059 17.1647 3.36963 15.998 4.8286 15.211C5.29586 14.9622 5.78374 14.754 6.28679 14.589C5.65225 14.1327 5.13532 13.5322 4.77867 12.8368C4.42202 12.1414 4.23584 11.371 4.23551 10.5895C4.23684 9.27966 4.75792 8.02398 5.68436 7.09777C6.61081 6.17155 7.86698 5.65054 9.17717 5.64921C10.4873 5.64921 11.7449 6.17155 12.6714 7.09777C13.5978 8.02398 14.1188 9.27966 14.1188 10.5895C14.118 11.3709 13.9317 12.141 13.5751 12.8363C13.2184 13.5317 12.7017 14.1324 12.0675 14.589C12.5707 14.7537 13.0586 14.9619 13.5257 15.211C14.9848 15.9979 16.2039 17.1647 17.0541 18.5876C17.9043 20.0105 18.3539 21.6366 18.3553 23.294C18.3537 23.4808 18.2788 23.6595 18.1467 23.7915C18.0147 23.9236 17.836 23.9984 17.6492 24C17.4614 24 17.2813 23.9257 17.1481 23.7935C17.0149 23.6612 16.9394 23.4817 16.9381 23.294Z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16,4C16,2.89 15.1,2 14,2H10C8.89,2 8,2.89 8,4V6H2V8H3V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V8H22V6H16V4M10,4H14V6H10V4M11,10H13V18H11V10M7,10H9V18H7V10M15,10H17V18H15V10Z"/></svg>
                 Ulëset
               </div>
               <span>{seats}</span>
@@ -104,37 +141,36 @@ export default function CarCard({ car = {} }) {
             </div>
             <div className="back-row">
               <div className="back-label">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.3533 7.85924C22.9866 7.85924 23.5 7.25931 23.5 6.51989V5.33934C23.5 4.59969 22.9868 4 22.3533 4L18.0383 4.00023C17.4051 4.00023 16.8916 4.59968 16.8916 5.33957V6.52012C16.8916 7.25954 17.4049 7.85947 18.0383 7.85947H19.3582V10.9625L12.4305 10.9623C12.1439 10.0537 11.3964 9.40548 10.5195 9.40548H8.55928C7.68214 9.40548 6.93448 10.0535 6.64827 10.9623H5.1422V7.85924H6.46229C7.09534 7.85924 7.60897 7.25931 7.60897 6.51989V5.33934C7.60897 4.59969 7.09534 4 6.46229 4L2.14668 4.00023C1.51362 4.00023 1 4.59968 1 5.33957V6.52012C1 7.25954 1.51362 7.85947 2.14668 7.85947H3.46678V16.2122H2.14668C1.51362 16.2122 1 16.8116 1 17.5515V18.7321C1 19.4717 1.51362 20.0714 2.14668 20.0714H6.46149C7.09454 20.0714 7.60817 19.472 7.60817 18.7321V17.5515C7.60817 16.8119 7.09454 16.2122 6.46149 16.2122H5.14139V12.6038H6.64746C6.93369 13.5128 7.68134 14.1602 8.55847 14.1602H10.5187C11.3958 14.1602 12.1435 13.5121 12.4297 12.6038H19.3584V16.2115H18.0383C17.4051 16.2115 16.8916 16.8109 16.8916 17.5508V18.7314C16.8916 19.471 17.4049 20.0707 18.0383 20.0707H22.3531C22.9864 20.0707 23.4998 19.4715 23.4998 18.7314V17.5508C23.4998 16.8112 22.9866 16.2115 22.3531 16.2115H21.0332L21.0334 7.85935L22.3533 7.85924Z"/></svg>
-                Transmisioni tip
-              </div>
-              <span>{transLabel}</span>
-            </div>
-            <div className="back-row">
-              <div className="back-label">
-                <span className="color-circle" style={{background: color === "black" ? "#111" : color === "white" ? "#eee" : color === "silver" ? "#C0C0C0" : color}}></span>
+                <span className="color-circle" style={{
+                  background: color === "black" ? "#111" : color === "white" ? "#eee" :
+                  color === "silver" ? "#C0C0C0" : color
+                }} />
                 Ngjyra
               </div>
               <span>{color}</span>
             </div>
             <div className="back-row">
               <div className="back-label">
-                <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5" fill={statusColor}/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="5" fill={statusColor}/>
+                </svg>
                 Statusi
               </div>
               <span className={`status-pill status-${status}`}>{status}</span>
             </div>
             <div className="back-row">
-              <div className="back-label">Cmimi</div>
+              <div className="back-label">Çmimi</div>
               <span className="price-accent">
-                {type === "RENTAL" ? `${price_per_day}€/ditë` : `${sale_price.toLocaleString()}€`}
+                {type === "RENTAL"
+                  ? `${price_per_day}€/ditë`
+                  : `${Number(sale_price).toLocaleString()}€`}
               </span>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
       <button className="cardBtn">Reserve</button>
     </div>
   );
 }
-
