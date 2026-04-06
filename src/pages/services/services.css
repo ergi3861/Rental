@@ -1,0 +1,362 @@
+
+#services {
+  background: #020617;
+  color: #f1f5f9;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+#services .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+#services .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#services .srvHero {
+  position: relative;
+  padding: 160px 8% 100px;
+  overflow: hidden;
+}
+
+#services .srvHeroBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#services .srvHeroBg .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.18;
+}
+
+#services .srvHeroBg .orb1 {
+  width: 500px;
+  height: 500px;
+  background: #38bdf8;
+  top: -100px;
+  right: -100px;
+}
+
+#services .srvHeroBg .orb2 {
+  width: 400px;
+  height: 400px;
+  background: #a78bfa;
+  bottom: 0;
+  left: 5%;
+}
+
+#services .srvEyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #38bdf8;
+  margin-bottom: 20px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 6px 16px;
+  border-radius: 100px;
+}
+
+#services .srvHeroTitle {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 24px;
+  letter-spacing: -1.5px;
+  color: #f8fafc;
+}
+
+#services .srvHeroTitle em {
+  font-style: normal;
+  color: #38bdf8;
+}
+
+#services .srvHeroSub {
+  font-size: 18px;
+  color: #94a3b8;
+  max-width: 560px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+#services .srvStats {
+  display: flex;
+  gap: 0;
+  margin-top: 72px;
+  border: 1px solid #1e293b;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 680px;
+  background: rgba(255,255,255,0.02);
+}
+
+#services .srvStat {
+  flex: 1;
+  padding: 28px 24px;
+  text-align: center;
+  border-right: 1px solid #1e293b;
+  transition: background 0.3s;
+}
+
+#services .srvStat:last-child {
+  border-right: none;
+}
+
+#services .srvStat:hover {
+  background: rgba(56, 189, 248, 0.05);
+}
+
+#services .srvStatValue {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -1px;
+}
+
+#services .srvStatLabel {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#services .srvCategory {
+  padding: 80px 8%;
+  border-top: 1px solid #0f172a;
+}
+
+#services .srvCategoryHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+#services .srvCategoryIcon {
+  font-size: 36px;
+  line-height: 1;
+}
+
+#services .srvCategoryTag {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+#services .srvCategoryLine {
+  height: 3px;
+  width: 48px;
+  border-radius: 2px;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+
+#services .srvGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+#services .srvCard {
+  position: relative;
+  background: #0a1628;
+  border: 1px solid #1e293b;
+  border-radius: 20px;
+  padding: 28px 24px 24px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+#services .srvCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent, #38bdf8);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+#services .srvCard:hover::before {
+  transform: scaleX(1);
+}
+
+#services .srvCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+}
+
+#services .srvCardBadge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #020617;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#services .srvCardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+#services .srvCardDesc {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+
+#services .srvCardLine {
+  height: 1px;
+  background: #1e293b;
+  border-radius: 1px;
+  transition: background 0.3s;
+}
+
+#services .srvCard:hover .srvCardLine {
+  background: var(--accent, #38bdf8);
+  opacity: 0.3;
+}
+
+#services .srvCta {
+  padding: 80px 8% 120px;
+}
+
+#services .srvCtaInner {
+  background: linear-gradient(135deg, #0f172a, #0a1628);
+  border: 1px solid #1e293b;
+  border-radius: 28px;
+  padding: 72px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#services .srvCtaInner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(56,189,248,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+#services .srvCtaInner h2 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 16px;
+  letter-spacing: -1px;
+}
+
+#services .srvCtaInner p {
+  font-size: 17px;
+  color: #64748b;
+  margin: 0 0 40px;
+}
+
+#services .srvCtaBtns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#services .srvBtn {
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+#services .srvBtnPrimary {
+  background: #38bdf8;
+  color: #020617;
+}
+
+#services .srvBtnPrimary:hover {
+  background: #7dd3fc;
+  transform: translateY(-2px);
+}
+
+#services .srvBtnGhost {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid #1e293b;
+}
+
+#services .srvBtnGhost:hover {
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+@media (max-width: 1200px) {
+  #services .srvGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  #services .srvHero {
+    padding: 120px 6% 80px;
+  }
+
+  #services .srvCategory {
+    padding: 60px 6%;
+  }
+
+  #services .srvStats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
+
+  #services .srvStat {
+    border-right: 1px solid #1e293b;
+    border-bottom: 1px solid #1e293b;
+  }
+
+  #services .srvCtaInner {
+    padding: 48px 28px;
+  }
+
+  #services .srvCtaInner h2 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 520px) {
+  #services .srvGrid {
+    grid-template-columns: 1fr;
+  }
+
+  #services .srvStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

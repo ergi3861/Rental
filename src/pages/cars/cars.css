@@ -1,0 +1,148 @@
+#cars .carsPage {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 24px;
+}
+
+#cars .toolbar-outer {  
+  display: grid;
+  grid-template-columns: 300px 1fr; 
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#cars .pageTitle {
+  grid-column: 1 / 2; 
+  font-size: 32px;
+  font-weight: 700;
+  padding-left: 50px;
+}
+#cars .toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  background: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.18);
+  margin-bottom: 16px;
+}
+
+#cars .toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#cars .total {
+  font-size: 14px;
+  color: #555;
+  font-weight: 600;
+  margin-right: auto;
+}
+
+#cars .carsBody {
+  display: flex;
+  gap: 24px;
+  padding: 0 40px 40px 0;
+  align-items: flex-start;
+}
+
+#cars .carsMain {
+  flex: 1;
+}
+
+#cars .empty {
+  color: #888;
+  font-size: 15px;
+}
+
+#cars .carsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}
+
+#carsDropdown {
+  position: relative;
+}
+
+#carsDropdown .dropdownBtn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+#carsDropdown .dropdownArrow {
+  font-size: 10px;
+  margin-left: 6px;
+}
+
+#carsDropdown .dropdownMenu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  z-index: 100;
+  padding: 6px 0;
+  min-width: 180px;
+}
+
+#carsDropdown .dropdownItem {
+  display: flex;
+  align-items: center;
+  padding: 7px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #333;
+}
+
+#carsDropdown .dropdownItem input {
+  margin-right: 8px;
+  accent-color: #6366f1;
+}
+
+#pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#pagination .pageBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#pagination .pageBtn.active {
+  background: #6366f1;
+  color: #fff;
+  border-color: #6366f1;
+  font-weight: 700;
+}
+
+#pagination .dots {
+  font-size: 13px;
+  color: #888;
+  padding: 0 4px;
+}
+
+#pagination .paginationBottom {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
