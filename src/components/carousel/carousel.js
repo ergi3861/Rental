@@ -78,73 +78,73 @@ export default function Carousel(){
         
 <div id="carousel">
   <div className="carousel-track" ref={TrackRef}>
-    <div className="carousel-tag"><img src={alfaRomeo} /></div>
-    <div className="carousel-tag"><img src={astonMartin} /></div>
-    <div className="carousel-tag"><img src={audi} /></div>
-    <div className="carousel-tag"><img src={bentley} /></div>
-    <div className="carousel-tag"><img src={bmw} /></div>
-    <div className="carousel-tag"><img src={bugatti} /></div>
-    <div className="carousel-tag"><img src={byd} /></div>
-    <div className="carousel-tag"><img src={cadillac} /></div>
-    <div className="carousel-tag"><img src={chevrolet} /></div>
-    <div className="carousel-tag"><img src={chrysler} /></div>
-    <div className="carousel-tag"><img src={citroen} /></div>
-    <div className="carousel-tag"><img src={corvete} /></div>
-    <div className="carousel-tag"><img src={dacia} /></div>
-    <div className="carousel-tag"><img src={daimler} /></div>
-    <div className="carousel-tag"><img src={dodge} /></div>
-    <div className="carousel-tag"><img src={ferrari} /></div>
-    <div className="carousel-tag"><img src={fiat} /></div>
-    <div className="carousel-tag"><img src={ford} /></div>
-    <div className="carousel-tag"><img src={genesis} /></div>
-    <div className="carousel-tag"><img src={gmc} /></div>
-    <div className="carousel-tag"><img src={honda} /></div>
-    <div className="carousel-tag"><img src={hummer} /></div>
-    <div className="carousel-tag"><img src={hyundaai} /></div>
-    <div className="carousel-tag"><img src={infiniti} /></div>
-    <div className="carousel-tag"><img src={iveco} /></div>
-    <div className="carousel-tag"><img src={jaguar} /></div>
-    <div className="carousel-tag"><img src={jeep} /></div>
-    <div className="carousel-tag"><img src={kia} /></div>
-    <div className="carousel-tag"><img src={koenigsegg} /></div>
-    <div className="carousel-tag"><img src={lada} /></div>
-    <div className="carousel-tag"><img src={lamborghini} /></div>
-    <div className="carousel-tag"><img src={lancia} /></div>
-    <div className="carousel-tag"><img src={landRover} /></div>
-    <div className="carousel-tag"><img src={lexus} /></div>
-    <div className="carousel-tag"><img src={lincoln} /></div>
-    <div className="carousel-tag"><img src={maserati} /></div>
-    <div className="carousel-tag"><img src={maybach} /></div>
-    <div className="carousel-tag"><img src={mazda} /></div>
-    <div className="carousel-tag"><img src={mclaren} /></div>
-    <div className="carousel-tag"><img src={mercedesBenz} /></div>
-    <div className="carousel-tag"><img src={mg} /></div>
-    <div className="carousel-tag"><img src={miniCooper} /></div>
-    <div className="carousel-tag"><img src={mitsubishi} /></div>
-    <div className="carousel-tag"><img src={nissan} /></div>
-    <div className="carousel-tag"><img src={opel} /></div>
-    <div className="carousel-tag"><img src={pagani} /></div>
-    <div className="carousel-tag"><img src={peugot} /></div>
-    <div className="carousel-tag"><img src={polestar} /></div>
-    <div className="carousel-tag"><img src={porsche} /></div>
-    <div className="carousel-tag"><img src={proton} /></div>
-    <div className="carousel-tag"><img src={renault} /></div>
-    <div className="carousel-tag"><img src={rollsRoyce} /></div>
-    <div className="carousel-tag"><img src={saab} /></div>
-    <div className="carousel-tag"><img src={seat} /></div>
-    <div className="carousel-tag"><img src={skoda} /></div>
-    <div className="carousel-tag"><img src={smart} /></div>
-    <div className="carousel-tag"><img src={subaru} /></div>
-    <div className="carousel-tag"><img src={suzuki} /></div>
-    <div className="carousel-tag"><img src={tesla} /></div>
-    <div className="carousel-tag"><img src={toyota} /></div>
-    <div className="carousel-tag"><img src={volkswagen} /></div>
-    <div className="carousel-tag"><img src={volvoo} /></div>
+    <div className="carousel-tag"><img src={alfaRomeo} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={astonMartin} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={audi} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={bentley} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={bmw} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={bugatti} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={byd} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={cadillac} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={chevrolet} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={chrysler} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={citroen} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={corvete} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={dacia} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={daimler} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={dodge} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={ferrari} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={fiat} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={ford} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={genesis} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={gmc} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={honda} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={hummer} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={hyundaai} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={infiniti} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={iveco} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={jaguar} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={jeep} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={kia} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={koenigsegg} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={lada} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={lamborghini} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={lancia} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={landRover} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={lexus} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={lincoln} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={maserati} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={maybach} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={mazda} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={mclaren} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={mercedesBenz} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={mg} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={miniCooper} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={mitsubishi} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={nissan} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={opel} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={pagani} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={peugot} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={polestar} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={porsche} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={proton} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={renault} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={rollsRoyce} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={saab} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={seat} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={skoda} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={smart} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={subaru} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={suzuki} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={tesla} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={toyota} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={volkswagen} alt="Marka e makines" /></div>
+    <div className="carousel-tag"><img src={volvoo} alt="Marka e makines" /></div>
 
   </div>
 </div>  
 
         </>
     )
-}
+} 
 
