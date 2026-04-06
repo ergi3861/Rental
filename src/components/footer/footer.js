@@ -1,20 +1,25 @@
-import "../footer/footer.css"
+import "../footer/footer.css";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Footer({ variant }) {
 
   const revealOnScroll = () => {
-    const reveals = document.querySelectorAll(".reveal")
-    const trigger = window.innerHeight * 0.9
+    const reveals = document.querySelectorAll(".reveal");
+    const trigger = window.innerHeight * 0.9;
 
     reveals.forEach(el => {
-      const top = el.getBoundingClientRect().top
+      const top = el.getBoundingClientRect().top;
       if (top < trigger) {
-        el.classList.add("active")
+        el.classList.add("active");
       }
-    })
-  }
+    });
+  };
 
-  window.addEventListener("scroll", revealOnScroll)
+  useEffect(() => {
+    window.addEventListener("scroll", revealOnScroll);
+    return () => window.removeEventListener("scroll", revealOnScroll);
+  }, []);
 
   return (
     <footer id="footer">
@@ -22,7 +27,7 @@ export default function Footer({ variant }) {
       <div className="footerCta">
         <div className="ctaBox">
           <h2>Rezervo makinën tënde tani</h2>
-          <a href="#" className="ctaBtn">Rezervo</a>
+          <Link to="/" className="ctaBtn">Rezervo</Link>
         </div>
       </div>
 
@@ -39,10 +44,10 @@ export default function Footer({ variant }) {
             </p>
 
             <div className="socials">
-              <a href="#"><i className="fab fa-facebook-f"></i></a>
-              <a href="#"><i className="fab fa-instagram"></i></a>
-              <a href="#"><i className="fab fa-linkedin-in"></i></a>
-              <a href="#"><i className="fab fa-twitter"></i></a>
+              <Link to="/"><i className="fab fa-facebook-f"></i></Link>
+              <Link to="/"><i className="fab fa-instagram"></i></Link>
+              <Link to="/"><i className="fab fa-linkedin-in"></i></Link>
+              <Link to="/"><i className="fab fa-twitter"></i></Link>
             </div>
           </div>
 
@@ -50,14 +55,14 @@ export default function Footer({ variant }) {
             <h4>Navigim</h4>
 
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Makinat</a></li>
-              <li><a href="#">Rezervim</a></li>
-              <li><a href="#">Shitje</a></li>
-              <li><a href="#">Blerje</a></li>
-              <li><a href="#">Shërbime</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Kontakt</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/">Makinat</Link></li>
+              <li><Link to="/">Rezervim</Link></li>
+              <li><Link to="/">Shitje</Link></li>
+              <li><Link to="/">Blerje</Link></li>
+              <li><Link to="/">Shërbime</Link></li>
+              <li><Link to="/">FAQ</Link></li>
+              <li><Link to="/">Kontakt</Link></li>
             </ul>
           </div>
 
@@ -65,11 +70,11 @@ export default function Footer({ variant }) {
             <h4>Shërbime</h4>
 
             <ul>
-              <li><a href="#">Car Rental</a></li>
-              <li><a href="#">Car Sales</a></li>
-              <li><a href="#">Airport Pickup</a></li>
-              <li><a href="#">Long Term Rental</a></li>
-              <li><a href="#">Business Rental</a></li>
+              <li><Link to="/">Car Rental</Link></li>
+              <li><Link to="/">Car Sales</Link></li>
+              <li><Link to="/">Airport Pickup</Link></li>
+              <li><Link to="/">Long Term Rental</Link></li>
+              <li><Link to="/">Business Rental</Link></li>
             </ul>
           </div>
 
@@ -100,9 +105,9 @@ export default function Footer({ variant }) {
           <p>© 2026 Rental & Sales</p>
 
           <div className="footerPolicy">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Cookies</a>
+            <Link to="/">Privacy</Link>
+            <Link to="/">Terms</Link>
+            <Link to="/">Cookies</Link>
           </div>
 
         </div>
@@ -110,5 +115,5 @@ export default function Footer({ variant }) {
       </div>
 
     </footer>
-  )
+  );
 }

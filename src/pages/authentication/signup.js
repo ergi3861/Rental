@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import API from "../api";
-import "../signup/signup.css";
+import API from "../../backendConnection/api";
+import "../authentication/auth.css";
 import { Link } from "react-router-dom";
 
 export default function Signup() {

@@ -252,3 +252,295 @@
   text-decoration:none;
   font-size:13px;
 }
+
+/*login*/
+:root{
+  --bg1:#0b0f1a;
+  --bg2:#0f1625;
+  --accent:#7c7cff;
+  --error:#ff4b6e;
+  --success:#3affc7;
+  --card:rgba(255,255,255,0.07);
+}
+
+.loginForm{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(1200px 600px at 10% -10%, #111b2f 0%, #0b0f1abe 40%);
+  overflow:hidden;
+  box-sizing:border-box;font-family:Inter,Arial,Helvetica,sans-serif;
+}
+
+.loginForm .fade-slide{
+  animation:fadeSlide .8s ease both;
+}
+@keyframes fadeSlide{
+  from{opacity:0;transform:translateY(25px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+
+
+.loginForm .card{
+  width:100%;
+  max-width:360px;
+  box-sizing:border-box;
+  padding:32px 28px 28px;
+  background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  box-shadow:0 25px 60px rgba(0,0,0,.6);
+  position:relative;
+}
+
+.loginForm .card h1{
+  margin:0 0 24px;
+  font-size:22px;
+  color:#fff;
+  letter-spacing:.3px;
+}
+
+.loginForm .card .field{
+  position:relative;
+  margin-bottom:22px;
+}
+
+.loginForm .card .field input{
+  width:100%;
+  padding:14px 12px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  color:#fff;
+  outline:none;
+  transition:border .25s, box-shadow .25s;
+}
+
+.loginForm .card .field input:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 2px rgba(124,124,255,.18);
+}
+
+.loginForm .card .field label{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#aaa;
+  font-size:13px;
+  pointer-events:none;
+  transition:.25s;
+  background:transparent;
+  padding:0 4px;
+}
+
+.loginForm .card .field input:focus + label,
+.loginForm .card .field input:not(:placeholder-shown)+label{
+  top:-8px;
+  font-size:11px;
+  color:var(--accent);
+  background:#0d1320;
+}
+
+.loginForm .card .field .toggle{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  color:#bbb;
+  font-size:16px;
+}
+
+.loginForm .card .field .error{
+  color:var(--error);
+  font-size:12px;
+  margin-top:6px;
+  display:none;
+}
+
+.loginForm .card .field .shake{animation:shake .35s;}
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-4px)}
+  50%{transform:translateX(4px)}
+  75%{transform:translateX(-4px)}
+  100%{transform:translateX(0)}
+}
+
+  .loginForm .card button{
+    width:100%;
+    margin-top:6px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(120deg,#6a6aff,#9b6cff);
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    transition:.25s;
+  }
+
+  .loginForm .card button:hover{
+    box-shadow:0 0 18px rgba(124,124,255,.6);
+  }
+
+  .loginForm .card button::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,255,255,.35), transparent 60%);
+    opacity:0;
+    transition:.4s;
+  }
+  .loginForm .card button:hover::after{opacity:1;}
+
+.loginForm .card .links{
+  display:flex;
+  justify-content:space-between;
+  margin-top:16px;
+  font-size:12px;
+}
+
+.loginForm .card a{
+  color:#aaa;
+  text-decoration:none;
+  position:relative;
+}
+
+.loginForm .card a::after{
+  content:"";
+  position:absolute;
+  left:0;bottom:-2px;
+  height:1px;width:0;
+  background:var(--accent);
+  transition:.25s;
+}
+
+.loginForm .card a:hover{color:#fff;}
+.loginForm .card a:hover::after{width:100%;}
+
+.fp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 40, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.fp-overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+.fp-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+.fp-circle {
+  background-color: #077ff2;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  top: 0; left: 0;
+  transform: scale(0);
+  animation: fpPulse 1000ms ease-out infinite;
+}
+.fp-circle.secon { animation-delay: 500ms; }
+@keyframes fpPulse {
+  0%   { opacity: 1; transform: scale(0.1); }
+  100% { opacity: 0; transform: scale(1);   }
+}
+.fp-spinner {
+  position: absolute;
+  inset: 0;
+  border: 4px solid #bbbbbb;
+  border-left-color: #1ECD97;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.25s;
+  animation: fpSpin 1s linear infinite;
+}
+.fp-spinner.show { opacity: 1; }
+@keyframes fpSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.fp-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fp-svg {
+  opacity: 0;
+  position: absolute;
+  stroke: #777;
+  transition: opacity 300ms;
+}
+.fp-svg.fp-active-svg { stroke: #ffffff; }
+.fp-out { opacity: 1; }
+.fp-odd  { stroke-dasharray: 0px 50px;  stroke-dashoffset: 1px;   transition: stroke-dasharray 1ms; }
+.fp-even { stroke-dasharray: 50px 50px; stroke-dashoffset: -41px; transition: stroke-dashoffset 1ms; }
+
+.fp-wrap.active .fp-svg {
+  opacity: 1;
+  transition: opacity 200ms 100ms;
+}
+.fp-wrap.active .fp-base .fp-odd {
+  stroke-dasharray: 50px 50px;
+  transition: stroke-dasharray 700ms 5ms;
+}
+.fp-wrap.active .fp-base .fp-even {
+  stroke-dashoffset: 0px;
+  transition: stroke-dashoffset 250ms;
+}
+.fp-wrap.active .fp-active-svg .fp-odd {
+  stroke-dasharray: 50px 50px;
+  transition: stroke-dasharray 1800ms 400ms;
+}
+.fp-wrap.active .fp-active-svg .fp-even {
+  stroke-dashoffset: 0px;
+  transition: stroke-dashoffset 1400ms 20ms;
+}
+.fp-wrap.active .fp-out {
+  opacity: 0;
+  transition: opacity 300ms 1600ms;
+}
+.fp-tick-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fp-circ {
+  opacity: 0;
+  stroke-dasharray: 130;
+  stroke-dashoffset: 130;
+  transition: all 0.7s ease;
+}
+.fp-tick-path {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  transition: stroke-dashoffset 0.7s 0.35s ease-out;
+}
+.fp-tick-wrap.drawn .fp-circ {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+.fp-tick-wrap.drawn .fp-tick-path {
+  stroke-dashoffset: 0;
+}

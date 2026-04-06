@@ -1,7 +1,7 @@
 
 import { React, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import "../authentication/authentication.css";
+import "../authentication/auth.css";
 
 export default function CarAnimation() {
   const carRef = useRef(null);

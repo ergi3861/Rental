@@ -17,13 +17,13 @@ const Office = "Tirana Airport";
 const Delivery = 15;
 const today = new Date().toISOString().split("T")[0];
 
-const initial = {
+const Initial = {
     pickupLocation: "", pickupDate: "", pickupTime: "",
     dropLocation: "", dropDate: "", dropTime: "",
 };
 
 export default function ReservationForm({ car, onClose}) {
-    const [form, setForm] = useState("initial");
+    const [form, setForm] = useState(Initial);
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
