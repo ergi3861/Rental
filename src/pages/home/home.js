@@ -12,6 +12,7 @@ import volvo from '../../assets/volvo.jpeg';
 import Tesla from '../../assets/tesla.avif';
 import Carousel from '../../components/carousel/carousel';
 import Footer from '../../components/footer/footer';
+import { Link } from 'react-router-dom';
 
 function InputField({ label, value, setValue, type }) {
   return (
@@ -399,7 +400,12 @@ export default function Home() {
                 <span className="carPrice">
                   Duke filluar nga &nbsp; ${type.priceFrom} <small>/dite</small>
                 </span>
-                <button className="carButton">Shiko Modelet</button>
+                <Link 
+          to={`/cars?category=${encodeURIComponent(type.name)}`} 
+          className="carButton"
+        >
+          Shiko Modelet
+        </Link>
               </div>
             </div>
           ))}
@@ -514,7 +520,7 @@ export default function Home() {
           </div>
 
           <div className="actions">
-            <button onClick={() => (window.location.href = 'Reservation')} className="primary">
+            <button onClick={() => (window.location.href = 'Rental')} className="primary">
               Rezervo nje makine
             </button>
             <button onClick={() => (window.location.href = 'Contact')} className="secondary">
