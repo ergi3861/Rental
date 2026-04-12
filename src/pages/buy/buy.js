@@ -3,123 +3,62 @@ import '../buy/buy.css';
 import Navigimi from '../../components/navbar/navbar';
 import Footer from '../../components/footer/footer';
 import API from '../../backendConnection/api';
-import { useAuth } from '../../backendConnection/context'; // ← shto këtë import
+import { useAuth } from '../../backendConnection/context';
+import { useNavigate } from 'react-router-dom';
 
 const brands = [
-  'alfa romeo',
-  'aston martin',
-  'audi',
-  'bentley',
-  'bmw',
-  'bugatti',
-  'byd',
-  'cadillac',
-  'chevrolet',
-  'chrysler',
-  'citroen',
-  'corvete',
-  'dacia',
-  'daimler',
-  'dodge',
-  'ferrari',
-  'fiat',
-  'ford',
-  'genesis',
-  'gmc',
-  'honda',
-  'hummer',
-  'hyundai',
-  'infiniti',
-  'iveco',
-  'jaguar',
-  'jeep',
-  'kia',
-  'koenigsegg',
-  'lada',
-  'lamborghini',
-  'lancia',
-  'land rover',
-  'lexus',
-  'lincoln',
-  'maserati',
-  'maybach',
-  'mazda',
-  'mclaren',
-  'mercedes benz',
-  'mg',
-  'mini cooper',
-  'mitsubishi',
-  'nissan',
-  'opel',
-  'pagani',
-  'peugot',
-  'polestar',
-  'porsche',
-  'proton',
-  'renault',
-  'rolls royce',
-  'saab',
-  'seat',
-  'skoda',
-  'smart',
-  'subaru',
-  'suzuki',
-  'tesla',
-  'toyota',
-  'volkswagen',
-  'volvo',
+  'alfa romeo', 'aston martin', 'audi', 'bentley', 'bmw', 'bugatti', 'byd',
+  'cadillac', 'chevrolet', 'chrysler', 'citroen', 'corvete', 'dacia', 'daimler',
+  'dodge', 'ferrari', 'fiat', 'ford', 'genesis', 'gmc', 'honda', 'hummer',
+  'hyundai', 'infiniti', 'iveco', 'jaguar', 'jeep', 'kia', 'koenigsegg', 'lada',
+  'lamborghini', 'lancia', 'land rover', 'lexus', 'lincoln', 'maserati', 'maybach',
+  'mazda', 'mclaren', 'mercedes benz', 'mg', 'mini cooper', 'mitsubishi', 'nissan',
+  'opel', 'pagani', 'peugot', 'polestar', 'porsche', 'proton', 'renault',
+  'rolls royce', 'saab', 'seat', 'skoda', 'smart', 'subaru', 'suzuki', 'tesla',
+  'toyota', 'volkswagen', 'volvo',
 ];
 
 const fuels = [
-  { value: 'nafte', label: 'Naftë (Diesel)' },
-  { value: 'benzin', label: 'Benzinë' },
+  { value: 'nafte',     label: 'Naftë (Diesel)' },
+  { value: 'benzin',    label: 'Benzinë' },
   { value: 'elektrike', label: 'Elektrike' },
-  { value: 'hybrid', label: 'Hybrid' },
+  { value: 'hybrid',    label: 'Hybrid' },
 ];
 
 const transmissions = [
-  { value: 'manual', label: 'Manual' },
-  { value: 'automatic', label: 'Automatik' },
+  { value: 'manual',         label: 'Manual' },
+  { value: 'automatic',      label: 'Automatik' },
   { value: 'semi-automatic', label: 'Semi-automatik' },
-  { value: 'tiptronic', label: 'Tiptronic' },
+  { value: 'tiptronic',      label: 'Tiptronic' },
 ];
 
 const colors = [
-  { value: 'black', label: 'E zezë' },
-  { value: 'white', label: 'E bardhë' },
-  { value: 'grey', label: 'Gri' },
+  { value: 'black',  label: 'E zezë' },
+  { value: 'white',  label: 'E bardhë' },
+  { value: 'grey',   label: 'Gri' },
   { value: 'silver', label: 'Argjendtë' },
-  { value: 'red', label: 'E kuqe' },
-  { value: 'blue', label: 'Blu' },
-  { value: 'green', label: 'Jeshile' },
+  { value: 'red',    label: 'E kuqe' },
+  { value: 'blue',   label: 'Blu' },
+  { value: 'green',  label: 'Jeshile' },
   { value: 'yellow', label: 'Verdhë' },
   { value: 'orange', label: 'Portokalli' },
-  { value: 'brown', label: 'Kafe' },
-  { value: 'beige', label: 'Bezhë' },
-  { value: 'gold', label: 'Ari' },
+  { value: 'brown',  label: 'Kafe' },
+  { value: 'beige',  label: 'Bezhë' },
+  { value: 'gold',   label: 'Ari' },
   { value: 'purple', label: 'Vjollcë' },
-  { value: 'pink', label: 'Rozë' },
+  { value: 'pink',   label: 'Rozë' },
   { value: 'maroon', label: 'Gështenjë' },
-  { value: 'navy', label: 'Blu i errët' },
-  { value: 'pearl', label: 'Perlë' },
-  { value: 'cream', label: 'Kremë' },
+  { value: 'navy',   label: 'Blu i errët' },
+  { value: 'pearl',  label: 'Perlë' },
+  { value: 'cream',  label: 'Kremë' },
   { value: 'bronze', label: 'Bronzi' },
-  { value: 'tan', label: 'Tan' },
+  { value: 'tan',    label: 'Tan' },
 ];
 
 const initialForm = {
-  brand: '',
-  model: '',
-  year: '',
-  mileage: '',
-  fuel: '',
-  transmission: '',
-  color: '',
-  condition: '',
-  asking_price: '',
-  name: '',
-  phone: '',
-  city: '',
+  brand: '', model: '', year: '', mileage: '',
+  fuel: '', transmission: '', color: '', condition: '',
+  asking_price: '', name: '', phone: '', city: '',
 };
 
 const Field = ({ error, children }) => (
@@ -129,85 +68,106 @@ const Field = ({ error, children }) => (
   </div>
 );
 
-export default function Sell() {
-  const {  token } = useAuth();
+// ── Login Popup ───────────────────────────────────────────────
+function LoginPopup({ onClose, onLogin }) {
+  return (
+    <div className="loginPopupOverlay" onClick={onClose}>
+      <div className="loginPopup" onClick={(e) => e.stopPropagation()}>
+        <button className="loginPopupClose" onClick={onClose}>✕</button>
+        <div className="loginPopupIcon">🔐</div>
+        <h3 className="loginPopupTitle">Kërkohet Hyrja</h3>
+        <p className="loginPopupSub">
+          Duhet të jeni të kyçur për të dërguar një kërkesë shitjeje.
+        </p>
+        <button className="loginPopupBtn" onClick={onLogin}>
+          Hyr në llogari →
+        </button>
+        <p className="loginPopupRegister">
+          Nuk keni llogari?{' '}
+          <span className="loginPopupLink" onClick={onLogin}>
+            Regjistrohu falas
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+}
 
-  const [form, setForm] = useState(initialForm);
-  const [photos, setPhotos] = useState([]);
-  const [previews, setPreviews] = useState([]);
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+export default function Sell() {
+  const { token, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const [form,        setForm]        = useState(initialForm);
+  const [photos,      setPhotos]      = useState([]);
+  const [previews,    setPreviews]    = useState([]);
+  const [errors,      setErrors]      = useState({});
+  const [loading,     setLoading]     = useState(false);
+  const [success,     setSuccess]     = useState(false);
   const [serverError, setServerError] = useState('');
+  const [showLogin,   setShowLogin]   = useState(false); // ✅ login popup
 
   const handleChange = (field) => (e) => {
-    setForm((prev) => ({ ...prev, [field]: e.target.value }));
+    setForm((prev)   => ({ ...prev, [field]: e.target.value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
   const handlePhotos = (e) => {
     const files = Array.from(e.target.files);
     setPhotos(files);
-    const urls = files.map((f) => URL.createObjectURL(f));
-    setPreviews(urls);
+    setPreviews(files.map((f) => URL.createObjectURL(f)));
   };
 
   const removePhoto = (index) => {
     URL.revokeObjectURL(previews[index]);
-    setPhotos((prev) => prev.filter((_, i) => i !== index));
+    setPhotos((prev)   => prev.filter((_, i) => i !== index));
     setPreviews((prev) => prev.filter((_, i) => i !== index));
   };
 
   const validate = () => {
     const e = {};
-    if (!form.brand) e.brand = 'Zgjidh markën';
-    if (!form.model.trim()) e.model = 'Shkruaj modelin';
-    if (!form.year) e.year = 'Shkruaj vitin';
-    if (!form.mileage) e.mileage = 'Shkruaj kilometrat';
-    if (!form.fuel) e.fuel = 'Zgjidh karburantin';
-    if (!form.transmission) e.transmission = 'Zgjidh transmisionin';
-    if (!form.name.trim()) e.name = 'Shkruaj emrin';
-    if (!form.phone.trim()) e.phone = 'Shkruaj telefonin';
-    if (!form.city.trim()) e.city = 'Shkruaj qytetin';
+    if (!form.brand)             e.brand        = 'Zgjidh markën';
+    if (!form.model.trim())      e.model        = 'Shkruaj modelin';
+    if (!form.year)              e.year         = 'Shkruaj vitin';
+    if (!form.mileage)           e.mileage      = 'Shkruaj kilometrat';
+    if (!form.fuel)              e.fuel         = 'Zgjidh karburantin';
+    if (!form.transmission)      e.transmission = 'Zgjidh transmisionin';
+    if (!form.name.trim())       e.name         = 'Shkruaj emrin';
+    if (!form.phone.trim())      e.phone        = 'Shkruaj telefonin';
+    if (!form.city.trim())       e.city         = 'Shkruaj qytetin';
     return e;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
+
+    // ✅ Nëse nuk është i loguar → shfaq login popup
+    if (!isAuthenticated) {
+      setShowLogin(true);
       return;
     }
+
+    const errs = validate();
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
 
     setLoading(true);
     setServerError('');
 
     try {
       const formData = new FormData();
-
-      // Fushat tekstuale
-      formData.append('brand', form.brand);
-      formData.append('model', form.model);
-      formData.append('year', parseInt(form.year));
-      formData.append('mileage', parseInt(form.mileage));
-      formData.append('fuel', form.fuel);
+      formData.append('brand',        form.brand);
+      formData.append('model',        form.model);
+      formData.append('year',         parseInt(form.year));
+      formData.append('mileage',      parseInt(form.mileage));
+      formData.append('fuel',         form.fuel);
       formData.append('transmission', form.transmission);
-      formData.append('color', form.color);
-      formData.append('condition', form.condition);
-      formData.append('name', form.name);
-      formData.append('phone', form.phone);
-      formData.append('city', form.city);
-
-      if (form.asking_price) {
-        formData.append('asking_price', parseInt(form.asking_price));
-      }
-
-      // Fotot
+      formData.append('color',        form.color);
+      formData.append('condition',    form.condition);
+      formData.append('name',         form.name);
+      formData.append('phone',        form.phone);
+      formData.append('city',         form.city);
+      if (form.asking_price) formData.append('asking_price', parseInt(form.asking_price));
       photos.forEach((file) => formData.append('photos', file));
 
-      // Dërgo me token në header (API interceptor e shton automatikisht
-      // nga localStorage, por e shtojmë explicit për siguri)
       await API.post('/sell-requests/post', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -216,7 +176,6 @@ export default function Sell() {
       });
 
       previews.forEach((url) => URL.revokeObjectURL(url));
-
       setSuccess(true);
       setForm(initialForm);
       setPhotos([]);
@@ -229,7 +188,12 @@ export default function Sell() {
     }
   };
 
-  // ── Ekrani i suksesit ──────────────────────────────────────────────────────
+  const goToLogin = () => {
+    setShowLogin(false);
+    navigate('/auth');
+  };
+
+  // ── Ekrani i suksesit ─────────────────────────────────────
   if (success) {
     return (
       <div id="sellRequest">
@@ -249,10 +213,19 @@ export default function Sell() {
     );
   }
 
-  // ── Forma kryesore ─────────────────────────────────────────────────────────
+  // ── Forma kryesore ────────────────────────────────────────
   return (
     <>
       <Navigimi />
+
+      {/* ✅ Login Popup */}
+      {showLogin && (
+        <LoginPopup
+          onClose={() => setShowLogin(false)}
+          onLogin={goToLogin}
+        />
+      )}
+
       <div id="sell">
         <section className="sellPage">
           <header className="sellHeader">
@@ -261,18 +234,9 @@ export default function Sell() {
           </header>
 
           <div className="sellSteps">
-            <div className="step">
-              <span>1</span>
-              <p>Plotëso të dhënat</p>
-            </div>
-            <div className="step">
-              <span>2</span>
-              <p>Ju kontaktojmë</p>
-            </div>
-            <div className="step">
-              <span>3</span>
-              <p>Blerje e menjëhershme</p>
-            </div>
+            <div className="step"><span>1</span><p>Plotëso të dhënat</p></div>
+            <div className="step"><span>2</span><p>Ju kontaktojmë</p></div>
+            <div className="step"><span>3</span><p>Blerje e menjëhershme</p></div>
           </div>
 
           <form className="sellForm" onSubmit={handleSubmit} noValidate>
@@ -330,9 +294,7 @@ export default function Sell() {
                 <select value={form.fuel} onChange={handleChange('fuel')}>
                   <option value="">-- Zgjidh --</option>
                   {fuels.map((f) => (
-                    <option key={f.value} value={f.value}>
-                      {f.label}
-                    </option>
+                    <option key={f.value} value={f.value}>{f.label}</option>
                   ))}
                 </select>
               </Field>
@@ -341,9 +303,7 @@ export default function Sell() {
                 <select value={form.transmission} onChange={handleChange('transmission')}>
                   <option value="">-- Zgjidh --</option>
                   {transmissions.map((t) => (
-                    <option key={t.value} value={t.value}>
-                      {t.label}
-                    </option>
+                    <option key={t.value} value={t.value}>{t.label}</option>
                   ))}
                 </select>
               </Field>
@@ -354,9 +314,7 @@ export default function Sell() {
               <select value={form.color} onChange={handleChange('color')}>
                 <option value="">-- Zgjidh ngjyrën --</option>
                 {colors.map((c) => (
-                  <option key={c.value} value={c.value}>
-                    {c.label}
-                  </option>
+                  <option key={c.value} value={c.value}>{c.label}</option>
                 ))}
               </select>
             </Field>
@@ -402,9 +360,7 @@ export default function Sell() {
                       className="photoRemoveBtn"
                       onClick={() => removePhoto(i)}
                       title="Hiq foton"
-                    >
-                      ✕
-                    </button>
+                    >✕</button>
                   </div>
                 ))}
               </div>
