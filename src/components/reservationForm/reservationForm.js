@@ -1,45 +1,72 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import API from '../../backendConnection/api';
+import { useAuth } from '../../backendConnection/context';
 import '../reservationForm/reservationForm.css';
 
 const Locations = ['Tirana Center', 'Tirana Airport', 'Durres Port', 'Vlore Downtown'];
-
-const Times = Array.from({ length: 24 }, (_, i) => `${i.toString().padStart(2, '0')}:00`);
-
-const Office = 'Tirana Airport';
-const Delivery = 15;
-const today = new Date().toISOString().split('T')[0];
+const Times     = Array.from({ length: 24 }, (_, i) => `${i.toString().padStart(2, '0')}:00`);
+const Office    = 'Tirana Airport';
+const Delivery  = 15;
+const today     = new Date().toISOString().split('T')[0];
 
 const Initial = {
   pickupLocation: '',
-  pickupDate: '',
-  pickupTime: '',
-  dropLocation: '',
-  dropDate: '',
-  dropTime: '',
+  pickupDate:     '',
+  pickupTime:     '',
+  dropLocation:   '',
+  dropDate:       '',
+  dropTime:       '',
 };
 
+// ── Login Popup ───────────────────────────────────────────────
+function LoginPopup({ onClose, onLogin }) {
+  return (
+    <div className="loginPopupOverlay" onClick={onClose}>
+      <div className="loginPopup" onClick={(e) => e.stopPropagation()}>
+        <button className="loginPopupClose" onClick={onClose}>✕</button>
+        <div className="loginPopupIcon">🔐</div>
+        <h3 className="loginPopupTitle">Kërkohet Hyrja</h3>
+        <p className="loginPopupSub">
+          Duhet të jeni të kyçur për të bërë një rezervim.
+        </p>
+        <button className="loginPopupBtn" onClick={onLogin}>
+          Hyr në llogari →
+        </button>
+        <p className="loginPopupRegister">
+          Nuk keni llogari?{' '}
+          <span className="loginPopupLink" onClick={onLogin}>
+            Regjistrohu falas
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function ReservationForm({ car, onClose }) {
-  const [form, setForm] = useState(Initial);
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  const [form,        setForm]        = useState(Initial);
+  const [errors,      setErrors]      = useState({});
+  const [loading,     setLoading]     = useState(false);
+  const [result,      setResult]      = useState(null);
   const [serverError, setServerError] = useState('');
+  const [showLogin,   setShowLogin]   = useState(false); // ✅ login popup
 
   const summary = useMemo(() => {
     if (!car) return null;
     if (!form.pickupDate || !form.dropDate || !form.pickupTime || !form.dropTime) return null;
 
     const start = new Date(`${form.pickupDate} ${form.pickupTime}`);
-    const end = new Date(`${form.dropDate} ${form.dropTime}`);
+    const end   = new Date(`${form.dropDate} ${form.dropTime}`);
     if (end <= start) return null;
 
-    const days = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
-    const base_price = parseFloat(((car.price_per_day || 0) * days).toFixed(2));
-    const delivery_fee =
-      form.pickupLocation !== Office || form.dropLocation !== Office ? Delivery : 0;
-
-    const total_price = parseFloat((base_price + delivery_fee).toFixed(2));
+    const days         = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)));
+    const base_price   = parseFloat(((car.price_per_day || 0) * days).toFixed(2));
+    const delivery_fee = form.pickupLocation !== Office || form.dropLocation !== Office ? Delivery : 0;
+    const total_price  = parseFloat((base_price + delivery_fee).toFixed(2));
 
     return { days, base_price, delivery_fee, total_price };
   }, [form, car]);
@@ -47,18 +74,18 @@ export default function ReservationForm({ car, onClose }) {
   if (!car) return null;
 
   const updateField = (f) => (v) => {
-    setForm((p) => ({ ...p, [f]: v }));
+    setForm((p)   => ({ ...p, [f]: v }));
     setErrors((p) => ({ ...p, [f]: undefined }));
   };
 
   const validate = () => {
     const e = {};
     if (!form.pickupLocation) e.pickupLocation = 'Kërkohet';
-    if (!form.pickupDate) e.pickupDate = 'Kërkohet';
-    if (!form.pickupTime) e.pickupTime = 'Kërkohet';
-    if (!form.dropLocation) e.dropLocation = 'Kërkohet';
-    if (!form.dropDate) e.dropDate = 'Kërkohet';
-    if (!form.dropTime) e.dropTime = 'Kërkohet';
+    if (!form.pickupDate)     e.pickupDate     = 'Kërkohet';
+    if (!form.pickupTime)     e.pickupTime     = 'Kërkohet';
+    if (!form.dropLocation)   e.dropLocation   = 'Kërkohet';
+    if (!form.dropDate)       e.dropDate       = 'Kërkohet';
+    if (!form.dropTime)       e.dropTime       = 'Kërkohet';
     if (summary === null && form.pickupDate && form.dropDate) {
       e.dropDate = 'Data e kthimit duhet të jetë pas marrjes';
     }
@@ -67,22 +94,25 @@ export default function ReservationForm({ car, onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
+
+    // ✅ Nëse nuk është i loguar → shfaq login popup
+    if (!isAuthenticated) {
+      setShowLogin(true);
       return;
     }
+
+    const errs = validate();
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
 
     setLoading(true);
     setServerError('');
 
     try {
       const res = await API.post('/reservations', {
-        car_id: car.id,
+        car_id:        car.id,
         price_per_day: car.price_per_day,
         ...form,
       });
-
       setResult(res.data);
       setTimeout(() => onClose(), 3000);
     } catch (err) {
@@ -96,19 +126,29 @@ export default function ReservationForm({ car, onClose }) {
     if (e.target === e.currentTarget) onClose();
   };
 
+  const goToLogin = () => {
+    onClose();
+    navigate('/auth');
+  };
+
   return (
     <div id="reservationForm" onClick={handleOverlay}>
+
+      {/* ✅ Login Popup */}
+      {showLogin && (
+        <LoginPopup
+          onClose={() => setShowLogin(false)}
+          onLogin={goToLogin}
+        />
+      )}
+
       <div className="resOverlay">
         <div className="resHeader">
           <div>
-            <span className="resCar">
-              {car.brand} {car.model} · {car.year}
-            </span>
+            <span className="resCar">{car.brand} {car.model} · {car.year}</span>
             <span className="resPrice">{car.price_per_day}ALL/ditë</span>
           </div>
-          <button className="resClose" onClick={onClose}>
-            ✕
-          </button>
+          <button className="resClose" onClick={onClose}>✕</button>
         </div>
 
         {result ? (
@@ -121,14 +161,12 @@ export default function ReservationForm({ car, onClose }) {
                 <span>Qira bazë ({result.days} ditë)</span>
                 <span>{result.base_price}ALL</span>
               </div>
-
               {result.delivery_fee > 0 && (
                 <div className="resReceiptRow">
                   <span>Tarifë dorëzimi</span>
                   <span>{result.delivery_fee}ALL</span>
                 </div>
               )}
-
               <div className="resReceiptRow resReceiptTotal">
                 <span>Total</span>
                 <span>{result.total_price}ALL</span>
@@ -138,29 +176,21 @@ export default function ReservationForm({ car, onClose }) {
         ) : (
           <form onSubmit={handleSubmit} noValidate>
             <div className="resSectionLabel">Marrja</div>
-
             <div className="resGrid">
               <div className="resField resSpan2">
                 <label>Vendndodhja e marrjes *</label>
-
                 <select
                   value={form.pickupLocation}
                   onChange={(e) => updateField('pickupLocation')(e.target.value)}
                 >
                   <option value="">-- Zgjidh --</option>
-                  {Locations.map((l) => (
-                    <option key={l} value={l}>
-                      {l}
-                    </option>
-                  ))}
+                  {Locations.map((l) => <option key={l} value={l}>{l}</option>)}
                 </select>
-
                 {errors.pickupLocation && <span className="resError">{errors.pickupLocation}</span>}
                 {form.pickupLocation && form.pickupLocation !== Office && (
                   <span className="resDeliveryNote">+{Delivery}ALL tarifë dorëzimi</span>
                 )}
               </div>
-
               <div className="resField">
                 <label>Data e marrjes *</label>
                 <input
@@ -171,7 +201,6 @@ export default function ReservationForm({ car, onClose }) {
                 />
                 {errors.pickupDate && <span className="resError">{errors.pickupDate}</span>}
               </div>
-
               <div className="resField">
                 <label>Ora e marrjes *</label>
                 <select
@@ -179,11 +208,7 @@ export default function ReservationForm({ car, onClose }) {
                   onChange={(e) => updateField('pickupTime')(e.target.value)}
                 >
                   <option value="">-- Zgjidh --</option>
-                  {Times.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
+                  {Times.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
                 {errors.pickupTime && <span className="resError">{errors.pickupTime}</span>}
               </div>
@@ -198,18 +223,13 @@ export default function ReservationForm({ car, onClose }) {
                   onChange={(e) => updateField('dropLocation')(e.target.value)}
                 >
                   <option value="">-- Zgjidh --</option>
-                  {Locations.map((l) => (
-                    <option key={l} value={l}>
-                      {l}
-                    </option>
-                  ))}
+                  {Locations.map((l) => <option key={l} value={l}>{l}</option>)}
                 </select>
                 {errors.dropLocation && <span className="resError">{errors.dropLocation}</span>}
                 {form.dropLocation && form.dropLocation !== Office && (
                   <span className="resDeliveryNote">+{Delivery}ALL tarifë dorëzimi</span>
                 )}
               </div>
-
               <div className="resField">
                 <label>Data e kthimit *</label>
                 <input
@@ -220,7 +240,6 @@ export default function ReservationForm({ car, onClose }) {
                 />
                 {errors.dropDate && <span className="resError">{errors.dropDate}</span>}
               </div>
-
               <div className="resField">
                 <label>Ora e kthimit *</label>
                 <select
@@ -228,11 +247,7 @@ export default function ReservationForm({ car, onClose }) {
                   onChange={(e) => updateField('dropTime')(e.target.value)}
                 >
                   <option value="">-- Zgjidh --</option>
-                  {Times.map((t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  ))}
+                  {Times.map((t) => <option key={t} value={t}>{t}</option>)}
                 </select>
                 {errors.dropTime && <span className="resError">{errors.dropTime}</span>}
               </div>
@@ -241,19 +256,15 @@ export default function ReservationForm({ car, onClose }) {
             {summary && (
               <div className="resSummary">
                 <div className="resSummaryRow">
-                  <span>
-                    {car.price_per_day}ALL × {summary.days} ditë
-                  </span>
+                  <span>{car.price_per_day}ALL × {summary.days} ditë</span>
                   <span>{summary.base_price}ALL</span>
                 </div>
-
                 {summary.delivery_fee > 0 && (
                   <div className="resSummaryRow">
                     <span>Tarifë dorëzimi</span>
                     <span>+{summary.delivery_fee}ALL</span>
                   </div>
                 )}
-
                 <div className="resSummaryRow resSummaryTotal">
                   <span>Total</span>
                   <span>{summary.total_price}ALL</span>
