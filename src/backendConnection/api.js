@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://rentalbackend-production-5b6c.up.railway.app/api',
+  baseURL: 'https://rentalbackend-production-5b6c.up.railway.app/api',
 });
 
 API.interceptors.request.use(
