@@ -102,7 +102,7 @@ export default function CarCard({ car = {} }) {
                 <div className="carousel">
                   <img
                     key={imgIndex}
-                    src={`http://rentalbackend.railway.internal/uploads/${media[imgIndex]}`}
+                    src={media[imgIndex]}
                     alt={model}
                     className="carImg carouselImg"
                   />
