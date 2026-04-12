@@ -12,9 +12,8 @@ const fmt = (dt) =>
     ? new Date(dt).toLocaleDateString('sq-AL', { day: '2-digit', month: 'short', year: 'numeric' })
     : '—';
 
-// ── Modal me të dhënat e plotë të user-it ─────────────────────
 function UserModal({ userId, onClose }) {
-  const [data, setData]     = useState(null);
+  const [data, setData]       = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -42,7 +41,15 @@ function UserModal({ userId, onClose }) {
             {/* Header */}
             <div className="ud-modal__header">
               <div className="ud-modal__avatar">
-                {data.user?.first_name?.[0]}{data.user?.last_name?.[0]}
+                {data.user?.profile_photo ? (
+                  <img
+                    src={data.user.profile_photo}
+                    alt="profil"
+                    style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
+                  />
+                ) : (
+                  <>{data.user?.first_name?.[0]}{data.user?.last_name?.[0]}</>
+                )}
               </div>
               <div>
                 <h2>{data.user?.first_name} {data.user?.last_name}</h2>
@@ -64,12 +71,12 @@ function UserModal({ userId, onClose }) {
               <h3>📋 Të dhënat personale</h3>
               <div className="ud-modal__grid">
                 {[
-                  { label: 'Telefon',     val: data.user?.phone },
-                  { label: 'Qyteti',      val: data.user?.city },
-                  { label: 'Shteti',      val: data.user?.country },
-                  { label: 'Adresa',      val: data.user?.address },
-                  { label: 'Mosha',       val: data.user?.age ? `${data.user.age} vjeç` : null },
-                  { label: 'Gjinia',      val: data.user?.gender },
+                  { label: 'Telefon',        val: data.user?.phone },
+                  { label: 'Qyteti',         val: data.user?.city },
+                  { label: 'Shteti',         val: data.user?.country },
+                  { label: 'Adresa',         val: data.user?.address },
+                  { label: 'Mosha',          val: data.user?.age ? `${data.user.age} vjeç` : null },
+                  { label: 'Gjinia',         val: data.user?.gender },
                   { label: 'ID / Pasaportë', val: data.user?.id_number },
                   { label: 'Nr. patentës',   val: data.user?.license_number },
                   { label: 'Patenta skadon', val: fmt(data.user?.license_expiry) },
@@ -83,6 +90,30 @@ function UserModal({ userId, onClose }) {
                 ))}
               </div>
             </div>
+
+            {/* Foto profili */}
+            {data.user?.profile_photo && (
+              <div className="ud-modal__section">
+                <h3>📷 Foto e profilit</h3>
+                <img
+                  src={data.user.profile_photo}
+                  alt="profil"
+                  style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', marginTop: 8 }}
+                />
+              </div>
+            )}
+
+            {/* Foto patentës */}
+            {data.user?.license_photo && (
+              <div className="ud-modal__section">
+                <h3>🪪 Foto e patentës</h3>
+                <img
+                  src={data.user.license_photo}
+                  alt="patenta"
+                  style={{ width: '100%', maxWidth: 300, borderRadius: 8, marginTop: 8 }}
+                />
+              </div>
+            )}
 
             {/* Rezervimet */}
             <div className="ud-modal__section">
@@ -166,16 +197,15 @@ function UserModal({ userId, onClose }) {
   );
 }
 
-// ── Faqja kryesore ────────────────────────────────────────────
 export default function AdminUsers() {
-  const [rows, setRows]       = useState([]);
-  const [total, setTotal]     = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage]       = useState(1);
-  const [search, setSearch]   = useState('');
+  const [rows, setRows]         = useState([]);
+  const [total, setTotal]       = useState(0);
+  const [loading, setLoading]   = useState(true);
+  const [page, setPage]         = useState(1);
+  const [search, setSearch]     = useState('');
   const [updating, setUpdating] = useState(null);
   const [deleting, setDeleting] = useState(null);
-  const [selectedId, setSelectedId] = useState(null); // ✅ modal
+  const [selectedId, setSelectedId] = useState(null);
   const LIMIT = 15;
 
   const load = useCallback(async () => {
@@ -226,7 +256,6 @@ export default function AdminUsers() {
 
   return (
     <div className="adminUsersPage">
-      {/* Modal */}
       <UserModal userId={selectedId} onClose={() => setSelectedId(null)} />
 
       <div className="adminUsersHeader">
@@ -271,26 +300,35 @@ export default function AdminUsers() {
                     key={u.id}
                     className="adminUsersRow"
                     style={{ cursor: 'pointer' }}
-                    onClick={() => setSelectedId(u.id)} // ✅ klik për modal
+                    onClick={() => setSelectedId(u.id)}
                   >
                     <td><span className="adminUsersId">#{u.id}</span></td>
-                    <td><p className="adminUsersCarName">{u.first_name} {u.last_name}</p></td>
+                    <td>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        {u.profile_photo ? (
+                          <img
+                            src={u.profile_photo}
+                            alt="profil"
+                            style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }}
+                          />
+                        ) : (
+                          <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#334155', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12 }}>
+                            {u.first_name?.[0]}{u.last_name?.[0]}
+                          </div>
+                        )}
+                        <p className="adminUsersCarName">{u.first_name} {u.last_name}</p>
+                      </div>
+                    </td>
                     <td><span className="adminUsersVin">{u.email}</span></td>
                     <td><span className="adminUsersCarMeta">{u.phone || '—'}</span></td>
                     <td>
-                      <span
-                        className="adminUsersBadge"
-                        style={{ background: rm.color + '22', color: rm.color }}
-                      >
+                      <span className="adminUsersBadge" style={{ background: rm.color + '22', color: rm.color }}>
                         {rm.label}
                       </span>
                     </td>
                     <td><span className="adminUsersCarMeta">{fmt(u.created_at)}</span></td>
                     <td>
-                      <div
-                        className="adminUsersActions"
-                        onClick={e => e.stopPropagation()} // ✅ mos hap modal kur klikohet select/delete
-                      >
+                      <div className="adminUsersActions" onClick={e => e.stopPropagation()}>
                         <select
                           value={u.role}
                           disabled={updating === u.id}
