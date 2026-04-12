@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ADMIN_API from '../admin/adminAPI';
 
-const base = 'https://rentalbackend.railway.internal/';
 
 const statusMeta = {
   available: { label: 'Lirë', color: '#10b981' },
@@ -72,15 +71,12 @@ export default function AdminCarsList() {
       setDeleting(null);
     }
   };
-
-  const thumb = (car) => {
-    const img = car.media?.[0];
-    if (!img) return null;
-    const src = img.image_path.includes('/')
-      ? `${base}${img.image_path}`
-      : `${base}${img.image_path}`;
-    return src;
-  };
+// ✅ Pas
+const thumb = (car) => {
+  const img = car.media?.[0];
+  if (!img) return null;
+  return img.image_path; // ← URL e Cloudinary direkt
+};
 
   const totalPages = Math.ceil(total / limit);
 
