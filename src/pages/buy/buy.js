@@ -68,7 +68,6 @@ const Field = ({ error, children }) => (
   </div>
 );
 
-// ✅ LoginPopup identike me reservationForm
 function LoginPopup({ onClose, onLogin }) {
   return (
     <div className="loginPopupOverlay" onClick={onClose}>
@@ -94,7 +93,8 @@ function LoginPopup({ onClose, onLogin }) {
 }
 
 export default function Sell() {
-  const { token, isAuthenticated } = useAuth();
+  // ✅ Shto loading nga useAuth
+  const { token, isAuthenticated, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
   const [form,        setForm]        = useState(initialForm);
@@ -140,7 +140,10 @@ export default function Sell() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Nëse nuk është i loguar → popup identike me reservationForm
+    // ✅ Prit derisa auth të jetë gati
+    if (authLoading) return;
+
+    // ✅ Nëse nuk është i loguar → popup
     if (!isAuthenticated) {
       setShowLogin(true);
       return;
@@ -217,7 +220,6 @@ export default function Sell() {
     <>
       <Navigimi />
 
-      {/* ✅ LoginPopup identike me reservationForm */}
       {showLogin && (
         <LoginPopup
           onClose={() => setShowLogin(false)}
@@ -399,8 +401,8 @@ export default function Sell() {
 
             {serverError && <p className="form-server-error">{serverError}</p>}
 
-            <button type="submit" className="sellBtn" disabled={loading}>
-              {loading ? 'Duke dërguar...' : 'Dërgo për vlerësim'}
+            <button type="submit" className="sellBtn" disabled={loading || authLoading}>
+              {authLoading ? 'Duke u ngarkuar...' : loading ? 'Duke dërguar...' : 'Dërgo për vlerësim'}
             </button>
           </form>
 
