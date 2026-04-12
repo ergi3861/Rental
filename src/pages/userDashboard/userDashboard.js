@@ -115,7 +115,6 @@ export default function UserDashboard() {
     setSaving(true);
     setSaveMsg('');
 
-    // Validim moshe — min 20 vjeç
     if (form.date_of_birth) {
       const age = Math.floor((Date.now() - new Date(form.date_of_birth)) / 31557600000);
       if (age < 20) {
@@ -194,7 +193,7 @@ export default function UserDashboard() {
               {profile?.profile_photo ? (
                 <img
                   className="ud-hero__avatar"
-                  src={`${profile.profile_photo}`}
+                  src={profile.profile_photo}
                   alt="foto"
                 />
               ) : (
@@ -241,10 +240,8 @@ export default function UserDashboard() {
         </div>
 
         <div className="ud-body">
-          {/* Banner */}
           <CompletionBanner pct={pct} onGoToProfile={() => setTab('profile')} />
 
-          {/* Tabs */}
           <div className="ud-tabs">
             {TABS.map((t) => (
               <button
@@ -261,7 +258,6 @@ export default function UserDashboard() {
           {tab === 'overview' && (
             <div className="ud-section ud-overview">
               <div className="ud-overview__grid">
-                {/* Quick info */}
                 <div className="ud-card">
                   <h3 className="ud-card__title">Informacione të shpejta</h3>
                   <div className="ud-info-list">
@@ -269,11 +265,7 @@ export default function UserDashboard() {
                       { icon: '📞', label: 'Telefon', val: profile?.phone || '—' },
                       { icon: '🏙️', label: 'Qyteti', val: profile?.city || '—' },
                       { icon: '🌍', label: 'Shteti', val: profile?.country || '—' },
-                      {
-                        icon: '🎂',
-                        label: 'Mosha',
-                        val: profile?.age ? `${profile.age} vjeç` : '—',
-                      },
+                      { icon: '🎂', label: 'Mosha', val: profile?.age ? `${profile.age} vjeç` : '—' },
                       { icon: '🪪', label: 'ID', val: profile?.id_number || '—' },
                       { icon: '🚗', label: 'Patenta', val: profile?.license_number || '—' },
                     ].map((item, i) => (
@@ -295,7 +287,6 @@ export default function UserDashboard() {
                   )}
                 </div>
 
-                {/* Rezervimi i fundit */}
                 <div className="ud-card">
                   <h3 className="ud-card__title">Rezervimi i fundit</h3>
                   {reservations.length === 0 ? (
@@ -311,7 +302,7 @@ export default function UserDashboard() {
                         <div key={r.id} className="ud-res-card">
                           <div className="ud-res-card__img">
                             {r.thumbnail ? (
-                              <img src={`${BASE}${r.thumbnail}`} alt={r.model} />
+                              <img src={r.thumbnail} alt={r.model} />
                             ) : (
                               <span>🚗</span>
                             )}
@@ -351,7 +342,6 @@ export default function UserDashboard() {
                   )}
                 </div>
 
-                {/* Completion */}
                 <div className="ud-card ud-card--accent">
                   <h3 className="ud-card__title">Plotësimi i profilit</h3>
                   <div className="ud-completion">
@@ -398,66 +388,31 @@ export default function UserDashboard() {
                 <div className="ud-form-grid">
                   <div className="ud-form-group">
                     <label>Emri</label>
-                    <input
-                      value={user?.first_name || ''}
-                      disabled
-                      className="ud-input ud-input--disabled"
-                    />
+                    <input value={user?.first_name || ''} disabled className="ud-input ud-input--disabled" />
                   </div>
                   <div className="ud-form-group">
                     <label>Mbiemri</label>
-                    <input
-                      value={user?.last_name || ''}
-                      disabled
-                      className="ud-input ud-input--disabled"
-                    />
+                    <input value={user?.last_name || ''} disabled className="ud-input ud-input--disabled" />
                   </div>
                   <div className="ud-form-group">
                     <label>Email</label>
-                    <input
-                      value={user?.email || ''}
-                      disabled
-                      className="ud-input ud-input--disabled"
-                    />
+                    <input value={user?.email || ''} disabled className="ud-input ud-input--disabled" />
                   </div>
                   <div className="ud-form-group">
                     <label>Telefon *</label>
-                    <input
-                      className="ud-input"
-                      value={form.phone}
-                      onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
-                      placeholder="+355..."
-                    />
+                    <input className="ud-input" value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} placeholder="+355..." />
                   </div>
                   <div className="ud-form-group">
                     <label>Datëlindja *</label>
-                    <input
-                      type="date"
-                      className="ud-input"
-                      value={form.date_of_birth}
-                      onChange={(e) => {
-                        const age = e.target.value
-                          ? Math.floor((Date.now() - new Date(e.target.value)) / 31557600000)
-                          : '';
-                        setForm((p) => ({ ...p, date_of_birth: e.target.value, age }));
-                      }}
-                    />
+                    <input type="date" className="ud-input" value={form.date_of_birth} onChange={(e) => { const age = e.target.value ? Math.floor((Date.now() - new Date(e.target.value)) / 31557600000) : ''; setForm((p) => ({ ...p, date_of_birth: e.target.value, age })); }} />
                   </div>
                   <div className="ud-form-group">
                     <label>Mosha</label>
-                    <input
-                      className="ud-input ud-input--disabled"
-                      value={form.age ? `${form.age} vjeç` : ''}
-                      disabled
-                    />
+                    <input className="ud-input ud-input--disabled" value={form.age ? `${form.age} vjeç` : ''} disabled />
                   </div>
                   <div className="ud-form-group">
                     <label>Gjinia</label>
-                    <select
-                      className="ud-input"
-                      value={form.gender}
-                      onChange={(e) => setForm((p) => ({ ...p, gender: e.target.value }))}
-                    >
+                    <select className="ud-input" value={form.gender} onChange={(e) => setForm((p) => ({ ...p, gender: e.target.value }))}>
                       <option value="">-- Zgjidh --</option>
                       <option value="male">Mashkull</option>
                       <option value="female">Femër</option>
@@ -466,63 +421,32 @@ export default function UserDashboard() {
                   </div>
                   <div className="ud-form-group">
                     <label>Shteti</label>
-                    <input
-                      className="ud-input"
-                      value={form.country}
-                      onChange={(e) => setForm((p) => ({ ...p, country: e.target.value }))}
-                    />
+                    <input className="ud-input" value={form.country} onChange={(e) => setForm((p) => ({ ...p, country: e.target.value }))} />
                   </div>
                   <div className="ud-form-group">
                     <label>Qyteti *</label>
-                    <input
-                      className="ud-input"
-                      value={form.city}
-                      onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))}
-                      placeholder="Tiranë"
-                    />
+                    <input className="ud-input" value={form.city} onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))} placeholder="Tiranë" />
                   </div>
                   <div className="ud-form-group ud-form-group--full">
                     <label>Adresa *</label>
-                    <input
-                      className="ud-input"
-                      value={form.address}
-                      onChange={(e) => setForm((p) => ({ ...p, address: e.target.value }))}
-                      placeholder="Rruga, numri..."
-                    />
+                    <input className="ud-input" value={form.address} onChange={(e) => setForm((p) => ({ ...p, address: e.target.value }))} placeholder="Rruga, numri..." />
                   </div>
                   <div className="ud-form-group">
                     <label>Numri i ID / Pasaportës *</label>
-                    <input
-                      className="ud-input"
-                      value={form.id_number}
-                      onChange={(e) => setForm((p) => ({ ...p, id_number: e.target.value }))}
-                      placeholder="AB123456"
-                    />
+                    <input className="ud-input" value={form.id_number} onChange={(e) => setForm((p) => ({ ...p, id_number: e.target.value }))} placeholder="AB123456" />
                   </div>
                   <div className="ud-form-group">
                     <label>Numri i patentës *</label>
-                    <input
-                      className="ud-input"
-                      value={form.license_number}
-                      onChange={(e) => setForm((p) => ({ ...p, license_number: e.target.value }))}
-                      placeholder="DL-123456"
-                    />
+                    <input className="ud-input" value={form.license_number} onChange={(e) => setForm((p) => ({ ...p, license_number: e.target.value }))} placeholder="DL-123456" />
                   </div>
                   <div className="ud-form-group">
                     <label>Data e skadimit të patentës</label>
-                    <input
-                      type="date"
-                      className="ud-input"
-                      value={form.license_expiry}
-                      onChange={(e) => setForm((p) => ({ ...p, license_expiry: e.target.value }))}
-                    />
+                    <input type="date" className="ud-input" value={form.license_expiry} onChange={(e) => setForm((p) => ({ ...p, license_expiry: e.target.value }))} />
                   </div>
                 </div>
 
                 {saveMsg && (
-                  <p
-                    className={`ud-save-msg ${saveMsg.startsWith('✓') ? 'ud-save-msg--ok' : 'ud-save-msg--err'}`}
-                  >
+                  <p className={`ud-save-msg ${saveMsg.startsWith('✓') ? 'ud-save-msg--ok' : 'ud-save-msg--err'}`}>
                     {saveMsg}
                   </p>
                 )}
@@ -541,9 +465,7 @@ export default function UserDashboard() {
               {reservations.length === 0 ? (
                 <div className="ud-empty">
                   <p>Nuk ke rezervime ende.</p>
-                  <Link to="/cars" className="ud-btn ud-btn--primary">
-                    Rezervo tani →
-                  </Link>
+                  <Link to="/cars" className="ud-btn ud-btn--primary">Rezervo tani →</Link>
                 </div>
               ) : (
                 <div className="ud-res-list">
@@ -551,40 +473,26 @@ export default function UserDashboard() {
                     <div key={r.id} className="ud-res-item">
                       <div className="ud-res-item__img">
                         {r.thumbnail ? (
-                          <img src={`${BASE}${r.thumbnail}`} alt={r.model} />
+                          <img src={r.thumbnail} alt={r.model} />
                         ) : (
                           <span>🚗</span>
                         )}
                       </div>
                       <div className="ud-res-item__body">
                         <div className="ud-res-item__top">
-                          <h4>
-                            {r.brand} {r.model} <span>({r.year})</span>
-                          </h4>
-                          <span
-                            className="ud-badge"
-                            style={{
-                              background: (STATUS_COLOR[r.status] || '#94a3b8') + '22',
-                              color: STATUS_COLOR[r.status] || '#94a3b8',
-                            }}
-                          >
+                          <h4>{r.brand} {r.model} <span>({r.year})</span></h4>
+                          <span className="ud-badge" style={{ background: (STATUS_COLOR[r.status] || '#94a3b8') + '22', color: STATUS_COLOR[r.status] || '#94a3b8' }}>
                             {r.status}
                           </span>
                         </div>
                         <div className="ud-res-item__details">
-                          <span>
-                            📅 {fmt(r.start_datetime)} → {fmt(r.end_datetime)}
-                          </span>
-                          <span>
-                            📍 {r.pickup_location || '—'} → {r.dropoff_location || '—'}
-                          </span>
+                          <span>📅 {fmt(r.start_datetime)} → {fmt(r.end_datetime)}</span>
+                          <span>📍 {r.pickup_location || '—'} → {r.dropoff_location || '—'}</span>
                           <span>💶 €{Number(r.total_price || 0).toLocaleString()}</span>
                           <span>🔑 #{r.id}</span>
                         </div>
                       </div>
-                      <Link to={`/cars/${r.car_id}`} className="ud-btn ud-btn--ghost ud-btn--sm">
-                        Shiko →
-                      </Link>
+                      <Link to={`/cars/${r.car_id}`} className="ud-btn ud-btn--ghost ud-btn--sm">Shiko →</Link>
                     </div>
                   ))}
                 </div>
@@ -597,28 +505,20 @@ export default function UserDashboard() {
             <div className="ud-section">
               <div className="ud-section-header">
                 <h2 className="ud-section-title">Kërkesat për shitje</h2>
-                <Link to="/buy" className="ud-btn ud-btn--primary">
-                  + Kërkesë e re
-                </Link>
+                <Link to="/buy" className="ud-btn ud-btn--primary">+ Kërkesë e re</Link>
               </div>
               {sellReqs.length === 0 ? (
                 <div className="ud-empty">
                   <p>Nuk ke kërkesa shitje ende.</p>
-                  <Link to="/buy" className="ud-btn ud-btn--primary">
-                    Shit makinën tënde →
-                  </Link>
+                  <Link to="/buy" className="ud-btn ud-btn--primary">Shit makinën tënde →</Link>
                 </div>
               ) : (
                 <div className="ud-sell-list">
                   {sellReqs.map((s) => (
                     <div key={s.id} className="ud-sell-item">
                       <div className="ud-sell-item__info">
-                        <h4>
-                          {s.brand} {s.model} ({s.year})
-                        </h4>
-                        <p>
-                          {Number(s.mileage).toLocaleString()} km · {s.fuel} · {s.city}
-                        </p>
+                        <h4>{s.brand} {s.model} ({s.year})</h4>
+                        <p>{Number(s.mileage).toLocaleString()} km · {s.fuel} · {s.city}</p>
                         <p className="ud-sell-item__date">Dërguar: {fmt(s.created_at)}</p>
                       </div>
                       <div className="ud-sell-item__prices">
@@ -635,13 +535,7 @@ export default function UserDashboard() {
                           </div>
                         )}
                       </div>
-                      <span
-                        className="ud-badge"
-                        style={{
-                          background: (STATUS_COLOR[s.status] || '#94a3b8') + '22',
-                          color: STATUS_COLOR[s.status] || '#94a3b8',
-                        }}
-                      >
+                      <span className="ud-badge" style={{ background: (STATUS_COLOR[s.status] || '#94a3b8') + '22', color: STATUS_COLOR[s.status] || '#94a3b8' }}>
                         {s.status}
                       </span>
                     </div>
@@ -656,7 +550,6 @@ export default function UserDashboard() {
             <div className="ud-section">
               <h2 className="ud-section-title">Dokumentat e mia</h2>
               <div className="ud-docs-grid">
-                {/* Foto patentës */}
                 <div className="ud-doc-card">
                   <div className="ud-doc-card__header">
                     <span className="ud-doc-card__icon">🚗</span>
@@ -670,33 +563,17 @@ export default function UserDashboard() {
                     </span>
                   </div>
                   {profile?.license_photo && (
-                    <img
-                      className="ud-doc-card__img"
-                      src={`${BASE}${profile.license_photo}`}
-                      alt="patenta"
-                    />
+                    <img className="ud-doc-card__img" src={profile.license_photo} alt="patenta" />
                   )}
-                  <button
-                    className="ud-btn ud-btn--outline"
-                    onClick={() => licenseRef.current?.click()}
-                  >
+                  <button className="ud-btn ud-btn--outline" onClick={() => licenseRef.current?.click()}>
                     {profile?.license_photo ? '📷 Ndrysho foton' : '📷 Ngarko foton'}
                   </button>
-                  <input
-                    ref={licenseRef}
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    onChange={handleLicense}
-                  />
+                  <input ref={licenseRef} type="file" accept="image/*" hidden onChange={handleLicense} />
                   {saveMsg && (
-                    <p className="ud-save-msg ud-save-msg--ok" style={{ marginTop: 8 }}>
-                      {saveMsg}
-                    </p>
+                    <p className="ud-save-msg ud-save-msg--ok" style={{ marginTop: 8 }}>{saveMsg}</p>
                   )}
                 </div>
 
-                {/* ID / Pasaportë */}
                 <div className="ud-doc-card">
                   <div className="ud-doc-card__header">
                     <span className="ud-doc-card__icon">🪪</span>
@@ -713,13 +590,9 @@ export default function UserDashboard() {
                   </button>
                 </div>
 
-                {/* Info tip */}
                 <div className="ud-doc-info">
                   <span>ℹ️</span>
-                  <p>
-                    Dokumentat juaja ruhen në mënyrë të sigurt dhe përdoren vetëm për verifikimin e
-                    identitetit gjatë procesit të rezervimit.
-                  </p>
+                  <p>Dokumentat juaja ruhen në mënyrë të sigurt dhe përdoren vetëm për verifikimin e identitetit gjatë procesit të rezervimit.</p>
                 </div>
               </div>
             </div>
