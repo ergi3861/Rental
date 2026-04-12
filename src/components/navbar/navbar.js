@@ -18,7 +18,7 @@ import { useAuth } from '../../backendConnection/context';
 import AppContext from '../../backendConnection/translationContext';
 import axios from 'axios';
 
-const BASE_URL = 'http://rentalbackend.railway.internal/uploads/';
+const BASE_URL = 'https://rentalbackend.railway.internal/uploads/';
 
 const STATUS_META = {
   available: { color: '#10b981' },
@@ -236,7 +236,7 @@ export default function NavBar() {
     setLoading(true);
     axios
       .get(
-        `http://rentalbackend.railway.internal/api/cars?search=${encodeURIComponent(debounced)}&limit=8`
+        `https://rentalbackend.railway.internal/api/cars?search=${encodeURIComponent(debounced)}&limit=8`
       )
       .then(({ data }) => {
         const cars = data.data || data.rows || [];

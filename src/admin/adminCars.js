@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ADMIN_API from '../admin/adminAPI';
 
-const base = 'http://rentalbackend.railway.internal/uploads/';
+const base = 'https://rentalbackend.railway.internal/uploads/';
 
 const statusMeta = {
   available: { label: 'Lirë', color: '#10b981' },
