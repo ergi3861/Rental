@@ -1,42 +1,42 @@
-#sellrequest {
+#sell {
   max-width: 680px;
   margin: 120px auto 80px;
   padding: 0 24px;
 }
 
-#sellrequest .sellHeader {
+#sell .sellHeader {
   text-align: center;
   margin-bottom: 40px;
 }
 
-#sellrequest .sellHeader h1 {
+#sell .sellHeader h1 {
   font-size: 36px;
   font-weight: 700;
   color: #0f172a;
   margin: 0 0 8px;
 }
 
-#sellrequest .sellHeader p {
+#sell .sellHeader p {
   color: #64748b;
   font-size: 15px;
   margin: 0;
 }
 
-#sellrequest .sellSteps {
+#sell .sellSteps {
   display: flex;
   justify-content: center;
   gap: 32px;
   margin-bottom: 48px;
 }
 
-#sellrequest .step {
+#sell .step {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
 }
 
-#sellrequest .step span {
+#sell .step span {
   width: 40px;
   height: 40px;
   background: #0f172a;
@@ -49,14 +49,14 @@
   font-size: 16px;
 }
 
-#sellrequest .step p {
+#sell .step p {
   margin: 0;
   font-size: 13px;
   color: #475569;
   text-align: center;
 }
 
-#sellrequest .sellForm {
+#sell .sellForm {
   background: #fff;
   border-radius: 20px;
   padding: 40px;
@@ -64,7 +64,7 @@
   border: 1px solid #f1f5f9;
 }
 
-#sellrequest .sellForm h2 {
+#sell .sellForm h2 {
   font-size: 18px;
   font-weight: 600;
   color: #0f172a;
@@ -73,15 +73,15 @@
   border-bottom: 1px solid #f1f5f9;
 }
 
-#sellrequest .sellForm h2:not(:first-child) {
+#sell .sellForm h2:not(:first-child) {
   margin-top: 32px;
 }
 
-#sellrequest .formGroup {
+#sell .formGroup {
   margin-bottom: 20px;
 }
 
-#sellrequest .formGroup label {
+#sell .formGroup label {
   display: block;
   font-size: 14px;
   font-weight: 500;
@@ -89,9 +89,9 @@
   margin-bottom: 6px;
 }
 
-#sellrequest .formGroup input,
-#sellrequest .formGroup select,
-#sellrequest .formGroup textarea {
+#sell .formGroup input,
+#sell .formGroup select,
+#sell .formGroup textarea {
   width: 100%;
   padding: 11px 14px;
   border: 1px solid #e2e8f0;
@@ -99,39 +99,41 @@
   font-size: 14px;
   color: #0f172a;
   background: #f8fafc;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
   box-sizing: border-box;
   outline: none;
   font-family: inherit;
 }
 
-#sellrequest .formGroup input:focus,
-#sellrequest .formGroup select:focus,
-#sellrequest .formGroup textarea:focus {
+#sell .formGroup input:focus,
+#sell .formGroup select:focus,
+#sell .formGroup textarea:focus {
   border-color: #3b82f6;
   background: #fff;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-#sellrequest .formGroup textarea {
+#sell .formGroup textarea {
   resize: vertical;
   min-height: 90px;
 }
 
-#sellrequest .formRow {
+#sell .formRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-#sellrequest .formError {
+#sell .formError {
   display: block;
   color: #e53e3e;
   font-size: 12px;
   margin-top: 4px;
 }
 
-#sellrequest .formServerError {
+#sell .formServerError {
   background: #fff5f5;
   border: 1px solid #feb2b2;
   color: #c53030;
@@ -141,7 +143,7 @@
   margin-bottom: 12px;
 }
 
-#sellrequest .sellBtn {
+#sell .sellBtn {
   width: 100%;
   padding: 14px;
   background: #0f172a;
@@ -152,24 +154,26 @@
   font-weight: 600;
   cursor: pointer;
   margin-top: 8px;
-  transition: background 0.2s, transform 0.1s;
+  transition:
+    background 0.2s,
+    transform 0.1s;
   font-family: inherit;
 }
 
-#sellrequest .sellBtn:hover {
+#sell .sellBtn:hover {
   background: #1e3a5f;
 }
 
-#sellrequest .sellBtn:active {
+#sell .sellBtn:active {
   transform: scale(0.99);
 }
 
-#sellrequest .sellBtn:disabled {
+#sell .sellBtn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-#sellrequest .sellGuarantees {
+#sell .sellGuarantees {
   display: flex;
   justify-content: center;
   gap: 32px;
@@ -177,7 +181,7 @@
   flex-wrap: wrap;
 }
 
-#sellrequest .sellGuarantees span {
+#sell .sellGuarantees span {
   font-size: 13px;
   color: #64748b;
   display: flex;
@@ -185,18 +189,18 @@
   gap: 6px;
 }
 
-#sellrequest .sellGuarantees span::before {
-  content: "✓";
+#sell .sellGuarantees span::before {
+  content: '✓';
   color: #22c55e;
   font-weight: 700;
 }
 
-#sellrequest .sellSuccess {
+#sellRequest .sellSuccess {
   text-align: center;
   padding: 80px 20px;
 }
 
-#sellrequest .sellSuccessIcon {
+#sellRequest .sellSuccessIcon {
   width: 72px;
   height: 72px;
   background: #22c55e;
@@ -209,31 +213,31 @@
   margin: 0 auto 24px;
 }
 
-#sellrequest .sellSuccess h2 {
+#sellRequest .sellSuccess h2 {
   font-size: 28px;
   color: #0f172a;
   margin: 0 0 8px;
 }
 
-#sellrequest .sellSuccess p {
+#sellRequest .sellSuccess p {
   color: #64748b;
   margin: 0 0 32px;
 }
 
 @media (max-width: 600px) {
-  #sellrequest .sellForm {
+  #sell .sellForm {
     padding: 24px 20px;
   }
 
-  #sellrequest .formRow {
+  #sell .formRow {
     grid-template-columns: 1fr;
   }
 
-  #sellrequest .sellSteps {
+  #sell .sellSteps {
     gap: 16px;
   }
 
-  #sellrequest .sellGuarantees {
+  #sell .sellGuarantees {
     flex-direction: column;
     align-items: center;
     gap: 12px;

@@ -15,7 +15,7 @@
 
 #carousel::before,
 #carousel::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   width: 60px;
@@ -27,32 +27,31 @@
 
 #carousel::before {
   left: 0;
-  background: linear-gradient(to right, rgba(15,17,21,1), rgba(15,17,21,0));
+  background: linear-gradient(to right, rgba(15, 17, 21, 1), rgba(15, 17, 21, 0));
 }
 
 #carousel::after {
   right: 0;
-  background: linear-gradient(to left, rgba(15,17,21,1), rgba(15,17,21,0));
+  background: linear-gradient(to left, rgba(15, 17, 21, 1), rgba(15, 17, 21, 0));
 }
 
 #carousel .carousel-track {
   display: flex;
-  animation: carousel 80s linear infinite; 
+  animation: carousel 80s linear infinite;
 }
-
 
 #carousel .carousel-tag {
   width: 80px;
-  margin: 0 .5em;
+  margin: 0 0.5em;
   padding: 10px;
   opacity: 1;
   background: rgba(75, 75, 75, 0.5);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;          
+  white-space: nowrap;
 }
-#carousel .carousel-tag img{
+#carousel .carousel-tag img {
   width: 64px;
   height: 64px;
 }
@@ -62,8 +61,6 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
   }
 }
-
-

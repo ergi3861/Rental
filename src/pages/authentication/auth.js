@@ -1,7 +1,6 @@
-
-import { React, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import "../authentication/auth.css";
+import { React, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../authentication/auth.css';
 
 export default function CarAnimation() {
   const carRef = useRef(null);
@@ -15,7 +14,7 @@ export default function CarAnimation() {
     const exitDuration = 2000;
 
     let startTime = null;
-    let phase = "enter";
+    let phase = 'enter';
 
     function animate(timestamp) {
       if (!startTime) startTime = timestamp;
@@ -28,29 +27,29 @@ export default function CarAnimation() {
       const centerX = screenWidth / 2 - carWidth / 2;
       const endX = -carWidth - 80;
 
-      if (phase === "enter") {
+      if (phase === 'enter') {
         const progress = Math.min(elapsed / enterDuration, 1);
         const x = startX + (centerX - startX) * progress;
         car.style.transform = `translateX(${x}px)`;
 
         if (progress >= 1) {
-          phase = "pause";
+          phase = 'pause';
           startTime = timestamp;
         }
-      } else if (phase === "pause") {
+      } else if (phase === 'pause') {
         car.style.transform = `translateX(${centerX}px)`;
 
         if (elapsed >= pauseDuration) {
-          phase = "exit";
+          phase = 'exit';
           startTime = timestamp;
         }
-      } else if (phase === "exit") {
+      } else if (phase === 'exit') {
         const progress = Math.min(elapsed / exitDuration, 1);
         const x = centerX + (endX - centerX) * progress;
         car.style.transform = `translateX(${x}px)`;
 
         if (progress >= 1) {
-          navigate("/login"); 
+          navigate('/login');
           return;
         }
       }
@@ -63,19 +62,15 @@ export default function CarAnimation() {
 
   return (
     <div id="bodyAuth">
-    <div className="highway">
-      <div className="car" ref={carRef}>
-        <img
-          src="https://i.postimg.cc/2SVfHC8d/car.png"
-          alt="car"
-        />
-        <div className="wheels">
-          <div className="wheel frontWheel"></div>
-          <div className="wheel backWheel"></div>
+      <div className="highway">
+        <div className="car" ref={carRef}>
+          <img src="https://i.postimg.cc/2SVfHC8d/car.png" alt="car" />
+          <div className="wheels">
+            <div className="wheel frontWheel"></div>
+            <div className="wheel backWheel"></div>
+          </div>
         </div>
       </div>
     </div>
-    </div>
   );
-};
-
+}

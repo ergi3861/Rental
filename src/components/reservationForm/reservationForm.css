@@ -12,13 +12,17 @@
 }
 
 @keyframes rm-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 #reservationForm .resOverlay {
   background: #0d1117;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   width: 100%;
   max-width: 520px;
@@ -27,8 +31,14 @@
 }
 
 @keyframes rm-slide-up {
-  from { transform: translateY(20px); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 #reservationForm .resHeader {
@@ -37,7 +47,7 @@
   align-items: flex-start;
   margin-bottom: 24px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 #reservationForm .resCar {
@@ -58,18 +68,20 @@
 #reservationForm .resClose {
   background: transparent;
   border: none;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
   font-size: 16px;
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 8px;
-  transition: color 0.2s, background 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s;
   line-height: 1;
 }
 
 #reservationForm .resClose:hover {
   color: #fff;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 #reservationForm .resSectionLabel {
@@ -138,8 +150,8 @@
 }
 
 #reservationForm .resServerError {
-  background: rgba(239,68,68,0.1);
-  border: 1px solid rgba(239,68,68,0.3);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
   color: #fca5a5;
   padding: 10px 14px;
   border-radius: 10px;
@@ -159,12 +171,21 @@
   font-weight: 700;
   cursor: pointer;
   font-family: inherit;
-  transition: opacity 0.2s, transform 0.1s;
+  transition:
+    opacity 0.2s,
+    transform 0.1s;
 }
 
-#reservationForm .resSubmit:hover   { opacity: 0.88; }
-#reservationForm .resSubmit:active  { transform: scale(0.99); }
-#reservationForm .resSubmit:disabled { opacity: 0.5; cursor: not-allowed; }
+#reservationForm .resSubmit:hover {
+  opacity: 0.88;
+}
+#reservationForm .resSubmit:active {
+  transform: scale(0.99);
+}
+#reservationForm .resSubmit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 #reservationForm .resSuccess {
   text-align: center;
@@ -222,8 +243,8 @@
 }
 
 #reservationForm .resSummary {
-  background: rgba(118,75,162,0.08);
-  border: 1px solid rgba(118,75,162,0.2);
+  background: rgba(118, 75, 162, 0.08);
+  border: 1px solid rgba(118, 75, 162, 0.2);
   border-radius: 12px;
   padding: 14px 16px;
   margin-top: 20px;
@@ -236,7 +257,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 13px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .resSummaryTotal {
@@ -244,13 +265,13 @@
   font-weight: 700;
   color: #fff;
   padding-top: 8px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-top: 4px;
 }
 
 #reservationForm .resReceipt {
-  background: rgba(16,185,129,0.08);
-  border: 1px solid rgba(16,185,129,0.2);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
   border-radius: 12px;
   padding: 14px 16px;
   margin-top: 16px;
@@ -264,7 +285,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 13px;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 #reservationForm .resReceiptTotal {
@@ -272,7 +293,6 @@
   font-weight: 700;
   color: #6ee7b7;
   padding-top: 8px;
-  border-top: 1px solid rgba(16,185,129,0.2);
+  border-top: 1px solid rgba(16, 185, 129, 0.2);
   margin-top: 4px;
 }
-

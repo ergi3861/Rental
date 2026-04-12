@@ -1,19 +1,16 @@
-.faq {
+#faq {
   margin: 0;
   font-family: 'Segoe UI', system-ui, sans-serif;
-  background: #020617;
-  color: #f1f5f9;
+  background: #f1f5f9;
   overflow-x: hidden;
 }
 
-/* ── SECTION ─────────────────────────────── */
-.faq-section {
+#faq .faqSection {
   padding: 140px 10% 100px;
   position: relative;
 }
 
-/* ── BACKGROUND ORBS ─────────────────────── */
-.background {
+#faq .background {
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -21,14 +18,14 @@
   pointer-events: none;
 }
 
-.orb {
+#faq .orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
   animation: float 10s infinite alternate ease-in-out;
 }
 
-.orb1 {
+#faq .orb1 {
   width: 400px;
   height: 400px;
   background: #1d4ed8;
@@ -37,7 +34,7 @@
   left: -100px;
 }
 
-.orb2 {
+#faq .orb2 {
   width: 300px;
   height: 300px;
   background: #7c3aed;
@@ -46,7 +43,7 @@
   right: -50px;
 }
 
-.orb3 {
+#faq .orb3 {
   width: 250px;
   height: 250px;
   background: #0891b2;
@@ -56,107 +53,106 @@
 }
 
 @keyframes float {
-  0%   { transform: translateY(0); }
-  100% { transform: translateX(80px); }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateX(80px);
+  }
 }
 
-/* ── HERO ────────────────────────────────── */
-.faq-hero {
+#faq .faqHero {
   text-align: center;
   margin-bottom: 72px;
   position: relative;
   z-index: 1;
 }
 
-.faq-eyebrow {
+#faq .faqHero span {
   display: inline-block;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #38bdf8;
-  border: 1px solid rgba(56,189,248,0.25);
+  border: 1px solid rgba(56, 189, 248, 0.25);
   padding: 5px 16px;
   border-radius: 100px;
   margin-bottom: 20px;
 }
 
-.faq-title {
+#faq .faqHero h2 {
   font-size: clamp(36px, 5vw, 56px);
   font-weight: 900;
   letter-spacing: -1.5px;
-  color: #f8fafc;
+  color: #1e293b;
   margin: 0 0 16px;
 }
 
-.faq-sub {
+#faq .faqHero p {
   font-size: 17px;
   color: #475569;
   margin: 0;
 }
 
-/* ── GROUP ───────────────────────────────── */
-.faq-group {
+#faq .faqGroup {
   max-width: 860px;
   margin: 0 auto 56px;
   position: relative;
   z-index: 1;
 }
 
-.faq-group__label {
+#faq .faqGroupLabel {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.faq-group__label span {
-  font-size: 11px;
+#faq .faqGroupLabel span {
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #334155;
 }
 
-.faq-group__label::before {
-  content: "";
-  flex: 1;
+#faq .faqGroupLabel::before {
+  content: '';
+  flex: 0.2;
   height: 1px;
   background: #0f172a;
 }
 
-.faq-group__label::after {
-  content: "";
-  flex: 3;
+#faq .faqGroupLabel::after {
+  content: '';
+  flex: 5;
   height: 1px;
   background: #0f172a;
 }
 
-/* ── CONTAINER ───────────────────────────── */
-.faq-container {
+#faq .faqContainer {
   display: grid;
   gap: 10px;
 }
 
-/* ── CARD DEFAULT ────────────────────────── */
-.faq-card {
+#faq .faqCard {
   background: #0a1628;
   border-radius: 14px;
   padding: 20px 24px;
   cursor: pointer;
   transition:
-    transform .35s ease,
-    box-shadow .35s ease,
-    border .35s ease,
-    background .3s ease;
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border 0.35s ease,
+    background 0.3s ease;
   border: 1px solid #1e293b;
   position: relative;
   overflow: hidden;
 }
 
-/* MOVING GLOW — identik me origjinalin */
-.faq-card::before {
-  content: "";
+#faq .faqCard::before {
+  content: '';
   position: absolute;
   left: var(--x, 50%);
   top: var(--y, 50%);
@@ -165,22 +161,21 @@
   background: radial-gradient(circle, #38bdf822 0%, transparent 70%);
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity .25s;
+  transition: opacity 0.25s;
   pointer-events: none;
 }
 
-.faq-card.active::before {
+#faq .faqCard.active::before {
   opacity: 1;
 }
 
-.faq-card:hover {
+#faq .faqCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
   border-color: #334155;
 }
 
-/* ── QUESTION ────────────────────────────── */
-.faq-question {
+#faq .faqQuestion {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -192,8 +187,7 @@
   line-height: 1.5;
 }
 
-/* ── ICON ────────────────────────────────── */
-.icon {
+#faq .icon {
   width: 28px;
   height: 28px;
   min-width: 28px;
@@ -204,83 +198,83 @@
   color: #334155;
   border-radius: 50%;
   border: 1px solid #1e293b;
-  transition: transform .35s ease, color .3s ease, border-color .3s ease, background .3s ease;
+  transition:
+    transform 0.35s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
 }
 
-.faq-card:hover .icon {
+#faq .faqCard:hover .icon {
   color: #94a3b8;
   border-color: #334155;
 }
 
-/* ── ANSWER BASE STATE — identik me origjinalin ── */
-.faq-answer {
+#faq .faqAnswer {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transform: translateX(20px);
   transition:
-    max-height .45s ease,
-    opacity .35s ease,
-    transform .35s ease;
+    max-height 0.45s ease,
+    opacity 0.35s ease,
+    transform 0.35s ease;
   padding-top: 0;
   color: #64748b;
   font-size: 14px;
   line-height: 1.75;
 }
 
-/* ── ACTIVE CARD ─────────────────────────── */
-.faq-card.active {
+#faq .faqCard.active {
   background: #0f172a;
   border-color: #38bdf8;
-  box-shadow: 0 0 0 1px rgba(56,189,248,0.15), 0 16px 40px rgba(0,0,0,.4);
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.15),
+    0 16px 40px rgba(0, 0, 0, 0.4);
   padding: 20px 24px 22px;
 }
 
-.faq-card.active .faq-question {
+#faq .faqCard.active .faqQuestion {
   color: #f1f5f9;
 }
 
-/* ── ANSWER OPEN — identik me origjinalin ── */
-.faq-card.active .faq-answer {
+#faq .faqCard.active .faqAnswer {
   max-height: 220px;
   opacity: 1;
   transform: translateX(0);
   padding-top: 12px;
 }
 
-/* ── CLOSING ANIMATION — identik me origjinalin ── */
-.faq-card.closing .faq-answer {
+#faq .faqCard.closing .faqAnswer {
   opacity: 0;
   transform: translateX(30px);
   transition:
-    opacity .25s ease,
-    transform .25s ease,
-    max-height .2s ease;
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    max-height 0.2s ease;
 }
 
-/* ── ICON ROTATE — identik me origjinalin ── */
-.faq-card.active .icon {
+#faq .faqCard.active .icon {
   transform: rotate(45deg);
   color: #38bdf8;
-  border-color: rgba(56,189,248,0.3);
-  background: rgba(56,189,248,0.08);
+  border-color: rgba(56, 189, 248, 0.3);
+  background: rgba(56, 189, 248, 0.08);
 }
 
-/* ── CTA ─────────────────────────────────── */
-.faq-cta {
+#faq .faqCta {
   text-align: center;
   padding: 60px 0 0;
   position: relative;
   z-index: 1;
 }
 
-.faq-cta p {
+#faq .faqCta p {
   font-size: 16px;
   color: #475569;
   margin: 0 0 16px;
 }
 
-.faq-cta__btn {
+#faq .faqCta button {
   padding: 13px 32px;
   background: transparent;
   border: 1px solid #1e293b;
@@ -290,22 +284,21 @@
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
-.faq-cta__btn:hover {
+#faq .faqCta button:hover {
   border-color: #38bdf8;
   color: #38bdf8;
-  background: rgba(56,189,248,0.05);
+  background: rgba(56, 189, 248, 0.05);
 }
 
-/* ── RESPONSIVE ──────────────────────────── */
 @media (max-width: 768px) {
-  .faq-section {
+  #faq .faqSection {
     padding: 100px 6% 80px;
   }
 
-  .faq-title {
+  #faq .faqTitle {
     font-size: 36px;
   }
 }

@@ -1,17 +1,18 @@
-import NavBar from "../../components/navbar/navbar";
-import "./cars.css";
-import Carousel from "../../components/carousel/carousel";
-import Footer from "../../components/footer/footer";
-import { useEffect, useState, useRef } from "react";
-import API from "../../backendConnection/api";
-import CarCard from "../../components/carCard/carCard";
-import Sidebar from "../../components/filters/sidebar";
+import NavBar from '../../components/navbar/navbar';
+import './cars.css';
+import Carousel from '../../components/carousel/carousel';
+import Footer from '../../components/footer/footer';
+import { useEffect, useState, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import API from '../../backendConnection/api';
+import CarCard from '../../components/carCard/carCard';
+import Sidebar from '../../components/filters/sidebar';
 
 const sortOptions = [
-  { value: "default", label: "Default" },
-  { value: "price_desc", label: "Cmimi me i shtrenjte" },
-  { value: "price_asc", label: "Cmimi me i lire" },
-  { value: "newest", label: "Te rejat" },
+  { value: 'default', label: 'Default' },
+  { value: 'price_desc', label: 'Cmimi me i shtrenjte' },
+  { value: 'price_asc', label: 'Cmimi me i lire' },
+  { value: 'newest', label: 'Te rejat' },
 ];
 const perPageOptions = [24, 48, 72, 96];
 
@@ -23,8 +24,8 @@ function Dropdown({ label, options, value, onChange }) {
     const handleClick = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
     };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
   const selected = options.find((o) => (o.value ?? o) === value);
@@ -32,10 +33,11 @@ function Dropdown({ label, options, value, onChange }) {
   return (
     <div ref={ref} id="carsDropdown">
       <button className="dropdownBtn" onClick={() => setOpen((p) => !p)}>
-        <span>{label}: <strong>{selected?.label ?? selected ?? value}</strong></span>
-        <span className="dropdownArrow">{open ? "▲" : "▼"}</span>
+        <span>
+          {label}: <strong>{selected?.label ?? selected ?? value}</strong>
+        </span>
+        <span className="dropdownArrow">{open ? '▲' : '▼'}</span>
       </button>
-
       {open && (
         <div className="dropdownMenu">
           {options.map((o) => {
@@ -46,7 +48,10 @@ function Dropdown({ label, options, value, onChange }) {
                 <input
                   type="checkbox"
                   checked={value === val}
-                  onChange={() => { onChange(val); setOpen(false); }}
+                  onChange={() => {
+                    onChange(val);
+                    setOpen(false);
+                  }}
                 />
                 {lbl}
               </label>
@@ -64,7 +69,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
     .filter((p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1)
     .reduce((acc, p, i, arr) => {
-      if (i > 0 && p - arr[i - 1] > 1) acc.push("...");
+      if (i > 0 && p - arr[i - 1] > 1) acc.push('...');
       acc.push(p);
       return acc;
     }, []);
@@ -78,21 +83,21 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
       >
         &lt;
       </button>
-
       {pages.map((p, i) =>
-        p === "..." ? (
-          <span key={"d" + i} className="dots">...</span>
+        p === '...' ? (
+          <span key={'d' + i} className="dots">
+            ...
+          </span>
         ) : (
           <button
             key={p}
             onClick={() => onPageChange(p)}
-            className={`pageBtn ${currentPage === p ? "active" : ""}`}
+            className={`pageBtn ${currentPage === p ? 'active' : ''}`}
           >
             {p}
           </button>
         )
       )}
-
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
@@ -105,50 +110,74 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 }
 
 function Cars() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [filters, setFilters] = useState({});
   const [cars, setCars] = useState([]);
-  const [activeFilters, setActiveFilters] = useState({});
   const [loading, setLoading] = useState(false);
-  const [sortValue, setSortValue] = useState("default");
+  const [sortValue, setSortValue] = useState('default');
   const [perPage, setPerPage] = useState(24);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCars, setTotalCars] = useState(0);
+  const [searchInput, setSearchInput] = useState(searchParams.get('search') || '');
+
+  const urlSearch = searchParams.get('search') || '';
+  const urlCategory = searchParams.get('category') || '';
+  const urlType = searchParams.get('type') || '';
 
   useEffect(() => {
-    API.get("/cars/filters")
+    setSearchInput(searchParams.get('search') || '');
+    setCurrentPage(1);
+  }, [searchParams]);
+
+  useEffect(() => {
+    API.get('/cars/filters')
       .then((res) => setFilters(res.data))
-      .catch((err) => console.error("Filters error:", err));
+      .catch((err) => console.error('Filters error:', err));
   }, []);
 
   useEffect(() => {
     setLoading(true);
     const params = new URLSearchParams();
 
-    Object.entries(activeFilters).forEach(([k, v]) => {
-      if (v) params.append(k, v);
-    });
+    if (urlSearch) params.append('search', urlSearch);
+    if (urlCategory) params.append('category', urlCategory);
+    if (urlType) params.append('type', urlType);
 
-    params.append("page", currentPage);
-    params.append("limit", perPage);
-    if (sortValue !== "default") params.append("sort", sortValue);
+    params.append('page', currentPage);
+    params.append('limit', perPage);
+    if (sortValue !== 'default') params.append('sort', sortValue);
 
-    API.get("/cars?" + params.toString())
+    API.get('/cars?' + params.toString())
       .then((res) => {
         setCars(res.data.data || []);
         setTotalCars(res.data.total || 0);
       })
-      .catch((err) => console.error("Cars error:", err))
+      .catch((err) => console.error('Cars error:', err))
       .finally(() => setLoading(false));
-  }, [activeFilters, sortValue, perPage, currentPage]);
+  }, [urlSearch, urlCategory, urlType, sortValue, perPage, currentPage]);
 
   const handleFilterChange = (key, value) => {
-    if (key === "__reset__") {
-      setActiveFilters({});
+    if (key === '__reset__') {
+      setSearchParams({});
       setCurrentPage(1);
       return;
     }
     setCurrentPage(1);
-    setActiveFilters((prev) => ({ ...prev, [key]: value }));
+    const next = new URLSearchParams(searchParams);
+    if (value) next.set(key, value);
+    else next.delete(key);
+    setSearchParams(next);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const val = searchInput.trim();
+    const next = new URLSearchParams(searchParams);
+    if (val) next.set('search', val);
+    else next.delete('search');
+    setSearchParams(next);
+    setCurrentPage(1);
   };
 
   const totalPages = Math.ceil(totalCars / perPage);
@@ -162,28 +191,37 @@ function Cars() {
       </div>
 
       <section className="carsPage">
-
         <div className="toolbarOuter">
           <h1 className="pageTitle">Flota jonë</h1>
-        
+
+          {(urlSearch || urlCategory) && (
+            <p className="carsSearchActive">
+              Rezultate: {urlSearch && `"${urlSearch}"`} {urlCategory && `"${urlCategory}"`} —{' '}
+              {totalCars}
+            </p>
+          )}
+
           <div className="toolbar">
             <span className="total">Numri i mjeteve: {totalCars}</span>
-
             <div className="toolbarRight">
               <Dropdown
                 label="Rendit sipas"
                 options={sortOptions}
                 value={sortValue}
-                onChange={(v) => { setSortValue(v); setCurrentPage(1); }}
+                onChange={(v) => {
+                  setSortValue(v);
+                  setCurrentPage(1);
+                }}
               />
-
               <Dropdown
                 label="Shiko nga"
                 options={perPageOptions}
                 value={perPage}
-                onChange={(v) => { setPerPage(v); setCurrentPage(1); }}
+                onChange={(v) => {
+                  setPerPage(v);
+                  setCurrentPage(1);
+                }}
               />
-
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
@@ -196,15 +234,27 @@ function Cars() {
         <div className="carsBody">
           <Sidebar
             filters={filters}
-            activeFilters={activeFilters}
+            activeFilters={{ search: urlSearch, category: urlCategory, type: urlType }}
             onFilterChange={handleFilterChange}
+            showType={true}
           />
 
           <main className="carsMain">
             {loading ? (
               <p>Duke ngarkuar...</p>
             ) : cars.length === 0 ? (
-              <p className="empty">Nuk u gjeten makina me keto filtra.</p>
+              <div className="empty">
+                <p>Nuk u gjeten makina.</p>
+                <button
+                  className="carsSearchClear"
+                  onClick={() => {
+                    setSearchInput('');
+                    setSearchParams({});
+                  }}
+                >
+                  Pastro filtrat
+                </button>
+              </div>
             ) : (
               <div className="carsGrid">
                 {cars.map((car) => (
@@ -222,7 +272,6 @@ function Cars() {
             </div>
           </main>
         </div>
-
       </section>
 
       <Footer />

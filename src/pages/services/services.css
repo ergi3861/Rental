@@ -1,7 +1,5 @@
-
 #services {
-  background: #020617;
-  color: #f1f5f9;
+  color: #199;
   font-family: 'Segoe UI', system-ui, sans-serif;
   overflow-x: hidden;
 }
@@ -9,7 +7,9 @@
 #services .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 #services .reveal.visible {
@@ -39,7 +39,7 @@
 #services .srvHeroBg .orb1 {
   width: 500px;
   height: 500px;
-  background: #38bdf8;
+  background: #053c53;
   top: -100px;
   right: -100px;
 }
@@ -47,7 +47,7 @@
 #services .srvHeroBg .orb2 {
   width: 400px;
   height: 400px;
-  background: #a78bfa;
+  background: #19035e;
   bottom: 0;
   left: 5%;
 }
@@ -71,7 +71,7 @@
   line-height: 1.1;
   margin: 0 0 24px;
   letter-spacing: -1.5px;
-  color: #f8fafc;
+  color: #0462c0;
 }
 
 #services .srvHeroTitle em {
@@ -95,7 +95,7 @@
   border-radius: 20px;
   overflow: hidden;
   max-width: 680px;
-  background: rgba(255,255,255,0.02);
+  background: rgba(10, 22, 40);
 }
 
 #services .srvStat {
@@ -133,7 +133,8 @@
 
 #services .srvCategory {
   padding: 80px 8%;
-  border-top: 1px solid #0f172a;
+  border-top: 7px #7dd3fc;
+  border-top-style: double;
 }
 
 #services .srvCategoryHeader {
@@ -148,6 +149,10 @@
   line-height: 1;
 }
 
+#services .srvCategoryIcon:nth-child(3) {
+  color: #19035e;
+  background-color: #19035e;
+}
 #services .srvCategoryTag {
   display: block;
   font-size: 22px;
@@ -175,12 +180,15 @@
   border: 1px solid #1e293b;
   border-radius: 20px;
   padding: 28px 24px 24px;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   overflow: hidden;
 }
 
 #services .srvCard::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -198,7 +206,7 @@
 
 #services .srvCard:hover {
   transform: translateY(-6px);
-  border-color: rgba(255,255,255,0.1);
+  border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
 }
 
@@ -256,10 +264,10 @@
 }
 
 #services .srvCtaInner::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(56,189,248,0.08) 0%, transparent 65%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 65%);
   pointer-events: none;
 }
 

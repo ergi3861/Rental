@@ -4,7 +4,7 @@
   background: #fff;
   border-radius: 14px;
   padding: 20px 16px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
 }
 
 #sidebar h2 {
@@ -128,4 +128,4 @@
   font-weight: 600;
   cursor: pointer;
   font-size: 13px;
-}   
+}

@@ -1,13 +1,15 @@
 #abPage {
-  background: #020617;
-  color: #f1f5f9;
+  background: #f1f5f9;
+  color: #020617;
   font-family: 'Segoe UI', system-ui, sans-serif;
   overflow-x: hidden;
 }
 #abPage .anim {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
 }
 #abPage .anim.is-visible {
   opacity: 1;
@@ -20,8 +22,8 @@
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #38bdf8;
-  border: 1px solid rgba(56,189,248,0.25);
+  color: #020617;
+  border: 1px solid rgba(56, 189, 248, 0.25);
   padding: 5px 14px;
   border-radius: 100px;
   margin-bottom: 18px;
@@ -34,7 +36,7 @@
 #abPage .abSectionHead h2 {
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 800;
-  color: #f8fafc;
+  color: #020617;
   margin: 0;
   letter-spacing: -1px;
 }
@@ -51,23 +53,27 @@
 }
 
 #abPage .abBtnFill {
-  background: #38bdf8;
+  background: linear-gradient(135deg, #ff4d1a, #ff6a2b);
   color: #020617;
+  transition: all 600ms linear;
 }
 
 #abPage .abBtnFill:hover {
-  background: #7dd3fc;
+  background: transparent;
   transform: translateY(-2px);
+  border: 1px solid rgba(56, 189, 248, 0.4);
 }
 
 #abPage .abBtnOutline {
   background: transparent;
-  border: 1px solid rgba(56,189,248,0.4);
-  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #020617;
+  transition: all 600ms linear;
 }
 
 #abPage .abBtnOutline:hover {
-  background: rgba(56,189,248,0.08);
+  background: linear-gradient(135deg, #ff4d1a, #ff6a2b);
+  transform: translateY(-2px);
 }
 
 #abPage .abBtnLg {
@@ -88,8 +94,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(ellipse at 70% 30%, rgba(56,189,248,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse at 20% 80%, rgba(167,139,250,0.06) 0%, transparent 50%);
+    radial-gradient(ellipse at 70% 30%, rgba(7, 75, 104, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 80%, rgba(45, 15, 134, 0.1) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -98,7 +104,7 @@
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -2px;
-  color: #f8fafc;
+  color: #020617;
   margin: 0 0 24px;
 }
 
@@ -110,7 +116,7 @@
 #abPage .abHeroP {
   font-size: 17px;
   line-height: 1.75;
-  color: #64748b;
+  color: #020617;
   margin: 0 0 36px;
   max-width: 500px;
 }
@@ -128,81 +134,116 @@
 
 #abPage .abBadge {
   position: absolute;
-  background: #0a1628;
+  background: #f1f5f9;
   border: 1px solid #1e293b;
   border-radius: 14px;
   padding: 14px 20px;
   font-size: 13px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: #020617;
   white-space: nowrap;
+  transition: all 600ms linear;
+  cursor: default;
+}
+#abPage .abBadge:hover {
+  background: rgba(228, 90, 4, 0.6);
 }
 
-#abPage .ab-badge--tl { top: 10%;  left: 0;   animation: ab-float 5s ease-in-out infinite; }
-#abPage .ab-badge--tr { top: 5%;   right: 0;  animation: ab-float 5s ease-in-out infinite 1.5s; }
-#abPage .ab-badge--bl { bottom: 15%; left: 5%; animation: ab-float 5s ease-in-out infinite 3s; }
-#abPage .ab-badge--br { bottom: 10%; right: 0; animation: ab-float 5s ease-in-out infinite 4.5s; }
+#abPage .abBadge--tl {
+  top: 20%;
+  left: 0;
+  animation: abFloat 5s ease-in-out infinite;
+}
+#abPage .abBadge--tr {
+  top: 5%;
+  right: 0;
+  animation: abFloat 5s ease-in-out infinite 1.5s;
+}
+#abPage .abBadge--bl {
+  bottom: 5%;
+  left: 5%;
+  animation: abFloat 5s ease-in-out infinite 3s;
+}
+#abPage .abBadge--br {
+  bottom: 20%;
+  right: 0;
+  animation: abFloat 5s ease-in-out infinite 4.5s;
+}
 
-@keyframes ab-float {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-12px); }
+@keyframes abFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 #abPage .abHeroCircle {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 40%;
   transform: translate(-50%, -50%);
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0f172a, #0a1628);
+  background: #f1f5f9;
   border: 1px solid #1e293b;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  transition: all 600ms linear;
+  animation: abFloat 5s ease-in-out infinite;
+  cursor: default;
 }
 
 #abPage .abHeroCircle span {
   font-size: 36px;
   font-weight: 900;
-  color: #38bdf8;
+  color: #020617;
   line-height: 1;
 }
-
+#abPage .abHeroCircle:hover {
+  background: rgba(228, 90, 4, 0.6);
+}
 #abPage .abHeroCircle small {
   font-size: 11px;
-  color: #64748b;
+  color: #020617;
   margin-top: 4px;
 }
 
 #abPage .abNumbers {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid #0f172a;
-  border-bottom: 1px solid #0f172a;
+  border-top: 7px double #7dd3fc;
+  border-bottom: 7px double #7dd3fc;
+  cursor: default;
 }
 
 #abPage .abNumber {
   padding: 48px 24px;
   text-align: center;
-  border-right: 1px solid #0f172a;
+  border-right: 7px double #7dd3fc;
   transition: background 0.3s;
+  background-color: rgb(2, 6, 23, 0.8);
 }
 
-#abPage .abNumber:last-child { border-right: none; }
+#abPage .abNumber:last-child {
+  border-right: none;
+}
 
 #abPage .abNumber:hover {
-  background: rgba(56,189,248,0.04);
+  background: rgba(228, 90, 4, 0.6);
 }
 
 #abPage .abNumberValue {
   display: block;
   font-size: 44px;
   font-weight: 900;
-  color: #f8fafc;
+  color: #f1f5f9;
   letter-spacing: -2px;
   line-height: 1;
 }
@@ -210,7 +251,7 @@
 #abPage .abNumberLabel {
   display: block;
   font-size: 12px;
-  color: #475569;
+  color: #f1f5f9;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-top: 8px;
@@ -222,7 +263,7 @@
   grid-template-columns: 200px 1fr;
   gap: 80px;
   align-items: start;
-  border-bottom: 1px solid #0f172a;
+  border-bottom: 5px double #7dd3fc;
 }
 
 #abPage .abStoryTag {
@@ -230,14 +271,14 @@
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #475569;
+  color: #020617;
   padding-top: 8px;
 }
 
 #abPage .abStoryH2 {
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 800;
-  color: #f8fafc;
+  color: #020617;
   letter-spacing: -1px;
   margin: 0 0 32px;
   line-height: 1.15;
@@ -246,7 +287,7 @@
 #abPage .abStoryText p {
   font-size: 17px;
   line-height: 1.8;
-  color: #64748b;
+  color: #020617;
   margin: 0 0 20px;
 }
 
@@ -259,20 +300,21 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2px;
-  background: #0f172a;
+  background: #f1f5f9;
   border: 1px solid #0f172a;
   border-radius: 20px;
   overflow: hidden;
 }
 
 #abPage .abVcard {
-  background: #020617;
+  background: #1e293b;
   padding: 40px 32px;
-  transition: background 0.3s;
+  transition: all 600ms linear;
+  color: #f1f5f9;
 }
 
 #abPage .abVcard:hover {
-  background: #080f20;
+  background: #f1f5f9;
 }
 
 #abPage .abVcardNum {
@@ -290,30 +332,30 @@
   background: var(--c, #38bdf8);
   border-radius: 2px;
   margin-bottom: 20px;
-  transition: width 0.4s ease;
+  transition: width 600ms ease-in-out;
 }
 
 #abPage .abVcard:hover .abVcardBar {
-  width: 56px;
+  width: 70%;
 }
 
 #abPage .abVcardTitle {
   font-size: 18px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: #020617;
   margin: 0 0 12px;
 }
 
 #abPage .abVcardDesc {
   font-size: 14px;
   line-height: 1.7;
-  color: #475569;
+  color: #020617;
   margin: 0;
 }
 
 #abPage .abHow {
   padding: 100px 8%;
-  border-bottom: 1px solid #0f172a;
+  border-bottom: 5px double #7dd3fc;
 }
 
 #abPage .abHowTrack {
@@ -326,11 +368,11 @@
 #abPage .abHowLine {
   position: absolute;
   top: 20px;
-  left: calc(12.5% + 12px);
-  right: calc(12.5% + 12px);
+  left: 0;
+  right: 30px;
   height: 1px;
   background: linear-gradient(90deg, #38bdf8, #a78bfa, #34d399, #fb923c);
-  opacity: 0.3;
+  opacity: 1;
 }
 
 #abPage .abStep {
@@ -346,34 +388,43 @@
   height: 18px;
   border-radius: 50%;
   background: #38bdf8;
-  border: 3px solid #020617;
+  border: 3px solid #f1f5f9;
   box-shadow: 0 0 0 1px #38bdf8;
 }
 
-#abPage .abStep:nth-child(3) .abStepDot { background: #a78bfa; box-shadow: 0 0 0 1px #a78bfa; }
-#abPage .abStep:nth-child(4) .abStepDot { background: #34d399; box-shadow: 0 0 0 1px #34d399; }
-#abPage .abStep:nth-child(5) .abStepDot { background: #fb923c; box-shadow: 0 0 0 1px #fb923c; }
+#abPage .abStep:nth-child(3) .abStepDot {
+  background: #a78bfa;
+  box-shadow: 0 0 0 1px #a78bfa;
+}
+#abPage .abStep:nth-child(4) .abStepDot {
+  background: #34d399;
+  box-shadow: 0 0 0 1px #34d399;
+}
+#abPage .abStep:nth-child(5) .abStepDot {
+  background: #fb923c;
+  box-shadow: 0 0 0 1px #fb923c;
+}
 
-#abPage .abStepN{
+#abPage .abStepN {
   display: block;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #334155;
+  color: #020617;
   margin-bottom: 12px;
 }
 
 #abPage .abStepTitle {
   font-size: 20px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: #020617;
   margin: 0 0 10px;
 }
 
 #abPage .abStepDesc {
   font-size: 14px;
   line-height: 1.7;
-  color: #475569;
+  color: #020617;
   margin: 0;
 }
 #abPage .abCta {
@@ -383,6 +434,11 @@
   overflow: hidden;
 }
 
+#abPage .abCtaContainer {
+  border-radius: 50px;
+  background-color: #1e293b;
+  padding: 60px;
+}
 #abPage .abCtaGlow {
   position: absolute;
   top: 50%;
@@ -390,21 +446,21 @@
   transform: translate(-50%, -50%);
   width: 600px;
   height: 300px;
-  background: radial-gradient(ellipse, rgba(56,189,248,0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
 #abPage .abCtaH2 {
   font-size: clamp(32px, 5vw, 56px);
   font-weight: 900;
-  color: #f8fafc;
+  color: rgb(248, 250, 252);
   letter-spacing: -1.5px;
   margin: 0 0 16px;
 }
 
 #abPage .abCtaP {
   font-size: 17px;
-  color: #64748b;
+  color: rgb(100, 116, 139);
   margin: 0 0 40px;
 }
 
@@ -415,9 +471,13 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  #abPage .abHowLine { display: none; }
+  #abPage .abHowLine {
+    display: none;
+  }
 
-  #abPage .abNumber { border-bottom: 1px solid #0f172a; }
+  #abPage .abNumber {
+    border-bottom: 1px solid #0f172a;
+  }
 }
 
 @media (max-width: 900px) {
@@ -426,7 +486,9 @@
     padding: 120px 6% 60px;
   }
 
-  #abPage .abHeroRight { display: none; }
+  #abPage .abHeroRight {
+    display: none;
+  }
 
   #abPage .abStory {
     grid-template-columns: 1fr;
@@ -444,7 +506,9 @@
     grid-template-columns: 1fr;
   }
 
-  #abPage .abNumber { border-right: none; }
+  #abPage .abNumber {
+    border-right: none;
+  }
 }
 
 #abPage .abDual {
@@ -453,6 +517,7 @@
   gap: 0;
   border-top: 1px solid #0f172a;
   border-bottom: 1px solid #0f172a;
+  background-color: rgb(30, 41, 59);
 }
 
 #abPage .abDualDivider {
@@ -466,8 +531,12 @@
   transition: background 0.3s;
 }
 
-#abPage .abDualCardRental:hover { background: rgba(56,189,248,0.03); }
-#abPage .abDualCardSale:hover   { background: rgba(244,114,182,0.03); }
+#abPage .abDualCardRental:hover {
+  background: rgba(56, 189, 248, 0.03);
+}
+#abPage .abDualCardSale:hover {
+  background: rgba(244, 114, 182, 0.03);
+}
 
 #abPage .abDualTag {
   display: inline-block;
@@ -475,22 +544,24 @@
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #38bdf8;
-  border: 1px solid rgba(56,189,248,0.25);
+  color: #f1f5f9;
+  border: 1px solid rgba(56, 189, 248, 1);
+  background-color: rgba(56, 189, 248, 0.3);
   padding: 5px 14px;
   border-radius: 100px;
   margin-bottom: 24px;
 }
 
 #abPage .abDualTagPink {
-  color: #f472b6;
-  border-color: rgba(244,114,182,0.25);
+  color: #f1f5f9;
+  border-color: rgba(244, 114, 182, 1);
+  background-color: rgba(244, 114, 182, 0.3);
 }
 
 #abPage .abDualH3 {
   font-size: clamp(24px, 3vw, 34px);
   font-weight: 800;
-  color: #f8fafc;
+  color: #f1f5f9;
   letter-spacing: -0.8px;
   line-height: 1.15;
   margin: 0 0 16px;
@@ -499,7 +570,7 @@
 #abPage .abDualP {
   font-size: 15px;
   line-height: 1.75;
-  color: #64748b;
+  color: #f1f5f9;
   margin: 0 0 28px;
 }
 
@@ -514,32 +585,32 @@
 
 #abPage .abDualList li {
   font-size: 14px;
-  color: #94a3b8;
+  color: #f1f5f9;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 #abPage .abDualList li::before {
-  content: "";
+  content: '';
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #38bdf8;
+  background: #00b3ff;
   flex-shrink: 0;
 }
 
 #abPage .abDualCardSale .abDualList li::before {
-  background: #f472b6;
+  background: #ff0084;
 }
 
 #abPage .abBtnPink {
-  border-color: rgba(244,114,182,0.4);
-  color: #f472b6;
+  border-color: rgba(244, 114, 182, 0.4);
+  color: #020617;
 }
 
 #abPage .abBtnPink:hover {
-  background: rgba(244,114,182,0.08);
+  background: rgba(244, 114, 182, 0.08);
   border-color: #f472b6;
 }
 

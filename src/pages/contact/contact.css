@@ -87,7 +87,9 @@
   border-radius: 18px;
   border: 1px solid #1e293b;
   background: #020617;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
 }
 
 #contact .infoCard h3 {
@@ -115,21 +117,24 @@
   text-align: center;
   padding: 90px 20px;
   border-top: 1px solid #1e293b;
+  background-color: #1e293b;
+  border-radius: 50px;
 }
 
 #contact .contactStrip h2 {
   font-size: 36px;
   margin-bottom: 14px;
+  color: rgb(248, 250, 252);
 }
 
 #contact .contactStrip p {
   font-size: 17px;
-  color: #cbd5f5;
+  color: rgb(100, 116, 139);
   margin-bottom: 26px;
 }
 
 #contact .primaryBtn {
-  background: #38bdf8;
+  background: #c53030;
   color: #020617;
   border: none;
   border-radius: 14px;
@@ -137,7 +142,9 @@
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 #contact .primaryBtn:hover {
@@ -187,7 +194,6 @@
     font-size: 34px;
   }
 }
-
 
 #contact .fieldRow {
   display: grid;

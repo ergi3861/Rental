@@ -1,25 +1,21 @@
 import axios from 'axios';
 
-const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+const adminAPI = axios.create({
+  baseURL: 'http://localhost:5000/api/admin',
 });
 
-API.interceptors.request.use(
+adminAPI.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-
-    const isAuthRoute = config.url.includes('/auth/login') || config.url.includes('/auth/signup');
-
-    if (token && !isAuthRoute) {
+    if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-API.interceptors.response.use(
+adminAPI.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
@@ -30,4 +26,4 @@ API.interceptors.response.use(
   }
 );
 
-export default API;
+export default adminAPI;
