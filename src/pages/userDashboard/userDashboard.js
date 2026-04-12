@@ -6,7 +6,6 @@ import Navigimi from '../../components/navbar/navbar';
 import Footer from '../../components/footer/footer';
 import '../userDashboard/userDashboard.css';
 
-const BASE = 'https://rentalbackend.railway.internal/';
 
 // ── helpers ───────────────────────────────────────────────────
 const fmt = (dt) =>

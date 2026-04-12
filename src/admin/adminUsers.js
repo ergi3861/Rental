@@ -2,9 +2,9 @@ import { useEffect, useState, useCallback } from 'react';
 import adminAPI from '../admin/adminAPI';
 
 const roleMeta = {
-  user: { label: 'Përdorues', color: '#38bdf8' },
-  admin: { label: 'Admin', color: '#a78bfa' },
-  superadmin: { label: 'Super', color: '#f472b6' },
+  user:       { label: 'Përdorues', color: '#38bdf8' },
+  admin:      { label: 'Admin',     color: '#a78bfa' },
+  superadmin: { label: 'Super',     color: '#f472b6' },
 };
 
 const fmt = (dt) =>
@@ -12,14 +12,170 @@ const fmt = (dt) =>
     ? new Date(dt).toLocaleDateString('sq-AL', { day: '2-digit', month: 'short', year: 'numeric' })
     : '—';
 
-export default function AdminUsers() {
-  const [rows, setRows] = useState([]);
-  const [total, setTotal] = useState(0);
+// ── Modal me të dhënat e plotë të user-it ─────────────────────
+function UserModal({ userId, onClose }) {
+  const [data, setData]     = useState(null);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    if (!userId) return;
+    setLoading(true);
+    adminAPI.get(`/users/${userId}`)
+      .then(r => setData(r.data))
+      .catch(() => setData(null))
+      .finally(() => setLoading(false));
+  }, [userId]);
+
+  if (!userId) return null;
+
+  return (
+    <div className="ud-modal-overlay" onClick={onClose}>
+      <div className="ud-modal" onClick={e => e.stopPropagation()}>
+        <button className="ud-modal__close" onClick={onClose}>✕</button>
+
+        {loading ? (
+          <div className="adminUsersLoading">Duke ngarkuar...</div>
+        ) : !data ? (
+          <p>Gabim gjatë ngarkimit.</p>
+        ) : (
+          <>
+            {/* Header */}
+            <div className="ud-modal__header">
+              <div className="ud-modal__avatar">
+                {data.user?.first_name?.[0]}{data.user?.last_name?.[0]}
+              </div>
+              <div>
+                <h2>{data.user?.first_name} {data.user?.last_name}</h2>
+                <p>{data.user?.email}</p>
+                <span
+                  className="adminUsersBadge"
+                  style={{
+                    background: (roleMeta[data.user?.role]?.color || '#94a3b8') + '22',
+                    color: roleMeta[data.user?.role]?.color || '#94a3b8',
+                  }}
+                >
+                  {roleMeta[data.user?.role]?.label || data.user?.role}
+                </span>
+              </div>
+            </div>
+
+            {/* Të dhënat personale */}
+            <div className="ud-modal__section">
+              <h3>📋 Të dhënat personale</h3>
+              <div className="ud-modal__grid">
+                {[
+                  { label: 'Telefon',     val: data.user?.phone },
+                  { label: 'Qyteti',      val: data.user?.city },
+                  { label: 'Shteti',      val: data.user?.country },
+                  { label: 'Adresa',      val: data.user?.address },
+                  { label: 'Mosha',       val: data.user?.age ? `${data.user.age} vjeç` : null },
+                  { label: 'Gjinia',      val: data.user?.gender },
+                  { label: 'ID / Pasaportë', val: data.user?.id_number },
+                  { label: 'Nr. patentës',   val: data.user?.license_number },
+                  { label: 'Patenta skadon', val: fmt(data.user?.license_expiry) },
+                  { label: 'Regjistruar',    val: fmt(data.user?.created_at) },
+                  { label: 'Profil',         val: `${data.user?.completion_percent || 0}%` },
+                ].map((item, i) => (
+                  <div key={i} className="ud-modal__info-row">
+                    <span className="ud-modal__info-label">{item.label}</span>
+                    <span className="ud-modal__info-val">{item.val || '—'}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Rezervimet */}
+            <div className="ud-modal__section">
+              <h3>📋 Rezervimet ({data.reservations?.length || 0})</h3>
+              {data.reservations?.length === 0 ? (
+                <p className="ud-modal__empty">Nuk ka rezervime.</p>
+              ) : (
+                <div className="ud-modal__table-wrap">
+                  <table className="ud-modal__table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Makina</th>
+                        <th>Periudha</th>
+                        <th>Çmimi</th>
+                        <th>Statusi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.reservations.map(r => (
+                        <tr key={r.id}>
+                          <td>#{r.id}</td>
+                          <td>{r.brand} {r.model} ({r.year})</td>
+                          <td>{fmt(r.start_datetime)} → {fmt(r.end_datetime)}</td>
+                          <td>€{Number(r.total_price || 0).toLocaleString()}</td>
+                          <td>
+                            <span className="adminUsersBadge" style={{ background: '#f59e0b22', color: '#f59e0b' }}>
+                              {r.status}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+
+            {/* Kërkesat shitje */}
+            <div className="ud-modal__section">
+              <h3>🤝 Kërkesat shitje ({data.sellRequests?.length || 0})</h3>
+              {data.sellRequests?.length === 0 ? (
+                <p className="ud-modal__empty">Nuk ka kërkesa.</p>
+              ) : (
+                <div className="ud-modal__table-wrap">
+                  <table className="ud-modal__table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Makina</th>
+                        <th>Çmimi kërkuar</th>
+                        <th>Oferta</th>
+                        <th>Statusi</th>
+                        <th>Data</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {data.sellRequests.map(s => (
+                        <tr key={s.id}>
+                          <td>#{s.id}</td>
+                          <td>{s.brand} {s.model} ({s.year})</td>
+                          <td>{s.asking_price ? `€${Number(s.asking_price).toLocaleString()}` : '—'}</td>
+                          <td>{s.admin_offer_price ? `€${Number(s.admin_offer_price).toLocaleString()}` : '—'}</td>
+                          <td>
+                            <span className="adminUsersBadge" style={{ background: '#a78bfa22', color: '#a78bfa' }}>
+                              {s.status}
+                            </span>
+                          </td>
+                          <td>{fmt(s.created_at)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Faqja kryesore ────────────────────────────────────────────
+export default function AdminUsers() {
+  const [rows, setRows]       = useState([]);
+  const [total, setTotal]     = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage]       = useState(1);
+  const [search, setSearch]   = useState('');
   const [updating, setUpdating] = useState(null);
   const [deleting, setDeleting] = useState(null);
+  const [selectedId, setSelectedId] = useState(null); // ✅ modal
   const LIMIT = 15;
 
   const load = useCallback(async () => {
@@ -37,18 +193,14 @@ export default function AdminUsers() {
     }
   }, [page, search]);
 
-  useEffect(() => {
-    load();
-  }, [load]);
-  useEffect(() => {
-    setPage(1);
-  }, [search]);
+  useEffect(() => { load(); }, [load]);
+  useEffect(() => { setPage(1); }, [search]);
 
   const updateRole = async (id, role) => {
     setUpdating(id);
     try {
       await adminAPI.patch(`/users/${id}/role`, { role });
-      setRows((r) => r.map((u) => (u.id === id ? { ...u, role } : u)));
+      setRows(r => r.map(u => u.id === id ? { ...u, role } : u));
     } catch {
       alert('Gabim gjatë ndryshimit të rolit.');
     } finally {
@@ -61,8 +213,8 @@ export default function AdminUsers() {
     setDeleting(id);
     try {
       await adminAPI.delete(`/users/${id}`);
-      setRows((r) => r.filter((u) => u.id !== id));
-      setTotal((t) => t - 1);
+      setRows(r => r.filter(u => u.id !== id));
+      setTotal(t => t - 1);
     } catch {
       alert('Gabim gjatë fshirjes.');
     } finally {
@@ -74,6 +226,9 @@ export default function AdminUsers() {
 
   return (
     <div className="adminUsersPage">
+      {/* Modal */}
+      <UserModal userId={selectedId} onClose={() => setSelectedId(null)} />
+
       <div className="adminUsersHeader">
         <div>
           <h1 className="adminUsersTitle">Përdoruesit</h1>
@@ -86,7 +241,7 @@ export default function AdminUsers() {
           className="adminUsersSearch"
           placeholder="Kërko emër, email..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={e => setSearch(e.target.value)}
         />
       </div>
 
@@ -109,24 +264,19 @@ export default function AdminUsers() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((u) => {
+              {rows.map(u => {
                 const rm = roleMeta[u.role] || { label: u.role, color: '#94a3b8' };
                 return (
-                  <tr key={u.id} className="adminUsersRow">
-                    <td>
-                      <span className="adminUsersId">#{u.id}</span>
-                    </td>
-                    <td>
-                      <p className="adminUsersCarName">
-                        {u.first_name} {u.last_name}
-                      </p>
-                    </td>
-                    <td>
-                      <span className="adminUsersVin">{u.email}</span>
-                    </td>
-                    <td>
-                      <span className="adminUsersCarMeta">{u.phone || '—'}</span>
-                    </td>
+                  <tr
+                    key={u.id}
+                    className="adminUsersRow"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setSelectedId(u.id)} // ✅ klik për modal
+                  >
+                    <td><span className="adminUsersId">#{u.id}</span></td>
+                    <td><p className="adminUsersCarName">{u.first_name} {u.last_name}</p></td>
+                    <td><span className="adminUsersVin">{u.email}</span></td>
+                    <td><span className="adminUsersCarMeta">{u.phone || '—'}</span></td>
                     <td>
                       <span
                         className="adminUsersBadge"
@@ -135,15 +285,16 @@ export default function AdminUsers() {
                         {rm.label}
                       </span>
                     </td>
+                    <td><span className="adminUsersCarMeta">{fmt(u.created_at)}</span></td>
                     <td>
-                      <span className="adminUsersCarMeta">{fmt(u.created_at)}</span>
-                    </td>
-                    <td>
-                      <div className="adminUsersActions">
+                      <div
+                        className="adminUsersActions"
+                        onClick={e => e.stopPropagation()} // ✅ mos hap modal kur klikohet select/delete
+                      >
                         <select
                           value={u.role}
                           disabled={updating === u.id}
-                          onChange={(e) => updateRole(u.id, e.target.value)}
+                          onChange={e => updateRole(u.id, e.target.value)}
                           className="adminUsersStatusSelect"
                           style={{ borderColor: rm.color }}
                         >
@@ -170,15 +321,9 @@ export default function AdminUsers() {
 
       {totalPages > 1 && (
         <div className="adminUsersPagination">
-          <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>
-            ‹ Prapa
-          </button>
-          <span>
-            {page} / {totalPages}
-          </span>
-          <button disabled={page === totalPages} onClick={() => setPage((p) => p + 1)}>
-            Para ›
-          </button>
+          <button disabled={page === 1} onClick={() => setPage(p => p - 1)}>‹ Prapa</button>
+          <span>{page} / {totalPages}</span>
+          <button disabled={page === totalPages} onClick={() => setPage(p => p + 1)}>Para ›</button>
         </div>
       )}
     </div>
