@@ -1,29 +1,17 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import API from '../../backendConnection/api';
 import Navigimi from '../navbar/navbar';
 import Footer from '../footer/footer';
 import '../carDetail/carDetail.css';
 
-const BASE = 'http://localhost:5000/uploads/';
+const BASE = 'http://rentalbackend.railway.internal/uploads/';
 
 // Helper për URL të plotë të fotos
 const imgUrl = (path) => {
   if (!path) return null;
   if (path.startsWith('http')) return path;
   return `${BASE}${path}`;
-};
-
-const SPEC_ICONS = {
-  brand: '🏷️',
-  model: '🚘',
-  year: '📅',
-  fuel: '⛽',
-  transmission: '⚙️',
-  color: '🎨',
-  seats: '💺',
-  category: '📂',
-  status: '📍',
 };
 
 const FUEL_LABELS = {
@@ -79,7 +67,6 @@ export default function CarDetail() {
         return API.get(`/cars?category=${car.category}&limit=4`);
       })
       .then(({ data }) => {
-        // Mbështet: { data: [...] }, { rows: [...] }, ose array direkt
         const rows = data?.data || data?.rows || (Array.isArray(data) ? data : []);
         setSimilar(rows.filter((c) => String(c.id) !== String(id)).slice(0, 3));
       })

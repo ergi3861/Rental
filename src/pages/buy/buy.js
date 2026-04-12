@@ -130,7 +130,7 @@ const Field = ({ error, children }) => (
 );
 
 export default function Sell() {
-  const { user, token } = useAuth(); // ← merr user dhe token nga context
+  const {  token } = useAuth();
 
   const [form, setForm] = useState(initialForm);
   const [photos, setPhotos] = useState([]);

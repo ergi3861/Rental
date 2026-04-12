@@ -9,7 +9,7 @@ const statusMeta = {
   rejected: { label: 'Refuzuar', color: '#ef4444' },
 };
 
-const Base = 'http://localhost:5000/uploads/sell-requests/';
+const Base = 'http://rentalbackend.railway.internal/uploads/sell-requests/';
 
 const fmt = (dt) =>
   dt

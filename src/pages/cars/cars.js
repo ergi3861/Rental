@@ -170,15 +170,6 @@ function Cars() {
     setSearchParams(next);
   };
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    const val = searchInput.trim();
-    const next = new URLSearchParams(searchParams);
-    if (val) next.set('search', val);
-    else next.delete('search');
-    setSearchParams(next);
-    setCurrentPage(1);
-  };
 
   const totalPages = Math.ceil(totalCars / perPage);
 

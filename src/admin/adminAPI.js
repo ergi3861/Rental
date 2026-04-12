@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const adminAPI = axios.create({
-  baseURL: 'http://localhost:5000/api/admin',
+  baseURL: 'http://rentalbackend.railway.internal/api/admin',
 });
 
 adminAPI.interceptors.request.use(

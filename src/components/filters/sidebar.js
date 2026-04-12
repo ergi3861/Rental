@@ -86,14 +86,14 @@ export default function Sidebar({
   const minYear = 1950;
   const maxYear = currentYear;
 
-  const [yearRange, setYearRange] = useState([1950, currentYear]);
+  const [, setYearRange] = useState([1950, currentYear]);
   const [brandSearch, setBrandSearch] = useState('');
   const [colorSearch, setColorSearch] = useState('');
   const [categorySearch, setCategorySearch] = useState('');
 
   useEffect(() => {
-    setYearRange([activeFilters.yearMin || minYear, activeFilters.yearMax || maxYear]);
-  }, [minYear, maxYear]);
+  setYearRange([activeFilters.yearMin, activeFilters.yearMax]);
+}, [activeFilters.yearMin, activeFilters.yearMax]);
 
   const toggle = (key, value) => {
     const current = activeFilters[key] ? activeFilters[key].split(',') : [];
