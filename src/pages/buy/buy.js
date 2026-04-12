@@ -19,10 +19,10 @@ const brands = [
 ];
 
 const fuels = [
-  { value: 'nafte',     label: 'Naftë (Diesel)' },
-  { value: 'benzin',    label: 'Benzinë' },
-  { value: 'elektrike', label: 'Elektrike' },
-  { value: 'hybrid',    label: 'Hybrid' },
+  { value: 'nafte',         label: 'Naftë (Diesel)' },
+  { value: 'benzin',        label: 'Benzinë' },
+  { value: 'elektrike',     label: 'Elektrike' },
+  { value: 'hybrid',        label: 'Hybrid' },
 ];
 
 const transmissions = [
@@ -68,7 +68,7 @@ const Field = ({ error, children }) => (
   </div>
 );
 
-// ── Login Popup ───────────────────────────────────────────────
+// ✅ LoginPopup identike me reservationForm
 function LoginPopup({ onClose, onLogin }) {
   return (
     <div className="loginPopupOverlay" onClick={onClose}>
@@ -104,7 +104,7 @@ export default function Sell() {
   const [loading,     setLoading]     = useState(false);
   const [success,     setSuccess]     = useState(false);
   const [serverError, setServerError] = useState('');
-  const [showLogin,   setShowLogin]   = useState(false); // ✅ login popup
+  const [showLogin,   setShowLogin]   = useState(false);
 
   const handleChange = (field) => (e) => {
     setForm((prev)   => ({ ...prev, [field]: e.target.value }));
@@ -125,22 +125,22 @@ export default function Sell() {
 
   const validate = () => {
     const e = {};
-    if (!form.brand)             e.brand        = 'Zgjidh markën';
-    if (!form.model.trim())      e.model        = 'Shkruaj modelin';
-    if (!form.year)              e.year         = 'Shkruaj vitin';
-    if (!form.mileage)           e.mileage      = 'Shkruaj kilometrat';
-    if (!form.fuel)              e.fuel         = 'Zgjidh karburantin';
-    if (!form.transmission)      e.transmission = 'Zgjidh transmisionin';
-    if (!form.name.trim())       e.name         = 'Shkruaj emrin';
-    if (!form.phone.trim())      e.phone        = 'Shkruaj telefonin';
-    if (!form.city.trim())       e.city         = 'Shkruaj qytetin';
+    if (!form.brand)        e.brand        = 'Zgjidh markën';
+    if (!form.model.trim()) e.model        = 'Shkruaj modelin';
+    if (!form.year)         e.year         = 'Shkruaj vitin';
+    if (!form.mileage)      e.mileage      = 'Shkruaj kilometrat';
+    if (!form.fuel)         e.fuel         = 'Zgjidh karburantin';
+    if (!form.transmission) e.transmission = 'Zgjidh transmisionin';
+    if (!form.name.trim())  e.name         = 'Shkruaj emrin';
+    if (!form.phone.trim()) e.phone        = 'Shkruaj telefonin';
+    if (!form.city.trim())  e.city         = 'Shkruaj qytetin';
     return e;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Nëse nuk është i loguar → shfaq login popup
+    // ✅ Nëse nuk është i loguar → popup identike me reservationForm
     if (!isAuthenticated) {
       setShowLogin(true);
       return;
@@ -213,12 +213,11 @@ export default function Sell() {
     );
   }
 
-  // ── Forma kryesore ────────────────────────────────────────
   return (
     <>
       <Navigimi />
 
-      {/* ✅ Login Popup */}
+      {/* ✅ LoginPopup identike me reservationForm */}
       {showLogin && (
         <LoginPopup
           onClose={() => setShowLogin(false)}

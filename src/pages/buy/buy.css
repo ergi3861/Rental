@@ -245,21 +245,21 @@
 }
 
 
-/* ── Login Popup ── */
+/* ── Login Popup — identike me reservationForm ── */
 .loginPopupOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(6px);
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
 }
 
 .loginPopup {
-  background: #fff;
+  background: #1e2433;
+  border: 1px solid #2d3550;
   border-radius: 20px;
   padding: 40px 32px;
   width: 100%;
@@ -267,7 +267,6 @@
   text-align: center;
   position: relative;
   animation: popupIn 0.25s ease;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
 }
 
 @keyframes popupIn {
@@ -279,9 +278,9 @@
   position: absolute;
   top: 14px;
   right: 14px;
-  background: #f1f5f9;
+  background: #2d3550;
   border: none;
-  color: #333;
+  color: #fff;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -291,23 +290,20 @@
   align-items: center;
   justify-content: center;
 }
-.loginPopupClose:hover { background: #ef4444; color: #fff; }
+.loginPopupClose:hover { background: #ef4444; }
 
-.loginPopupIcon {
-  font-size: 48px;
-  margin-bottom: 16px;
-}
+.loginPopupIcon  { font-size: 48px; margin-bottom: 16px; }
 
 .loginPopupTitle {
   font-size: 22px;
   font-weight: 700;
-  color: #1e293b;
+  color: #f1f5f9;
   margin: 0 0 10px;
 }
 
 .loginPopupSub {
   font-size: 14px;
-  color: #64748b;
+  color: #94a3b8;
   margin: 0 0 24px;
   line-height: 1.5;
 }
@@ -315,7 +311,7 @@
 .loginPopupBtn {
   width: 100%;
   padding: 14px;
-  background: #1e293b;
+  background: linear-gradient(135deg, #6366f1, #a78bfa);
   border: none;
   border-radius: 12px;
   color: #fff;
@@ -325,16 +321,13 @@
   transition: opacity 0.2s;
   margin-bottom: 16px;
 }
-.loginPopupBtn:hover { opacity: 0.85; }
+.loginPopupBtn:hover { opacity: 0.9; }
 
-.loginPopupRegister {
-  font-size: 13px;
-  color: #94a3b8;
-}
+.loginPopupRegister { font-size: 13px; color: #64748b; }
 
 .loginPopupLink {
-  color: #6366f1;
+  color: #a78bfa;
   cursor: pointer;
   text-decoration: underline;
 }
-.loginPopupLink:hover { color: #4f46e5; }
+.loginPopupLink:hover { color: #c4b5fd; }
