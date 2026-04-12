@@ -5,7 +5,7 @@ import Navigimi from '../navbar/navbar';
 import Footer from '../footer/footer';
 import '../carDetail/carDetail.css';
 
-const BASE = 'https://rentalbackend.railway.internal/uploads/';
+const BASE = 'https://rentalbackend.railway.internal/';
 
 // Helper për URL të plotë të fotos
 const imgUrl = (path) => {

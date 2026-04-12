@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ADMIN_API from '../admin/adminAPI';
 
-const BASE = 'https://rentalbackend.railway.internal/uploads/';
+const BASE = 'https://rentalbackend.railway.internal/';
 
 const BRANDS = [
   'alfa romeo',

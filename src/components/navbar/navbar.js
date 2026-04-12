@@ -18,7 +18,7 @@ import { useAuth } from '../../backendConnection/context';
 import AppContext from '../../backendConnection/translationContext';
 import axios from 'axios';
 
-const BASE_URL = 'https://rentalbackend.railway.internal/uploads/';
+const BASE_URL = 'https://rentalbackend.railway.internal/';
 
 const STATUS_META = {
   available: { color: '#10b981' },
