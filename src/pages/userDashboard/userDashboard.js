@@ -194,7 +194,7 @@ export default function UserDashboard() {
               {profile?.profile_photo ? (
                 <img
                   className="ud-hero__avatar"
-                  src={`${BASE}${profile.profile_photo}`}
+                  src={`${profile.profile_photo}`}
                   alt="foto"
                 />
               ) : (

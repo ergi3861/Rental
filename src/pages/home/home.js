@@ -523,8 +523,8 @@ export default function Home() {
             <button onClick={() => (window.location.href = 'Rental')} className="primary">
               Rezervo nje makine
             </button>
-            <button onClick={() => (window.location.href = 'Contact')} className="secondary">
-              Na kontaktoni
+            <button onClick={() => (window.location.href = 'Services')} className="secondary">
+              Sherbimet qe ne ofrojme
             </button>
           </div>
         </div>
