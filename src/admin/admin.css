@@ -2131,6 +2131,218 @@
   padding: 8px 0;
 }
 
+
+
+
+.adminSearchLogsPage {
+  padding: 24px;
+  max-width: 1200px;
+}
+
+.adminSearchLogsHeader {
+  margin-bottom: 24px;
+}
+
+.adminSearchLogsTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0 0 4px;
+}
+
+.adminSearchLogsSub {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ── Top Searches ── */
+.adminSearchLogsTop {
+  background: #151b2d;
+  border: 1px solid #2d3550;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.adminSearchLogsTop h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0 0 16px;
+}
+
+.adminSearchLogsTopGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.adminSearchLogsTopItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #1e2433;
+  border-radius: 8px;
+}
+
+.adminSearchLogsTopRank {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  width: 28px;
+}
+
+.adminSearchLogsTopQuery {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.adminSearchLogsTopCount {
+  font-size: 13px;
+  font-weight: 700;
+  color: #a78bfa;
+  background: #a78bfa22;
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+.adminSearchLogsTopAvg {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* ── Filters ── */
+.adminSearchLogsFilters {
+  margin-bottom: 16px;
+}
+
+.adminSearchLogsSearch {
+  width: 100%;
+  max-width: 360px;
+  padding: 10px 14px;
+  background: #151b2d;
+  border: 1px solid #2d3550;
+  border-radius: 10px;
+  color: #f1f5f9;
+  font-size: 14px;
+  outline: none;
+}
+.adminSearchLogsSearch:focus { border-color: #6366f1; }
+
+/* ── Table ── */
+.adminSearchLogsTableWrap {
+  background: #151b2d;
+  border: 1px solid #2d3550;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.adminSearchLogsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.adminSearchLogsTable th {
+  background: #0f1623;
+  color: #64748b;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.adminSearchLogsTable td {
+  padding: 12px 16px;
+  color: #cbd5e1;
+  border-top: 1px solid #1e2433;
+}
+
+.adminSearchLogsTable tr:hover td { background: #1a2035; }
+
+.adminSearchLogsId    { color: #64748b; font-size: 12px; }
+.adminSearchLogsQuery {
+  font-weight: 600;
+  color: #f1f5f9;
+  background: #6366f122;
+  color: #818cf8;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.adminSearchLogsResults {
+  background: #10b98122;
+  color: #34d399;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.adminSearchLogsUser {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  color: #f1f5f9;
+}
+.adminSearchLogsUser small {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.adminSearchLogsGuest {
+  font-size: 12px;
+  color: #64748b;
+  font-style: italic;
+}
+
+.adminSearchLogsDate { font-size: 12px; color: #64748b; }
+
+.adminSearchLogsLoading,
+.adminSearchLogsEmpty {
+  padding: 40px;
+  text-align: center;
+  color: #64748b;
+}
+
+/* ── Pagination ── */
+.adminSearchLogsPagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.adminSearchLogsPagination button {
+  padding: 8px 16px;
+  background: #151b2d;
+  border: 1px solid #2d3550;
+  color: #f1f5f9;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.adminSearchLogsPagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.adminSearchLogsPagination button:hover:not(:disabled) {
+  background: #1e2433;
+}
+
+.adminSearchLogsPagination span {
+  font-size: 13px;
+  color: #64748b;
+}
 /* ═══════════════════════════════════════════════════════════
    AddCar.css — stilizim i plotë për faqen e shtimit të makinës
    Vendoset në: src/admin/cars/AddCar.css

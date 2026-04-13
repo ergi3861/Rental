@@ -41,12 +41,13 @@ function MiniBar({ label, value, max, color }) {
 export default function AdminDashboard() {
   const navigate = useNavigate();
 
-  const [stats, setStats] = useState(null);
-  const [chart, setChart] = useState([]);
-  const [topCars, setTopCars] = useState([]);
-  const [activity, setActivity] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [stats,       setStats]       = useState(null);
+  const [chart,       setChart]       = useState([]);
+  const [topCars,     setTopCars]     = useState([]);
+  const [activity,    setActivity]    = useState([]);
+  const [searchCount, setSearchCount] = useState(0); // ✅ E re
+  const [loading,     setLoading]     = useState(true);
+  const [error,       setError]       = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -54,12 +55,14 @@ export default function AdminDashboard() {
       adminAPI.get('/dashboard/chart'),
       adminAPI.get('/dashboard/top-cars'),
       adminAPI.get('/dashboard/activity'),
+      adminAPI.get('/search-logs?page=1&limit=1'), // ✅ E re
     ])
-      .then(([s, c, t, a]) => {
+      .then(([s, c, t, a, sl]) => {
         setStats(s.data);
         setChart(c.data);
         setTopCars(t.data);
         setActivity(a.data);
+        setSearchCount(sl.data.total || 0); // ✅ E re
       })
       .catch(() => setError(true))
       .finally(() => setLoading(false));
@@ -161,6 +164,15 @@ export default function AdminDashboard() {
           sub="mesazhe"
           to="/admin/contacts"
         />
+        {/* ✅ StatCard i ri për Search Logs */}
+        <StatCard
+          label="Kërkimet"
+          icon="🔍"
+          color="#06b6d4"
+          value={searchCount}
+          sub="kërkime totale"
+          to="/admin/search-logs"
+        />
       </div>
 
       <div className="adminDashboardRow">
@@ -190,11 +202,11 @@ export default function AdminDashboard() {
           <h3>Gjendja e flotës</h3>
           <div className="adminDashboardFleet">
             {[
-              { label: 'Të lira', value: stats.cars.available, color: '#10b981' },
-              { label: 'Të rezervuara', value: stats.cars.reserved, color: '#f59e0b' },
-              { label: 'Të shitura', value: stats.cars.sold, color: '#ef4444' },
-              { label: 'Rental', value: stats.cars.rental, color: '#38bdf8' },
-              { label: 'Sale', value: stats.cars.sale, color: '#a78bfa' },
+              { label: 'Të lira',       value: stats.cars.available, color: '#10b981' },
+              { label: 'Të rezervuara', value: stats.cars.reserved,  color: '#f59e0b' },
+              { label: 'Të shitura',    value: stats.cars.sold,      color: '#ef4444' },
+              { label: 'Rental',        value: stats.cars.rental,    color: '#38bdf8' },
+              { label: 'Sale',          value: stats.cars.sale,      color: '#a78bfa' },
             ].map((item, i) => (
               <MiniBar
                 key={i}
@@ -280,10 +292,10 @@ export default function AdminDashboard() {
           <h3>Rezervimet sipas statusit</h3>
           <div className="adminDashboardStatusGrid">
             {[
-              { label: 'Në pritje', value: stats.reservations.pending, color: '#f59e0b' },
-              { label: 'Konfirmuar', value: stats.reservations.confirmed, color: '#10b981' },
-              { label: 'Përfunduar', value: stats.reservations.completed, color: '#6366f1' },
-              { label: 'Anuluar', value: stats.reservations.cancelled, color: '#ef4444' },
+              { label: 'Në pritje',  value: stats.reservations.pending,   color: '#f59e0b' },
+              { label: 'Konfirmuar', value: stats.reservations.confirmed,  color: '#10b981' },
+              { label: 'Përfunduar', value: stats.reservations.completed,  color: '#6366f1' },
+              { label: 'Anuluar',    value: stats.reservations.cancelled,  color: '#ef4444' },
             ].map((s, i) => (
               <div
                 key={i}
