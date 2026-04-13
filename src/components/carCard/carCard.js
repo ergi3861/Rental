@@ -1,13 +1,11 @@
 import '../carCard/carCard.css';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReservationForm from '../reservationForm/reservationForm';
 
 export default function CarCard({ car = {} }) {
   const navigate = useNavigate();
   const [flipped, setFlipped] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
-  const [showModal, setShowModal] = useState(false);
   const autoRef = useRef();
 
   const {
@@ -82,19 +80,23 @@ export default function CarCard({ car = {} }) {
           ? '#ef4444'
           : '#6366f1';
 
-  const isAvailable = status === 'available';
-
   return (
     <>
       <div id="carCard">
         <div className={`carCard ${flipped ? 'isFlipped' : ''}`}>
           <div className="cardFront">
             <div className="carTypology">
-              <span>{category}</span>
-              <h2>{brand}</h2>
-              <h4>
-                {model} · {year}
-              </h4>
+              <div className="carBadges">
+                <span>{category}</span>
+                <h2>{brand.charAt(0).toUpperCase() + brand.slice(1)}</h2>
+                <span className={`typeBadge ${type === 'RENTAL' ? 'typeBadgeRental' : 'typeBadgeSale'}`}>
+                  {type === 'RENTAL' ? 'Qira' : 'Shitje'}
+                </span>
+              </div>
+              <div className="carModelYear">
+                <h4><b>·</b> {model}</h4>
+                <h4><b>·</b> {year}</h4>
+              </div>
             </div>
 
             <div className="carImage">
@@ -196,9 +198,9 @@ export default function CarCard({ car = {} }) {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path d="M5 19V7.5L9 4h9a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z" />
@@ -254,22 +256,10 @@ export default function CarCard({ car = {} }) {
           </div>
         </div>
 
-        {type === 'RENTAL' ? (
-          <button
-            className={`cardBtn ${isAvailable ? 'cardBtnDisabled' : ''}`}
-            onClick={() => isAvailable && setShowModal(true)}
-            disabled={!isAvailable}
-          >
-            {isAvailable ? 'Reserve' : 'E rezervuar'}
-          </button>
-        ) : (
-          <button className="cardBtn cardBtnSale" onClick={() => navigate(`/cars/${car.id}`)}>
-            Shiko detajet
-          </button>
-        )}
+        <button className="cardBtn cardBtnSale" onClick={() => navigate(`/cars/${car.id}`)}>
+          Shiko detajet
+        </button>
       </div>
-
-      {showModal && car && <ReservationForm car={car} onClose={() => setShowModal(false)} />}
     </>
   );
 }
