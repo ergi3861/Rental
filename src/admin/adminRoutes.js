@@ -10,6 +10,7 @@ import AdminReservations from './adminReservation';
 import AdminSellRequests from './adminSellRequests';
 import AdminUsers from './adminUsers';
 import AdminContacts from './adminContacts';
+import AdminSearchLogs from './adminSearchLog';
 
 function AdminGuard({ children }) {
   const { user, loading } = useAuth();
@@ -38,6 +39,7 @@ export default function AdminRoutes() {
           <Route path="sell-requests" element={<AdminSellRequests />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="contacts" element={<AdminContacts />} />
+          <Route path="searchLogs" element={<AdminSearchLogs />} />
 
           {/* Fallback */}
           <Route path="*" element={<Navigate to="/admin" replace />} />

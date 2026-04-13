@@ -171,7 +171,7 @@ export default function AdminDashboard() {
           color="#06b6d4"
           value={searchCount}
           sub="kërkime totale"
-          to="/admin/search-logs"
+          to="/admin/searchLogs"
         />
       </div>
 
