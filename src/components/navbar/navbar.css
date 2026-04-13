@@ -725,3 +725,108 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+
+
+#navbar .mobileMenuBtn {
+  display: none;
+  background: #162f3a;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: #ffd700;
+  font-size: 20px;
+  margin-left: auto;
+}
+
+#navbar .mobileMenuBtn:hover { background: #1e3d4c; }
+
+#navbar .userInitials {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffd700;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 1280px) {
+  #navbar .menu { gap: 16px; }
+  #navbar .menu li a { font-size: 15px; }
+  #navbar .contactLinks { margin-left: 20px; }
+  #navbar .selectorGroup { gap: 8px; }
+}
+
+@media (max-width: 1024px) {
+  #navbar .navBarTop { padding: 0 20px; }
+  #navbar .menu { gap: 10px; }
+  #navbar .menu li a { font-size: 14px; }
+  #navbar .contactLinks { gap: 8px; margin-left: 10px; }
+  #navbar .selectorGroup { gap: 6px; }
+  #navbar .selectorDropdown { width: 80px; }
+  #navbar .quickStats { gap: 8px; }
+  .searchShellPortalExpanded { width: 600px; }
+}
+
+@media (max-width: 768px) {
+  #navbar .navBarTop { padding: 0 16px; height: 56px; }
+  #navbar .contactLinks { gap: 6px; margin-left: 8px; }
+  #navbar .contactLinks a { width: 30px; height: 30px; }
+  #navbar .selectorGroup { gap: 4px; }
+  #navbar .selectorDropdown { width: 70px; }
+  #navbar .selectorTrigger { gap: 6px; padding: 3px 5px; }
+  #navbar .quickStats { gap: 6px; }
+  #navbar .statBtn { width: 30px; height: 30px; }
+  #navbar .userBtn { width: 30px; height: 30px; }
+  #navbar .searchPlaceholder { width: 90px; height: 30px; }
+  #navbar .navBarMain { height: 60px; padding: 0 16px; flex-wrap: wrap; position: relative; }
+  #navbar .logo { margin-right: 16px; }
+  #navbar .logo img { width: 80px; height: 48px; }
+  #navbar .mobileMenuBtn { display: flex; align-items: center; justify-content: center; }
+  #navbar .menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #4085a0;
+    flex-direction: column;
+    gap: 0;
+    z-index: 200;
+    padding: 10px 0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    border-radius: 0 0 12px 12px;
+  }
+  #navbar .menu.menuOpen { display: flex; }
+  #navbar .menu li { width: 100%; }
+  #navbar .menu li a { font-size: 16px; padding: 12px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  #navbar .menu li a:hover { border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.08); }
+  #navbar .hasDropdown .dropdownMenu {
+    position: static;
+    display: block;
+    background: rgba(0,0,0,0.15);
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+  }
+  #navbar .dropdownMenu li { padding: 0; }
+  #navbar .dropdownMenu li a { padding: 10px 40px; font-size: 14px; }
+  .searchShellPortalExpanded { width: 90vw; }
+  .searchResults { width: 90vw; top: 50px; }
+}
+
+@media (max-width: 480px) {
+  #navbar .navBarTop { padding: 0 10px; height: 52px; }
+  #navbar .textLogo h2 { font-size: 14px; }
+  #navbar .contactLinks { display: none; }
+  #navbar .selectorGroup { gap: 4px; }
+  #navbar .selectorDropdown { width: 60px; }
+  #navbar .selectorLabel { display: none; }
+  #navbar .quickStats { gap: 4px; }
+  #navbar .statBtn { width: 28px; height: 28px; font-size: 12px; }
+  #navbar .userBtn { width: 28px; height: 28px; }
+  #navbar .searchPlaceholder { width: 70px; height: 28px; }
+  #navbar .searchLabel { display: none; }
+  #navbar .logo img { width: 65px; height: 40px; }
+  .searchShellPortalExpanded { width: 95vw; height: 48px; }
+  .searchResults { width: 95vw; }
+}

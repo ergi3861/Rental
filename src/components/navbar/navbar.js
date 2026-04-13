@@ -193,6 +193,7 @@ export default function NavBar() {
   const dropdownRef    = useRef(null);
 
   const [state,   setState]   = useState('idle');
+  const [menuOpen, setMenuOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [query,   setQuery]   = useState('');
   const [results, setResults] = useState(null);
@@ -528,6 +529,10 @@ export default function NavBar() {
           <div className="logo">
             <Link to="/"><img src={logo} alt="logo" /></Link>
           </div>
+          <button className="mobileMenuBtn" onClick={() => setMenuOpen(p => !p)}>
+  {menuOpen ? '✕' : '☰'}
+</button>
+<ul className={`menu${menuOpen ? ' menuOpen' : ''}`}></ul>
           <ul className="menu">
             <li><Link to="/">{t('nav.home')}</Link></li>
             <li className="hasDropdown">
