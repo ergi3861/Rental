@@ -6,28 +6,27 @@ import Navigimi from '../../components/navbar/navbar';
 import Footer from '../../components/footer/footer';
 import '../userDashboard/userDashboard.css';
 
+const BASE = 'http://rentalbackend.railway.internal/uploads/';
 
-// ── helpers ───────────────────────────────────────────────────
 const fmt = (dt) =>
   dt
     ? new Date(dt).toLocaleDateString('sq-AL', { day: '2-digit', month: 'short', year: 'numeric' })
     : '—';
 
 const STATUS_COLOR = {
-  pending: '#f59e0b',
+  pending:   '#f59e0b',
   confirmed: '#10b981',
   completed: '#6366f1',
   cancelled: '#ef4444',
   available: '#10b981',
-  reserved: '#f59e0b',
-  sold: '#ef4444',
-  offered: '#a78bfa',
-  reviewed: '#38bdf8',
-  accepted: '#10b981',
-  rejected: '#ef4444',
+  reserved:  '#f59e0b',
+  sold:      '#ef4444',
+  offered:   '#a78bfa',
+  reviewed:  '#38bdf8',
+  accepted:  '#10b981',
+  rejected:  '#ef4444',
 };
 
-// ── Profile completion banner ─────────────────────────────────
 function CompletionBanner({ pct, onGoToProfile }) {
   if (pct >= 100) return null;
   return (
@@ -54,31 +53,29 @@ function CompletionBanner({ pct, onGoToProfile }) {
   );
 }
 
-// ── Tab nav ───────────────────────────────────────────────────
 const TABS = [
-  { id: 'overview', label: 'Përmbledhje', icon: '🏠' },
-  { id: 'profile', label: 'Profili', icon: '👤' },
-  { id: 'reservations', label: 'Rezervimet', icon: '📋' },
-  { id: 'sell', label: 'Kërkesat shitje', icon: '🤝' },
-  { id: 'documents', label: 'Dokumentat', icon: '📄' },
+  { id: 'overview',     label: 'Përmbledhje',    icon: '🏠' },
+  { id: 'profile',      label: 'Profili',         icon: '👤' },
+  { id: 'reservations', label: 'Rezervimet',      icon: '📋' },
+  { id: 'sell',         label: 'Kërkesat shitje', icon: '🤝' },
+  { id: 'documents',    label: 'Dokumentat',      icon: '📄' },
 ];
 
 export default function UserDashboard() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const [tab, setTab] = useState('overview');
-  const [profile, setProfile] = useState(null);
-  const [reservations, setReservations] = useState([]);
-  const [sellReqs, setSellReqs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
-  const [saveMsg, setSaveMsg] = useState('');
-  const [form, setForm] = useState({});
+  const [tab,         setTab]         = useState('overview');
+  const [profile,     setProfile]     = useState(null);
+  const [reservations,setReservations]= useState([]);
+  const [sellReqs,    setSellReqs]    = useState([]);
+  const [loading,     setLoading]     = useState(true);
+  const [saving,      setSaving]      = useState(false);
+  const [saveMsg,     setSaveMsg]     = useState('');
+  const [form,        setForm]        = useState({});
   const licenseRef = useRef(null);
-  const photoRef = useRef(null);
+  const photoRef   = useRef(null);
 
-  // ── Load data ─────────────────────────────────────────────
   useEffect(() => {
     Promise.all([
       API.get('/user/profile'),
@@ -88,14 +85,14 @@ export default function UserDashboard() {
       .then(([p, r, s]) => {
         setProfile(p.data);
         setForm({
-          phone: p.data.phone || '',
-          date_of_birth: p.data.date_of_birth || '',
-          age: p.data.age || '',
-          gender: p.data.gender || '',
-          address: p.data.address || '',
-          city: p.data.city || '',
-          country: p.data.country || 'Albania',
-          id_number: p.data.id_number || '',
+          phone:          p.data.phone          || '',
+          date_of_birth:  p.data.date_of_birth  || '',
+          age:            p.data.age            || '',
+          gender:         p.data.gender         || '',
+          address:        p.data.address        || '',
+          city:           p.data.city           || '',
+          country:        p.data.country        || 'Albania',
+          id_number:      p.data.id_number      || '',
           license_number: p.data.license_number || '',
           license_expiry: p.data.license_expiry || '',
         });
@@ -170,6 +167,18 @@ export default function UserDashboard() {
     }
   };
 
+  // ✅ Accept / Decline ofertën e adminit
+  const handleRespondOffer = async (id, action) => {
+    try {
+      await API.patch(`/sell-requests/${id}/respond`, { action });
+      setSellReqs((prev) =>
+        prev.map((s) => s.id === id ? { ...s, status: action } : s)
+      );
+    } catch (err) {
+      alert(err.response?.data?.error || 'Gabim gjatë përgjigjes.');
+    }
+  };
+
   if (loading)
     return (
       <>
@@ -186,14 +195,15 @@ export default function UserDashboard() {
     <>
       <Navigimi />
       <div className="ud-page">
-        {/* ── Hero header ── */}
+
+        {/* ── Hero ── */}
         <div className="ud-hero">
           <div className="ud-hero__inner">
             <div className="ud-hero__avatar-wrap">
               {profile?.profile_photo ? (
                 <img
                   className="ud-hero__avatar"
-                  src={profile.profile_photo}
+                  src={`${BASE}${profile.profile_photo}`}
                   alt="foto"
                 />
               ) : (
@@ -242,6 +252,7 @@ export default function UserDashboard() {
         <div className="ud-body">
           <CompletionBanner pct={pct} onGoToProfile={() => setTab('profile')} />
 
+          {/* Tabs */}
           <div className="ud-tabs">
             {TABS.map((t) => (
               <button
@@ -263,10 +274,10 @@ export default function UserDashboard() {
                   <div className="ud-info-list">
                     {[
                       { icon: '📞', label: 'Telefon', val: profile?.phone || '—' },
-                      { icon: '🏙️', label: 'Qyteti', val: profile?.city || '—' },
-                      { icon: '🌍', label: 'Shteti', val: profile?.country || '—' },
-                      { icon: '🎂', label: 'Mosha', val: profile?.age ? `${profile.age} vjeç` : '—' },
-                      { icon: '🪪', label: 'ID', val: profile?.id_number || '—' },
+                      { icon: '🏙️', label: 'Qyteti',  val: profile?.city  || '—' },
+                      { icon: '🌍', label: 'Shteti',  val: profile?.country || '—' },
+                      { icon: '🎂', label: 'Mosha',   val: profile?.age ? `${profile.age} vjeç` : '—' },
+                      { icon: '🪪', label: 'ID',      val: profile?.id_number || '—' },
                       { icon: '🚗', label: 'Patenta', val: profile?.license_number || '—' },
                     ].map((item, i) => (
                       <div key={i} className="ud-info-row">
@@ -302,7 +313,7 @@ export default function UserDashboard() {
                         <div key={r.id} className="ud-res-card">
                           <div className="ud-res-card__img">
                             {r.thumbnail ? (
-                              <img src={r.thumbnail} alt={r.model} />
+                              <img src={`${BASE}${r.thumbnail}`} alt={r.model} />
                             ) : (
                               <span>🚗</span>
                             )}
@@ -361,13 +372,13 @@ export default function UserDashboard() {
                     </div>
                     <div className="ud-completion__items">
                       {[
-                        { label: 'Telefon', done: !!profile?.phone },
-                        { label: 'Datëlindja', done: !!profile?.date_of_birth },
-                        { label: 'Adresa', done: !!profile?.address },
-                        { label: 'Qyteti', done: !!profile?.city },
-                        { label: 'Numri ID', done: !!profile?.id_number },
+                        { label: 'Telefon',      done: !!profile?.phone },
+                        { label: 'Datëlindja',   done: !!profile?.date_of_birth },
+                        { label: 'Adresa',       done: !!profile?.address },
+                        { label: 'Qyteti',       done: !!profile?.city },
+                        { label: 'Numri ID',     done: !!profile?.id_number },
                         { label: 'Nr. patentës', done: !!profile?.license_number },
-                        { label: 'Foto patentës', done: !!profile?.license_photo },
+                        { label: 'Foto patentës',done: !!profile?.license_photo },
                       ].map((item, i) => (
                         <div key={i} className={`ud-completion__item ${item.done ? 'done' : ''}`}>
                           <span>{item.done ? '✓' : '○'}</span>
@@ -400,19 +411,42 @@ export default function UserDashboard() {
                   </div>
                   <div className="ud-form-group">
                     <label>Telefon *</label>
-                    <input className="ud-input" value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} placeholder="+355..." />
+                    <input
+                      className="ud-input"
+                      value={form.phone}
+                      onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
+                      placeholder="+355..."
+                    />
                   </div>
                   <div className="ud-form-group">
                     <label>Datëlindja *</label>
-                    <input type="date" className="ud-input" value={form.date_of_birth} onChange={(e) => { const age = e.target.value ? Math.floor((Date.now() - new Date(e.target.value)) / 31557600000) : ''; setForm((p) => ({ ...p, date_of_birth: e.target.value, age })); }} />
+                    <input
+                      type="date"
+                      className="ud-input"
+                      value={form.date_of_birth}
+                      onChange={(e) => {
+                        const age = e.target.value
+                          ? Math.floor((Date.now() - new Date(e.target.value)) / 31557600000)
+                          : '';
+                        setForm((p) => ({ ...p, date_of_birth: e.target.value, age }));
+                      }}
+                    />
                   </div>
                   <div className="ud-form-group">
                     <label>Mosha</label>
-                    <input className="ud-input ud-input--disabled" value={form.age ? `${form.age} vjeç` : ''} disabled />
+                    <input
+                      className="ud-input ud-input--disabled"
+                      value={form.age ? `${form.age} vjeç` : ''}
+                      disabled
+                    />
                   </div>
                   <div className="ud-form-group">
                     <label>Gjinia</label>
-                    <select className="ud-input" value={form.gender} onChange={(e) => setForm((p) => ({ ...p, gender: e.target.value }))}>
+                    <select
+                      className="ud-input"
+                      value={form.gender}
+                      onChange={(e) => setForm((p) => ({ ...p, gender: e.target.value }))}
+                    >
                       <option value="">-- Zgjidh --</option>
                       <option value="male">Mashkull</option>
                       <option value="female">Femër</option>
@@ -421,27 +455,56 @@ export default function UserDashboard() {
                   </div>
                   <div className="ud-form-group">
                     <label>Shteti</label>
-                    <input className="ud-input" value={form.country} onChange={(e) => setForm((p) => ({ ...p, country: e.target.value }))} />
+                    <input
+                      className="ud-input"
+                      value={form.country}
+                      onChange={(e) => setForm((p) => ({ ...p, country: e.target.value }))}
+                    />
                   </div>
                   <div className="ud-form-group">
                     <label>Qyteti *</label>
-                    <input className="ud-input" value={form.city} onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))} placeholder="Tiranë" />
+                    <input
+                      className="ud-input"
+                      value={form.city}
+                      onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))}
+                      placeholder="Tiranë"
+                    />
                   </div>
                   <div className="ud-form-group ud-form-group--full">
                     <label>Adresa *</label>
-                    <input className="ud-input" value={form.address} onChange={(e) => setForm((p) => ({ ...p, address: e.target.value }))} placeholder="Rruga, numri..." />
+                    <input
+                      className="ud-input"
+                      value={form.address}
+                      onChange={(e) => setForm((p) => ({ ...p, address: e.target.value }))}
+                      placeholder="Rruga, numri..."
+                    />
                   </div>
                   <div className="ud-form-group">
                     <label>Numri i ID / Pasaportës *</label>
-                    <input className="ud-input" value={form.id_number} onChange={(e) => setForm((p) => ({ ...p, id_number: e.target.value }))} placeholder="AB123456" />
+                    <input
+                      className="ud-input"
+                      value={form.id_number}
+                      onChange={(e) => setForm((p) => ({ ...p, id_number: e.target.value }))}
+                      placeholder="AB123456"
+                    />
                   </div>
                   <div className="ud-form-group">
                     <label>Numri i patentës *</label>
-                    <input className="ud-input" value={form.license_number} onChange={(e) => setForm((p) => ({ ...p, license_number: e.target.value }))} placeholder="DL-123456" />
+                    <input
+                      className="ud-input"
+                      value={form.license_number}
+                      onChange={(e) => setForm((p) => ({ ...p, license_number: e.target.value }))}
+                      placeholder="DL-123456"
+                    />
                   </div>
                   <div className="ud-form-group">
                     <label>Data e skadimit të patentës</label>
-                    <input type="date" className="ud-input" value={form.license_expiry} onChange={(e) => setForm((p) => ({ ...p, license_expiry: e.target.value }))} />
+                    <input
+                      type="date"
+                      className="ud-input"
+                      value={form.license_expiry}
+                      onChange={(e) => setForm((p) => ({ ...p, license_expiry: e.target.value }))}
+                    />
                   </div>
                 </div>
 
@@ -473,7 +536,7 @@ export default function UserDashboard() {
                     <div key={r.id} className="ud-res-item">
                       <div className="ud-res-item__img">
                         {r.thumbnail ? (
-                          <img src={r.thumbnail} alt={r.model} />
+                          <img src={`${BASE}${r.thumbnail}`} alt={r.model} />
                         ) : (
                           <span>🚗</span>
                         )}
@@ -481,18 +544,25 @@ export default function UserDashboard() {
                       <div className="ud-res-item__body">
                         <div className="ud-res-item__top">
                           <h4>{r.brand} {r.model} <span>({r.year})</span></h4>
-                          <span className="ud-badge" style={{ background: (STATUS_COLOR[r.status] || '#94a3b8') + '22', color: STATUS_COLOR[r.status] || '#94a3b8' }}>
+                          <span
+                            className="ud-badge"
+                            style={{
+                              background: (STATUS_COLOR[r.status] || '#94a3b8') + '22',
+                              color: STATUS_COLOR[r.status] || '#94a3b8',
+                            }}
+                          >
                             {r.status}
                           </span>
                         </div>
                         <div className="ud-res-item__details">
                           <span>📅 {fmt(r.start_datetime)} → {fmt(r.end_datetime)}</span>
-                          <span>📍 {r.pickup_location || '—'} → {r.dropoff_location || '—'}</span>
                           <span>💶 €{Number(r.total_price || 0).toLocaleString()}</span>
                           <span>🔑 #{r.id}</span>
                         </div>
                       </div>
-                      <Link to={`/cars/${r.car_id}`} className="ud-btn ud-btn--ghost ud-btn--sm">Shiko →</Link>
+                      <Link to={`/cars/${r.car_id}`} className="ud-btn ud-btn--ghost ud-btn--sm">
+                        Shiko →
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -535,9 +605,35 @@ export default function UserDashboard() {
                           </div>
                         )}
                       </div>
-                      <span className="ud-badge" style={{ background: (STATUS_COLOR[s.status] || '#94a3b8') + '22', color: STATUS_COLOR[s.status] || '#94a3b8' }}>
-                        {s.status}
-                      </span>
+                      <div className="ud-sell-item__right">
+                        <span
+                          className="ud-badge"
+                          style={{
+                            background: (STATUS_COLOR[s.status] || '#94a3b8') + '22',
+                            color: STATUS_COLOR[s.status] || '#94a3b8',
+                          }}
+                        >
+                          {s.status}
+                        </span>
+
+                        {/* ✅ Butonat Accept/Decline — vetëm kur status është 'offered' */}
+                        {s.status === 'offered' && (
+                          <div className="ud-sell-item__actions">
+                            <button
+                              className="ud-btn--accept"
+                              onClick={() => handleRespondOffer(s.id, 'accepted')}
+                            >
+                              ✓ Prano
+                            </button>
+                            <button
+                              className="ud-btn--decline"
+                              onClick={() => handleRespondOffer(s.id, 'rejected')}
+                            >
+                              ✕ Refuzo
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -563,14 +659,29 @@ export default function UserDashboard() {
                     </span>
                   </div>
                   {profile?.license_photo && (
-                    <img className="ud-doc-card__img" src={profile.license_photo} alt="patenta" />
+                    <img
+                      className="ud-doc-card__img"
+                      src={`${BASE}${profile.license_photo}`}
+                      alt="patenta"
+                    />
                   )}
-                  <button className="ud-btn ud-btn--outline" onClick={() => licenseRef.current?.click()}>
+                  <button
+                    className="ud-btn ud-btn--outline"
+                    onClick={() => licenseRef.current?.click()}
+                  >
                     {profile?.license_photo ? '📷 Ndrysho foton' : '📷 Ngarko foton'}
                   </button>
-                  <input ref={licenseRef} type="file" accept="image/*" hidden onChange={handleLicense} />
+                  <input
+                    ref={licenseRef}
+                    type="file"
+                    accept="image/*"
+                    hidden
+                    onChange={handleLicense}
+                  />
                   {saveMsg && (
-                    <p className="ud-save-msg ud-save-msg--ok" style={{ marginTop: 8 }}>{saveMsg}</p>
+                    <p className="ud-save-msg ud-save-msg--ok" style={{ marginTop: 8 }}>
+                      {saveMsg}
+                    </p>
                   )}
                 </div>
 
@@ -592,7 +703,10 @@ export default function UserDashboard() {
 
                 <div className="ud-doc-info">
                   <span>ℹ️</span>
-                  <p>Dokumentat juaja ruhen në mënyrë të sigurt dhe përdoren vetëm për verifikimin e identitetit gjatë procesit të rezervimit.</p>
+                  <p>
+                    Dokumentat juaja ruhen në mënyrë të sigurt dhe përdoren vetëm për verifikimin e
+                    identitetit gjatë procesit të rezervimit.
+                  </p>
                 </div>
               </div>
             </div>

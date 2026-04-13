@@ -951,3 +951,42 @@
     flex-wrap: wrap;
   }
 }
+
+
+.ud-sell-item__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.ud-sell-item__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.ud-btn--accept {
+  padding: 8px 16px;
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.ud-btn--accept:hover { opacity: 0.85; }
+
+.ud-btn--decline {
+  padding: 8px 16px;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.ud-btn--decline:hover { opacity: 0.85; }
