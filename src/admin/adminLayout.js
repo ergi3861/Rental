@@ -5,12 +5,13 @@ import adminAPI from './adminAPI';
 import './admin.css';
 
 const Nav = [
-  { path: '/admin', label: 'Dashboard', icon: '📊', exact: true },
-  { path: '/admin/cars', label: 'Makinat', icon: '🚗', exact: false },
-  { path: '/admin/reservations', label: 'Rezervimet', icon: '📋', exact: false },
+  { path: '/admin',               label: 'Dashboard',       icon: '📊', exact: true  },
+  { path: '/admin/cars',          label: 'Makinat',         icon: '🚗', exact: false },
+  { path: '/admin/reservations',  label: 'Rezervimet',      icon: '📋', exact: false },
   { path: '/admin/sell-requests', label: 'Kërkesat shitje', icon: '🤝', exact: false },
-  { path: '/admin/users', label: 'Userat', icon: '👥', exact: false },
-  { path: '/admin/contacts', label: 'Kontaktet', icon: '✉️', exact: false },
+  { path: '/admin/users',         label: 'Userat',          icon: '👥', exact: false },
+  { path: '/admin/contacts',      label: 'Kontaktet',       icon: '✉️', exact: false },
+  { path: '/admin/search-logs',   label: 'Kërkimet',        icon: '🔍', exact: false }, // ✅ E re
 ];
 
 function useDebounce(value, delay = 20) {

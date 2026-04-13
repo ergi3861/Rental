@@ -192,18 +192,25 @@ export default function NavBar() {
   const actionPathRef  = useRef(null);
   const dropdownRef    = useRef(null);
 
-  const [state,   setState]   = useState('idle');
+  const [state,    setState]    = useState('idle');
   const [menuOpen, setMenuOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const [query,   setQuery]   = useState('');
-  const [results, setResults] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [focused, setFocused] = useState(0);
-  const [open,    setOpen]    = useState(false);
+  const [query,    setQuery]    = useState('');
+  const [results,  setResults]  = useState(null);
+  const [loading,  setLoading]  = useState(false);
+  const [focused,  setFocused]  = useState(0);
+  const [open,     setOpen]     = useState(false);
 
   const debounced = useDebounce(query, 350);
 
-  // ── Kërkim + logging ─────────────────────────────────────
+  // ── Helper për logging ────────────────────────────────────
+  function logToServer(payload) {
+    const token = localStorage.getItem('token');
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+    axios.post(`${API_URL}/search/log`, payload, { headers }).catch(() => {});
+  }
+
+  // ── Kërkim + logging typing ───────────────────────────────
   useEffect(() => {
     if (!debounced || debounced.length < 2) {
       setResults(null);
@@ -213,20 +220,10 @@ export default function NavBar() {
 
     setLoading(true);
 
-    const token = localStorage.getItem('token');
-    const headers = token ? { Authorization: `Bearer ${token}` } : {};
-
     Promise.all([
-      // Kërkim makinash
-      axios.get(
-        `${API_URL}/cars?search=${encodeURIComponent(debounced)}&limit=8`
-      ),
-      // ✅ Logo kërkimin (silent — nuk bllokon)
-      axios.post(
-        `${API_URL}/search/log`,
-        { query: debounced },
-        { headers }
-      ).catch(() => {}),
+      axios.get(`${API_URL}/cars?search=${encodeURIComponent(debounced)}&limit=8`),
+      // ✅ Logo kërkimin me search_type = 'typing'
+      logToServer({ query: debounced, search_type: 'typing' }),
     ])
       .then(([{ data }]) => {
         const cars = data.data || data.rows || [];
@@ -312,12 +309,24 @@ export default function NavBar() {
     }
   }
 
+  // ✅ Logo klikimin e makinës
   function goToCar(id) {
+    const car = results?.cars?.find((c) => c.id === id);
+    if (car) {
+      logToServer({
+        query:       debounced || query,
+        car_id:      car.id,
+        car_name:    `${car.brand} ${car.model} (${car.year})`,
+        search_type: 'car_click',
+      });
+    }
     closeSearch();
     navigate(`/cars/${id}`);
   }
 
+  // ✅ Logo "Shiko të gjitha"
   function goToSearch(q) {
+    logToServer({ query: q, search_type: 'view_all' });
     closeSearch();
     navigate(`/cars?search=${encodeURIComponent(q)}`);
   }
@@ -530,9 +539,8 @@ export default function NavBar() {
             <Link to="/"><img src={logo} alt="logo" /></Link>
           </div>
           <button className="mobileMenuBtn" onClick={() => setMenuOpen(p => !p)}>
-  {menuOpen ? '✕' : '☰'}
-</button>
-
+            {menuOpen ? '✕' : '☰'}
+          </button>
           <ul className={`menu${menuOpen ? ' menuOpen' : ''}`}>
             <li><Link to="/">{t('nav.home')}</Link></li>
             <li className="hasDropdown">
