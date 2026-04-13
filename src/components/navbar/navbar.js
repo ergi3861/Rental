@@ -532,8 +532,8 @@ export default function NavBar() {
           <button className="mobileMenuBtn" onClick={() => setMenuOpen(p => !p)}>
   {menuOpen ? '✕' : '☰'}
 </button>
-<ul className={`menu${menuOpen ? ' menuOpen' : ''}`}></ul>
-          <ul className="menu">
+
+          <ul className={`menu${menuOpen ? ' menuOpen' : ''}`}>
             <li><Link to="/">{t('nav.home')}</Link></li>
             <li className="hasDropdown">
               <Link to="/cars">{t('nav.cars')}</Link>
