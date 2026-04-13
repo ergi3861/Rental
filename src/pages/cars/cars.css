@@ -146,3 +146,68 @@
   display: flex;
   justify-content: center;
 }
+
+
+#cars .filtersToggleBtn {
+  display: none;
+  width: 100%;
+  padding: 12px 20px;
+  background: #4085a0;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+#cars .carsSearchActive {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+#cars .carsSearchClear {
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+@media (max-width: 1280px) {
+  #cars .carsPage { max-width: 100%; padding: 0 16px; margin: 60px auto; }
+  #cars .carsGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 1024px) {
+  #cars .carsGrid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  #cars .carsBody { padding: 0 0 40px 0; }
+}
+
+@media (max-width: 768px) {
+  #cars .carsPage { margin: 30px auto; padding: 0 12px; }
+  #cars .filtersToggleBtn { display: block; }
+  #cars .carsBody { flex-direction: column; gap: 0; }
+  #cars .sidebarWrapper { width: 100%; overflow: hidden; max-height: 0; transition: max-height 0.4s ease; }
+  #cars .sidebarWrapper.sidebarOpen { max-height: 2000px; }
+  #cars .carsGrid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  #cars .toolbar { flex-wrap: wrap; gap: 8px; padding: 10px 12px; }
+  #cars .toolbarRight { flex-wrap: wrap; gap: 8px; }
+  #cars .pageTitle { font-size: 24px; }
+  #cars .toolbarOuter { margin-bottom: 12px; }
+  #carCard { width: 100%; }
+  #carCard .cardFront, .cardBack { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  #cars .carsGrid { grid-template-columns: 1fr; }
+  #cars .toolbar { flex-direction: column; align-items: flex-start; }
+  #cars .toolbarRight { width: 100%; justify-content: space-between; }
+  #carCard { width: 100%; height: auto; min-height: 540px; }
+  #carCard .cardFront, .cardBack { width: 100%; height: auto; min-height: 505px; }
+}

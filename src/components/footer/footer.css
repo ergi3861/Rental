@@ -164,6 +164,13 @@
   align-items: center;
   font-size: 14px;
 }
+#footer .footerBottom span {
+  font-size: 14px;
+  font-weight: 650;
+  border-bottom: 2px solid goldenrod;
+  padding-bottom: 5px; 
+}
+
 
 #footer .footerPolicy a {
   margin-left: 15px;

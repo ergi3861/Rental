@@ -133,7 +133,7 @@ export default function Footer({ variant }) {
 
         <div className="footerBottom">
           <p>© 2026 Rental & Sales</p>
-
+          <span>© Powered by Ergi Mimin</span>
           <div className="footerPolicy">
             <Link to="/">Privacy</Link>
             <Link to="/">Terms</Link>

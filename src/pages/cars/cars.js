@@ -84,7 +84,6 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
   );
 }
 
-// Të gjithë çelësat e filtrave
 const FILTER_KEYS = [
   'search', 'category', 'type', 'brand', 'fuel', 'transmission',
   'color', 'seats', 'doors', 'yearMin', 'yearMax', 'minPrice', 'maxPrice'
@@ -92,23 +91,21 @@ const FILTER_KEYS = [
 
 function Cars() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const [filters, setFilters]       = useState({});
-  const [cars, setCars]             = useState([]);
-  const [loading, setLoading]       = useState(false);
-  const [sortValue, setSortValue]   = useState('default');
-  const [perPage, setPerPage]       = useState(24);
+  const [filters, setFilters]         = useState({});
+  const [cars, setCars]               = useState([]);
+  const [loading, setLoading]         = useState(false);
+  const [sortValue, setSortValue]     = useState('default');
+  const [perPage, setPerPage]         = useState(24);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalCars, setTotalCars]   = useState(0);
+  const [totalCars, setTotalCars]     = useState(0);
 
-  // Merr të gjithë filtrat aktiv nga URL
   const activeFilters = Object.fromEntries(
     FILTER_KEYS.map((k) => [k, searchParams.get(k) || ''])
   );
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchParams]);
+  useEffect(() => { setCurrentPage(1); }, [searchParams]);
 
   useEffect(() => {
     API.get('/cars/filters')
@@ -119,50 +116,34 @@ function Cars() {
   useEffect(() => {
     setLoading(true);
     const params = new URLSearchParams();
-
-    // Shto të gjithë filtrat aktiv
-    FILTER_KEYS.forEach((k) => {
-      if (activeFilters[k]) params.append(k, activeFilters[k]);
-    });
-
+    FILTER_KEYS.forEach((k) => { if (activeFilters[k]) params.append(k, activeFilters[k]); });
     params.append('page', currentPage);
     params.append('limit', perPage);
     if (sortValue !== 'default') params.append('sort', sortValue);
 
     API.get('/cars?' + params.toString())
-      .then((res) => {
-        setCars(res.data.data || []);
-        setTotalCars(res.data.total || 0);
-      })
+      .then((res) => { setCars(res.data.data || []); setTotalCars(res.data.total || 0); })
       .catch((err) => console.error('Cars error:', err))
       .finally(() => setLoading(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, sortValue, perPage, currentPage]);
 
   const handleFilterChange = (key, value) => {
-    if (key === '__reset__') {
-      setSearchParams({});
-      setCurrentPage(1);
-      return;
-    }
+    if (key === '__reset__') { setSearchParams({}); setCurrentPage(1); return; }
     setCurrentPage(1);
     const next = new URLSearchParams(searchParams);
-    if (value) next.set(key, value);
-    else next.delete(key);
+    if (value) next.set(key, value); else next.delete(key);
     setSearchParams(next);
   };
 
   const totalPages = Math.ceil(totalCars / perPage);
-
   const hasActiveFilters = FILTER_KEYS.some((k) => activeFilters[k]);
+  const activeFilterCount = FILTER_KEYS.filter((k) => activeFilters[k]).length;
 
   return (
     <div id="cars">
       <NavBar />
-
-      <div className="carousel">
-        <Carousel />
-      </div>
+      <div className="carousel"><Carousel /></div>
 
       <section className="carsPage">
         <div className="toolbarOuter">
@@ -181,34 +162,29 @@ function Cars() {
           <div className="toolbar">
             <span className="total">Numri i mjeteve: {totalCars}</span>
             <div className="toolbarRight">
-              <Dropdown
-                label="Rendit sipas"
-                options={sortOptions}
-                value={sortValue}
-                onChange={(v) => { setSortValue(v); setCurrentPage(1); }}
-              />
-              <Dropdown
-                label="Shiko nga"
-                options={perPageOptions}
-                value={perPage}
-                onChange={(v) => { setPerPage(v); setCurrentPage(1); }}
-              />
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
+              <Dropdown label="Rendit sipas" options={sortOptions} value={sortValue} onChange={(v) => { setSortValue(v); setCurrentPage(1); }} />
+              <Dropdown label="Shiko nga" options={perPageOptions} value={perPage} onChange={(v) => { setPerPage(v); setCurrentPage(1); }} />
+              <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
             </div>
           </div>
         </div>
 
         <div className="carsBody">
-          <Sidebar
-            filters={filters}
-            activeFilters={activeFilters}
-            onFilterChange={handleFilterChange}
-            showType={true}
-          />
+          <button
+            className="filtersToggleBtn"
+            onClick={() => setSidebarOpen((p) => !p)}
+          >
+            Filtrat {activeFilterCount > 0 ? `(${activeFilterCount})` : ''} {sidebarOpen ? '⮝' : '⮟'}
+          </button>
+
+          <div className={`sidebarWrapper${sidebarOpen ? ' sidebarOpen' : ''}`}>
+            <Sidebar
+              filters={filters}
+              activeFilters={activeFilters}
+              onFilterChange={handleFilterChange}
+              showType={true}
+            />
+          </div>
 
           <main className="carsMain">
             {loading ? (
@@ -216,32 +192,19 @@ function Cars() {
             ) : cars.length === 0 ? (
               <div className="empty">
                 <p>Nuk u gjeten makina.</p>
-                <button
-                  className="carsSearchClear"
-                  onClick={() => setSearchParams({})}
-                >
-                  Pastro filtrat
-                </button>
+                <button className="carsSearchClear" onClick={() => setSearchParams({})}>Pastro filtrat</button>
               </div>
             ) : (
               <div className="carsGrid">
-                {cars.map((car) => (
-                  <CarCard key={car.id} car={car} />
-                ))}
+                {cars.map((car) => (<CarCard key={car.id} car={car} />))}
               </div>
             )}
-
             <div className="paginationBottom">
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
+              <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
             </div>
           </main>
         </div>
       </section>
-
       <Footer />
     </div>
   );
