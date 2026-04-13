@@ -11,7 +11,7 @@ const Nav = [
   { path: '/admin/sell-requests', label: 'Kërkesat shitje', icon: '🤝', exact: false },
   { path: '/admin/users',         label: 'Userat',          icon: '👥', exact: false },
   { path: '/admin/contacts',      label: 'Kontaktet',       icon: '✉️', exact: false },
-  { path: '/admin/search-logs',   label: 'Kërkimet',        icon: '🔍', exact: false }, // ✅ E re
+  { path: '/admin/searchLogs',    label: 'Kërkimet',        icon: '🔍', exact: false }, // ✅ E re
 ];
 
 function useDebounce(value, delay = 20) {
@@ -98,6 +98,7 @@ function GlobalSearch() {
     results.reservations?.forEach(() => items.push({ path: '/admin/reservations' }));
     results.sellRequests?.forEach(() => items.push({ path: '/admin/sell-requests' }));
     results.contacts?.forEach(() => items.push({ path: '/admin/contacts' }));
+    results.searchLogs?.forEach(() => items.push({ path: '/admin/searchLogs'}))
     return items;
   }, [results]);
 
@@ -127,7 +128,8 @@ function GlobalSearch() {
       results.users?.length > 0 ||
       results.reservations?.length > 0 ||
       results.sellRequests?.length > 0 ||
-      results.contacts?.length > 0);
+      results.contacts?.length > 0 || 
+      results.searchLogs?.length > 0);
 
   const carsLen = results?.cars?.length || 0;
   const usersLen = results?.users?.length || 0;
