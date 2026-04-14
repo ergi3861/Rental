@@ -5,9 +5,6 @@ import {
   FaPhoneAlt,
   FaEnvelope,
   FaWhatsapp,
-  FaCalendarCheck,
-  FaTags,
-  FaHistory,
 } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
