@@ -494,10 +494,7 @@ export default function NavBar() {
               <a href="mailto:rental@rental.com"><FaEnvelope /></a>
               <a href="https://wa.me/355691234567" target="_blank" rel="noreferrer"><FaWhatsapp /></a>
             </div>
-            <div className="selectorGroup">
-              <LangDropdown />
-              <CurrencyDropdown />
-            </div>
+            
             <div ref={placeholderRef} className="searchPlaceholder" onClick={openSearch}>
               {state === 'idle' && (
                 <div className="searchPlaceholderInner">
@@ -508,11 +505,12 @@ export default function NavBar() {
                 </div>
               )}
             </div>
-            <div className="quickStats">
-              <button className="statBtn" onClick={() => navigate('/reservation')}><FaCalendarCheck /></button>
-              <button className="statBtn" onClick={() => navigate('/sales')}><FaTags /></button>
-              <button className="statBtn" onClick={() => navigate(isAuthenticated ? '/profile' : '/auth')}><FaHistory /></button>
+            
+            <div className="selectorGroup">
+              <LangDropdown />
+              <CurrencyDropdown />
             </div>
+
             <div className="authentication">
               <div className="userMenu">
                 <button

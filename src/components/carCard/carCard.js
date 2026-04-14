@@ -138,7 +138,7 @@ export default function CarCard({ car = {} }) {
 
             <div className="flip">
               <div className="flipLink" onClick={() => setFlipped(true)}>
-                Details
+                Specifikimet
               </div>
               <div className="price">
                 {type === 'RENTAL'
@@ -257,7 +257,7 @@ export default function CarCard({ car = {} }) {
         </div>
 
         <button className="cardBtn cardBtnSale" onClick={() => navigate(`/cars/${car.id}`)}>
-          Shiko detajet
+          Më shumë rreth kësaj makine
         </button>
       </div>
     </>
