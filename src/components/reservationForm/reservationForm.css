@@ -1,64 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
 #reservationForm {
   width: 100%;
+  font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
 }
 
 #reservationForm .resOverlay {
   background: #0d1117;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 14px 14px;
   width: 100%;
-  padding: 28px;
+  padding: 20px 24px 24px;
 }
 
 #reservationForm .resHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 #reservationForm .resCar {
   display: block;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   text-transform: capitalize;
 }
 
 #reservationForm .resPrice {
   font-size: 13px;
-  color: #b794f4;
-  font-weight: 600;
-}
-
-#reservationForm .resClose {
-  background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 16px;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 8px;
-  transition:
-    color 0.2s,
-    background 0.2s;
-  line-height: 1;
-}
-
-#reservationForm .resClose:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
+  color: #e8b800;
+  font-weight: 700;
 }
 
 #reservationForm .resSectionLabel {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #475569;
-  margin: 20px 0 12px;
+  margin: 16px 0 10px;
 }
 
 #reservationForm .resSectionLabel:first-of-type {
@@ -68,7 +52,7 @@
 #reservationForm .resGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 4px;
 }
 
@@ -83,7 +67,7 @@
 }
 
 #reservationForm .resField label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   color: #64748b;
   text-transform: uppercase;
@@ -92,20 +76,21 @@
 
 #reservationForm .resField input,
 #reservationForm .resField select {
-  padding: 10px 12px;
+  padding: 9px 11px;
   background: #020617;
   border: 1px solid #1e293b;
-  border-radius: 10px;
+  border-radius: 8px;
   color: #f1f5f9;
   font-size: 13px;
   font-family: inherit;
   outline: none;
   transition: border-color 0.2s;
+  width: 100%;
 }
 
 #reservationForm .resField input:focus,
 #reservationForm .resField select:focus {
-  border-color: #764ba2;
+  border-color: #4085a0;
 }
 
 #reservationForm .resField select option {
@@ -124,18 +109,18 @@
   padding: 10px 14px;
   border-radius: 10px;
   font-size: 13px;
-  margin: 16px 0 0;
+  margin: 14px 0 0;
 }
 
 #reservationForm .resSubmit {
   width: 100%;
-  margin-top: 20px;
-  padding: 14px;
-  background: linear-gradient(90deg, #764ba2, #667eea);
+  margin-top: 18px;
+  padding: 13px;
+  background: linear-gradient(135deg, #123c4e, #4085a0);
   color: #fff;
   border: none;
-  border-radius: 12px;
-  font-size: 15px;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   font-family: inherit;
@@ -157,51 +142,32 @@
 
 #reservationForm .resSuccess {
   text-align: center;
-  padding: 32px 0 8px;
+  padding: 24px 0 8px;
 }
 
 #reservationForm .resSuccessIcon {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   background: #10b981;
   color: #fff;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
+  margin: 0 auto 14px;
 }
 
 #reservationForm .resSuccess h3 {
-  font-size: 20px;
+  font-size: 18px;
   color: #fff;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 
 #reservationForm .resSuccess p {
-  font-size: 14px;
+  font-size: 13px;
   color: #64748b;
   margin: 0;
-}
-/* 
-#reservationForm .cardBtn--disabled {
-  background: rgba(255,255,255,0.08) !important;
-  color: rgba(255,255,255,0.3) !important;
-  cursor: not-allowed !important;
-}
-
-.cardBtn--sale {
-  background: linear-gradient(90deg, #1e3a5f, #2563eb) !important;
-} */
-
-@media (max-width: 520px) {
-  #reservationForm .resGrid {
-    grid-template-columns: 1fr;
-  }
-  #reservationForm .resSpan2 {
-    grid-column: span 1;
-  }
 }
 
 #reservationForm .resDeliveryNote {
@@ -211,14 +177,14 @@
 }
 
 #reservationForm .resSummary {
-  background: rgba(118, 75, 162, 0.08);
-  border: 1px solid rgba(118, 75, 162, 0.2);
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-top: 20px;
+  background: rgba(64, 133, 160, 0.08);
+  border: 1px solid rgba(64, 133, 160, 0.2);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
 }
 
 #reservationForm .resSummaryRow {
@@ -229,23 +195,23 @@
 }
 
 .resSummaryTotal {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: #fff;
-  padding-top: 8px;
+  padding-top: 7px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 #reservationForm .resReceipt {
   background: rgba(16, 185, 129, 0.08);
   border: 1px solid rgba(16, 185, 129, 0.2);
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-top: 16px;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-top: 14px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
   text-align: left;
 }
 
@@ -257,14 +223,13 @@
 }
 
 #reservationForm .resReceiptTotal {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: #6ee7b7;
-  padding-top: 8px;
+  padding-top: 7px;
   border-top: 1px solid rgba(16, 185, 129, 0.2);
-  margin-top: 4px;
+  margin-top: 3px;
 }
-
 
 /* ── Login Popup ── */
 .loginPopupOverlay {
@@ -310,6 +275,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: inherit;
 }
 .loginPopupClose:hover { background: #ef4444; }
 
@@ -335,7 +301,7 @@
 .loginPopupBtn {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #6366f1, #a78bfa);
+  background: linear-gradient(135deg, #123c4e, #4085a0);
   border: none;
   border-radius: 12px;
   color: #fff;
@@ -344,6 +310,7 @@
   cursor: pointer;
   transition: opacity 0.2s;
   margin-bottom: 16px;
+  font-family: inherit;
 }
 .loginPopupBtn:hover { opacity: 0.9; }
 
@@ -353,8 +320,17 @@
 }
 
 .loginPopupLink {
-  color: #a78bfa;
+  color: #4085a0;
   cursor: pointer;
   text-decoration: underline;
 }
-.loginPopupLink:hover { color: #c4b5fd; }
+.loginPopupLink:hover { color: #60a5c0; }
+
+@media (max-width: 400px) {
+  #reservationForm .resGrid {
+    grid-template-columns: 1fr;
+  }
+  #reservationForm .resSpan2 {
+    grid-column: span 1;
+  }
+}

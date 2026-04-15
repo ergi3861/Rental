@@ -45,16 +45,6 @@ export default function CarDetail() {
   const [activeImg, setActiveImg] = useState(0);
   const [similar, setSimilar] = useState([]);
 
-  const [pickup, setPickup] = useState('');
-  const [dropoff, setDropoff] = useState('');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
-  const [days, setDays] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [bookErr, setBookErr] = useState('');
-  const [booking, setBooking] = useState(false);
-  const [bookOk, setBookOk] = useState(false);
-
   useEffect(() => {
     setLoading(true);
     window.scrollTo(0, 0);
@@ -72,49 +62,6 @@ export default function CarDetail() {
       .catch(() => setCar(null))
       .finally(() => setLoading(false));
   }, [id]);
-
-  useEffect(() => {
-    if (!dateFrom || !dateTo || !car) return;
-    const d1 = new Date(dateFrom);
-    const d2 = new Date(dateTo);
-    if (d2 <= d1) {
-      setDays(0);
-      setTotal(0);
-      return;
-    }
-    const d = Math.ceil((d2 - d1) / 86400000);
-    setDays(d);
-    setTotal(d * parseFloat(car.price_per_day || 0));
-  }, [dateFrom, dateTo, car]);
-
-  const handleBook = async (e) => {
-    e.preventDefault();
-    setBookErr('');
-    if (!pickup) return setBookErr('Zgjidh vendin e marrjes.');
-    if (!dropoff) return setBookErr('Zgjidh vendin e kthimit.');
-    if (!dateFrom) return setBookErr('Zgjidh datën e fillimit.');
-    if (!dateTo) return setBookErr('Zgjidh datën e mbarimit.');
-    if (days < 1) return setBookErr('Data e mbarimit duhet të jetë pas fillimit.');
-
-    setBooking(true);
-    try {
-      await API.post('/reservations', {
-        car_id: car.id,
-        pickup_location: pickup,
-        dropoff_location: dropoff,
-        start_datetime: dateFrom,
-        end_datetime: dateTo,
-        price_per_day: car.price_per_day,
-      });
-      setBookOk(true);
-    } catch (err) {
-      setBookErr(
-        err.response?.data?.message || err.response?.data?.error || 'Gabim gjatë rezervimit.'
-      );
-    } finally {
-      setBooking(false);
-    }
-  };
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -147,7 +94,6 @@ export default function CarDetail() {
   const sm = STATUS_META[car.status] || STATUS_META.available;
   const isRent = car.type === 'RENTAL';
   const isSale = car.type === 'SALE';
-  const canBook = car.status === 'available';
 
   return (
     <>
@@ -217,7 +163,6 @@ export default function CarDetail() {
               )}
             </div>
 
-            {/* ── Title + Price ── */}
             <div className="cd-hero">
               <div className="cd-hero__left">
                 <h1 className="cd-hero__name">
@@ -248,7 +193,6 @@ export default function CarDetail() {
               </div>
             </div>
 
-            {/* ── Specs grid ── */}
             <div className="cd-section">
               <h2 className="cd-section__title">Specifikimet</h2>
               <div className="cd-specs">
@@ -281,7 +225,6 @@ export default function CarDetail() {
               </div>
             </div>
 
-            {/* ── Gjendja / Përshkrimi ── */}
             {car.condition && (
               <div className="cd-section">
                 <h2 className="cd-section__title">Gjendja</h2>
@@ -289,7 +232,6 @@ export default function CarDetail() {
               </div>
             )}
 
-            {/* ── Similar cars ── */}
             {similar.length > 0 && (
               <div className="cd-section">
                 <h2 className="cd-section__title">Mund të të interesojë</h2>
@@ -330,55 +272,12 @@ export default function CarDetail() {
             )}
           </div>
 
-          {/* ════════════════════════════════════
-              RIGHT — Booking / Sale Panel
-              ════════════════════════════════════ */}
           <div className="cd-right">
             <div className="cd-panel">
-              {/* ── RENTAL FORM ── */}
               {isRent && (
-                <>
-                  <div className="cd-panel__header">
-                    <h3>Rezervo tani</h3>
-                    <span className="cd-panel__price">
-                      €{Number(car.price_per_day).toLocaleString()}
-                      <small>/ditë</small>
-                    </span>
-                  </div>
-
-                  {!canBook && (
-                    <div className="cd-panel__unavailable">
-                      <span>⚠️</span> Kjo makinë nuk është e disponueshme për rezervim momentalisht.
-                    </div>
-                  )}
-
-                  {bookOk ? (
-                    <div className="cd-panel__success">
-                      <div className="cd-panel__success-icon">✓</div>
-                      <h4>Rezervimi u krye!</h4>
-                      <p>Do t'ju kontaktojmë për konfirmim brenda 24 orësh.</p>
-                      <button
-                        className="cd-btn-primary"
-                        onClick={() => {
-                          setBookOk(false);
-                          setDateFrom('');
-                          setDateTo('');
-                          setPickup('');
-                          setDropoff('');
-                        }}
-                      >
-                        Rezervo sërish
-                      </button>
-                    </div>
-                  ) : (
-                    <ReservationForm
-                      car={car}
-                      />
-                  )}
-                </>
+                <ReservationForm car={car} />
               )}
 
-              {/* ── SALE PANEL ── */}
               {isSale && (
                 <>
                   <div className="cd-panel__header">
@@ -388,7 +287,7 @@ export default function CarDetail() {
                     </span>
                   </div>
 
-                  {!canBook && (
+                  {car.status !== 'available' && (
                     <div className="cd-panel__unavailable">
                       <span>⚠️</span> Kjo makinë nuk është e disponueshme momentalisht.
                     </div>
@@ -432,7 +331,6 @@ export default function CarDetail() {
                 </>
               )}
 
-              {/* ── Share ── */}
               <div className="cd-panel__share">
                 <span>Ndaj:</span>
                 <button
