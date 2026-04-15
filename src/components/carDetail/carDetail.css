@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
 
-/* ── Reset & Base ── */
 .cd-page * {
   box-sizing: border-box;
 }
@@ -12,7 +11,6 @@
   padding-bottom: 60px;
 }
 
-/* ── Loading ── */
 .cd-loading {
   min-height: 60vh;
   display: flex;
@@ -50,7 +48,6 @@
   font-family: inherit;
 }
 
-/* ── Breadcrumb ── */
 .cd-breadcrumb {
   max-width: 1280px;
   margin: 0 auto;
@@ -73,7 +70,6 @@
   text-decoration: underline;
 }
 
-/* ── Main layout ── */
 .cd-layout {
   max-width: 1280px;
   margin: 20px auto 0;
@@ -91,7 +87,6 @@
   min-width: 0;
 }
 
-/* ── Gallery ── */
 .cd-gallery {
   background: #ffffff;
   border-radius: 14px;
@@ -130,7 +125,6 @@
   color: #c0cdd5;
 }
 
-/* Status badge */
 .cd-status-badge {
   position: absolute;
   top: 16px;
@@ -154,7 +148,6 @@
   display: inline-block;
 }
 
-/* Type badge */
 .cd-type-badge {
   position: absolute;
   top: 16px;
@@ -178,7 +171,6 @@
   border: 1px solid rgba(167, 139, 250, 0.3);
 }
 
-/* Arrows */
 .cd-gallery__arrow {
   position: absolute;
   top: 50%;
@@ -209,7 +201,6 @@
   right: 14px;
 }
 
-/* Thumbnails */
 .cd-gallery__thumbs {
   display: flex;
   gap: 8px;
@@ -248,7 +239,6 @@
   opacity: 0.9;
 }
 
-/* ── Hero ── */
 .cd-hero {
   background: #ffffff;
   border: 1px solid #dde3ea;
@@ -306,7 +296,6 @@
   color: #059669;
 }
 
-/* ── Section ── */
 .cd-section {
   background: #ffffff;
   border: 1px solid #dde3ea;
@@ -325,7 +314,6 @@
   display: inline-block;
 }
 
-/* ── Specs ── */
 .cd-specs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -376,7 +364,6 @@
   text-transform: capitalize;
 }
 
-/* ── Condition ── */
 .cd-condition {
   font-size: 0.95rem;
   color: #5a7a8a;
@@ -384,7 +371,6 @@
   margin: 0;
 }
 
-/* ── Similar ── */
 .cd-similar {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -450,7 +436,6 @@
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* ── RIGHT panel ── */
 .cd-right {
   position: sticky;
   top: 20px;
@@ -513,7 +498,6 @@
   gap: 8px;
 }
 
-/* ── Form ── */
 .cd-form {
   padding: 20px;
   display: flex;
@@ -601,7 +585,6 @@
   border: 1px solid #fca5a5;
 }
 
-/* ── Buttons ── */
 .cd-btn-primary {
   width: 100%;
   padding: 13px;
@@ -688,7 +671,6 @@
   background: rgba(64, 133, 160, 0.08);
 }
 
-/* ── Success ── */
 .cd-panel__success {
   padding: 28px 20px;
   text-align: center;
@@ -721,7 +703,6 @@
   margin: 0 0 16px;
 }
 
-/* ── Sale ── */
 .cd-sale-ctas {
   padding: 20px 20px 0;
   display: flex;
@@ -750,7 +731,6 @@
   font-size: 1rem;
 }
 
-/* ── Share ── */
 .cd-panel__share {
   padding: 14px 20px;
   border-top: 1px solid #dde3ea;
@@ -787,7 +767,6 @@
   border-color: #4085a0;
 }
 
-/* ── Responsive ── */
 @media (max-width: 1024px) {
   .cd-layout {
     grid-template-columns: 1fr;

@@ -66,7 +66,6 @@ function UserModal({ userId, onClose }) {
               </div>
             </div>
 
-            {/* Të dhënat personale */}
             <div className="ud-modal__section">
               <h3>📋 Të dhënat personale</h3>
               <div className="ud-modal__grid">
@@ -91,7 +90,6 @@ function UserModal({ userId, onClose }) {
               </div>
             </div>
 
-            {/* Foto profili */}
             {data.user?.profile_photo && (
               <div className="ud-modal__section">
                 <h3>📷 Foto e profilit</h3>
@@ -103,7 +101,6 @@ function UserModal({ userId, onClose }) {
               </div>
             )}
 
-            {/* Foto patentës */}
             {data.user?.license_photo && (
               <div className="ud-modal__section">
                 <h3>🪪 Foto e patentës</h3>
@@ -115,7 +112,6 @@ function UserModal({ userId, onClose }) {
               </div>
             )}
 
-            {/* Rezervimet */}
             <div className="ud-modal__section">
               <h3>📋 Rezervimet ({data.reservations?.length || 0})</h3>
               {data.reservations?.length === 0 ? (
@@ -152,7 +148,6 @@ function UserModal({ userId, onClose }) {
               )}
             </div>
 
-            {/* Kërkesat shitje */}
             <div className="ud-modal__section">
               <h3>🤝 Kërkesat shitje ({data.sellRequests?.length || 0})</h3>
               {data.sellRequests?.length === 0 ? (

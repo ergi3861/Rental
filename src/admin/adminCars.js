@@ -71,11 +71,10 @@ export default function AdminCarsList() {
       setDeleting(null);
     }
   };
-// ✅ Pas
 const thumb = (car) => {
   const img = car.media?.[0];
   if (!img) return null;
-  return img.image_path; // ← URL e Cloudinary direkt
+  return img.image_path; 
 };
 
   const totalPages = Math.ceil(total / limit);

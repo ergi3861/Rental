@@ -45,7 +45,7 @@ export default function AdminDashboard() {
   const [chart,       setChart]       = useState([]);
   const [topCars,     setTopCars]     = useState([]);
   const [activity,    setActivity]    = useState([]);
-  const [searchCount, setSearchCount] = useState(0); // ✅ E re
+  const [searchCount, setSearchCount] = useState(0); 
   const [loading,     setLoading]     = useState(true);
   const [error,       setError]       = useState(false);
 
@@ -55,14 +55,14 @@ export default function AdminDashboard() {
       adminAPI.get('/dashboard/chart'),
       adminAPI.get('/dashboard/top-cars'),
       adminAPI.get('/dashboard/activity'),
-      adminAPI.get('/search-logs?page=1&limit=1'), // ✅ E re
+      adminAPI.get('/search-logs?page=1&limit=1'), 
     ])
       .then(([s, c, t, a, sl]) => {
         setStats(s.data);
         setChart(c.data);
         setTopCars(t.data);
         setActivity(a.data);
-        setSearchCount(sl.data.total || 0); // ✅ E re
+        setSearchCount(sl.data.total || 0); 
       })
       .catch(() => setError(true))
       .finally(() => setLoading(false));
@@ -164,7 +164,6 @@ export default function AdminDashboard() {
           sub="mesazhe"
           to="/admin/contacts"
         />
-        {/* ✅ StatCard i ri për Search Logs */}
         <StatCard
           label="Kërkimet"
           icon="🔍"

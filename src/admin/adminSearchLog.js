@@ -53,7 +53,6 @@ export default function AdminSearchLogs() {
         </div>
       </div>
 
-      {/* ── Top Searches ── */}
       {topSearches.length > 0 && (
         <div className="adminSearchLogsTop">
           <h3>🔥 Kërkimet më të shpeshta</h3>
@@ -72,7 +71,6 @@ export default function AdminSearchLogs() {
         </div>
       )}
 
-      {/* ── Filter ── */}
       <div className="adminSearchLogsFilters">
         <input
           className="adminSearchLogsSearch"
@@ -82,7 +80,6 @@ export default function AdminSearchLogs() {
         />
       </div>
 
-      {/* ── Table ── */}
       <div className="adminSearchLogsTableWrap">
         {loading ? (
           <div className="adminSearchLogsLoading">Duke ngarkuar...</div>
@@ -144,7 +141,6 @@ export default function AdminSearchLogs() {
         )}
       </div>
 
-      {/* ── Pagination ── */}
       {totalPages > 1 && (
         <div className="adminSearchLogsPagination">
           <button disabled={page === 1} onClick={() => setPage((p) => p - 1)}>

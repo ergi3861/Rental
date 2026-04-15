@@ -92,7 +92,6 @@ export default function AdminCarEdit() {
   const [success, setSuccess] = useState('');
   const [serverErr, setServerErr] = useState('');
 
-  // Load car
   useEffect(() => {
     ADMIN_API.get(`/cars/${id}`)
       .then(({ data }) => {
@@ -369,7 +368,6 @@ export default function AdminCarEdit() {
           )}
         </div>
 
-        {/* ── Shto foto të reja ── */}
         <div className="carEditSection">
           <h2>Shto foto të reja</h2>
           <label className="carEditUploadLabel">

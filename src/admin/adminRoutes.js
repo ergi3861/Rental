@@ -28,10 +28,8 @@ export default function AdminRoutes() {
     <AdminGuard>
       <AdminLayout>
         <Routes>
-          {/* index → /admin */}
           <Route index element={<AdminDashboard />} />
 
-          {/* FIX: paths pa "/" në fillim — relative ndaj /admin/* */}
           <Route path="cars" element={<AdminCarsList />} />
           <Route path="cars/add" element={<AddCar />} />
           <Route path="cars/:id/edit" element={<AdminCarEdit />} />
