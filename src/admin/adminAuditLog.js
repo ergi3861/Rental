@@ -95,7 +95,6 @@ export default function AdminAuditLogs() {
   const [total,   setTotal]   = useState(0);
   const [loading, setLoading] = useState(true);
   const [page,    setPage]    = useState(1);
-  const [search,  setSearch]  = useState('');
   const [action,  setAction]  = useState('');
   const [entity,  setEntity]  = useState('');
   const [from,    setFrom]    = useState('');
@@ -144,7 +143,6 @@ export default function AdminAuditLogs() {
 
   const totalPages = Math.ceil(total / LIMIT);
 
-  // Numëro llojet unikale të action dhe entity
   const actionCounts = rows.reduce((acc, r) => {
     acc[r.action] = (acc[r.action] || 0) + 1; return acc;
   }, {});
