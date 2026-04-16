@@ -127,7 +127,7 @@ export default function FAQ() {
 
           <div className="faqCta">
             <p>Nuk gjete përgjigjen?</p>
-            <button>Na Kontaktoni →</button>
+            <button onClick={() => {window.location.href = "/contact"}}>Na Kontaktoni →</button>
           </div>
         </section>
       </div>

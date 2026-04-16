@@ -93,7 +93,6 @@ function LoginPopup({ onClose, onLogin }) {
 }
 
 export default function Sell() {
-  // ✅ Shto loading nga useAuth
   const { token, isAuthenticated, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
@@ -140,10 +139,8 @@ export default function Sell() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Prit derisa auth të jetë gati
     if (authLoading) return;
 
-    // ✅ Nëse nuk është i loguar → popup
     if (!isAuthenticated) {
       setShowLogin(true);
       return;
@@ -196,7 +193,6 @@ export default function Sell() {
     navigate('/auth');
   };
 
-  // ── Ekrani i suksesit ─────────────────────────────────────
   if (success) {
     return (
       <div id="sellRequest">

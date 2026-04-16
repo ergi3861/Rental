@@ -200,14 +200,12 @@ export default function NavBar() {
 
   const debounced = useDebounce(query, 350);
 
-  // ── Helper për logging ────────────────────────────────────
   function logToServer(payload) {
     const token = localStorage.getItem('token');
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
     axios.post(`${API_URL}/search/log`, payload, { headers }).catch(() => {});
   }
 
-  // ── Kërkim + logging typing ───────────────────────────────
   useEffect(() => {
     if (!debounced || debounced.length < 2) {
       setResults(null);
@@ -219,7 +217,6 @@ export default function NavBar() {
 
     Promise.all([
       axios.get(`${API_URL}/cars?search=${encodeURIComponent(debounced)}&limit=8`),
-      // ✅ Logo kërkimin me search_type = 'typing'
       logToServer({ query: debounced, search_type: 'typing' }),
     ])
       .then(([{ data }]) => {
@@ -306,7 +303,6 @@ export default function NavBar() {
     }
   }
 
-  // ✅ Logo klikimin e makinës
   function goToCar(id) {
     const car = results?.cars?.find((c) => c.id === id);
     if (car) {
@@ -321,7 +317,6 @@ export default function NavBar() {
     navigate(`/cars/${id}`);
   }
 
-  // ✅ Logo "Shiko të gjitha"
   function goToSearch(q) {
     logToServer({ query: q, search_type: 'view_all' });
     closeSearch();

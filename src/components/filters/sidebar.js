@@ -92,7 +92,6 @@ export default function Sidebar({
     <aside id="sidebar">
       <h2>Filtrat</h2>
 
-      {/* Tipi */}
       {showType && (
         <FilterSection title="Tipi">
           <div className="carType">
@@ -114,7 +113,6 @@ export default function Sidebar({
         </FilterSection>
       )}
 
-      {/* Cmimi */}
       {priceConfig && (
         <FilterSection title={priceConfig.label}>
           <div className="price">
@@ -140,7 +138,6 @@ export default function Sidebar({
         </FilterSection>
       )}
 
-      {/* Viti */}
       <FilterSection title="Viti">
         <div className="price">
           <input
@@ -164,7 +161,6 @@ export default function Sidebar({
         </div>
       </FilterSection>
 
-      {/* Kategoria */}
       <FilterSection title="Kategoria">
         <input
           type="text"
@@ -186,7 +182,6 @@ export default function Sidebar({
         </div>
       </FilterSection>
 
-      {/* Marka */}
       <FilterSection title="Marka">
         <input
           type="text"
@@ -208,7 +203,6 @@ export default function Sidebar({
         </div>
       </FilterSection>
 
-      {/* Karburanti */}
       <FilterSection title="Karburanti">
         <div className="scrollWrap">
           {(filters.fuels || []).map((f) => (
@@ -223,7 +217,6 @@ export default function Sidebar({
         </div>
       </FilterSection>
 
-      {/* Transmisioni */}
       <FilterSection title="Transmisioni">
         <div className="scrollWrap">
           {(filters.transmissions || []).map((t) => (
@@ -238,7 +231,6 @@ export default function Sidebar({
         </div>
       </FilterSection>
 
-      {/* Ulëset */}
       <FilterSection title="Ulëset">
         <div className="scrollWrap">
           {(filters.seats || []).map((s) => (
@@ -253,7 +245,6 @@ export default function Sidebar({
         </div>
       </FilterSection>
 
-      {/* Dyert */}
       <FilterSection title="Dyert">
         <div className="scrollWrap">
           {[2, 3, 4, 5].map((d) => (
@@ -268,7 +259,6 @@ export default function Sidebar({
         </div>
       </FilterSection>
 
-      {/* Ngjyra */}
       <FilterSection title="Ngjyra">
         <input
           type="text"
@@ -295,7 +285,6 @@ export default function Sidebar({
         </div>
       </FilterSection>
 
-      {/* Reset */}
       <button
         onClick={() => {
           onFilterChange('__reset__', '');

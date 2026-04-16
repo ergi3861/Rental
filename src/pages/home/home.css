@@ -775,7 +775,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-color: #6f8aae; /* ose ngjyra jote */
+  background-color: #6f8aae; 
   transform: skewY(-4deg);
   transform-origin: top left;
   z-index: 0;

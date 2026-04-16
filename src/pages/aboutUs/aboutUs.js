@@ -92,8 +92,8 @@ export default function AboutUs() {
               ka qenë i menduar me synim: ta bëjmë sa më të thjeshtë për ju.
             </p>
             <div className="abHeroBtns">
-              <button className="abBtn abBtnFill">Shiko Flotën</button>
-              <button className="abBtn abBtnOutline">Rezervo Tani</button>
+              <button className="abBtn abBtnFill" onClick={() => {window.location.href = "/cars"}}>Shiko Flotën</button>
+              <button className="abBtn abBtnOutline" onClick={() => {window.location.href = "/rental"}}>Rezervo Tani</button>
             </div>
           </div>
 
@@ -178,7 +178,7 @@ export default function AboutUs() {
               <li>Dorëzim në aeroport ose adresë</li>
               <li>Sigurim i përfshirë, zero surpriza</li>
             </ul>
-            <button className="abBtn abBtnFill">Shiko Flotën →</button>
+            <button className="abBtn abBtnFill" onClick={() => {window.location.href = "/cars"}}>Shiko Flotën →</button>
           </div>
 
           <div className="abDualDivider" />
@@ -199,7 +199,7 @@ export default function AboutUs() {
               <li>Pa komisione, pa ndërmjetës</li>
               <li>Dokumentacion dhe pagesë e sigurt</li>
             </ul>
-            <button className="abBtn abBtnOutline abBtnPink">Shes Makinën →</button>
+            <button className="abBtn abBtnOutline abBtnPink" onClick={() => {window.location.href = "/buy"}}>Shes Makinën →</button>
           </div>
         </section>
 
@@ -226,7 +226,7 @@ export default function AboutUs() {
             <div className="abCtaGlow" />
             <h2 className="abCtaH2">Gati për të filluar?</h2>
             <p className="abCtaP">Shiko flotën dhe rezervo makinën e duhur për ju sot.</p>
-            <button className="abBtn abBtnFill abBtnLg">Fillo Rezervimin →</button>
+            <button className="abBtn abBtnFill abBtnLg" onClick={() => {window.location.href = "/rental" }}>Fillo Rezervimin →</button>
           </div>
         </section>
       </div>

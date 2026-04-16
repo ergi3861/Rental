@@ -204,7 +204,6 @@ const FingerprintOverlay = ({ active }) => {
   const spinnerRef = useRef(null);
   const tickRef = useRef(null);
 
-  // Inject CSS once
   useEffect(() => {
     if (document.getElementById('fp-styles')) return;
     const tag = document.createElement('style');

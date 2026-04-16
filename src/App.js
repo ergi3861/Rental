@@ -12,7 +12,7 @@ import Contact from './pages/contact/contact';
 import CarAnimation from './pages/authentication/auth';
 import Login from './pages/authentication/login';
 import Signup from './pages/authentication/signup';
-import { AuthProvider } from './backendConnection/context'; // ← KONTROLLO RRUGËN
+import { AuthProvider } from './backendConnection/context'; 
 import AdminRoutes from './admin/adminRoutes';
 import { AppProvider } from './backendConnection/translationContext';
 import CarDetail from './components/carDetail/carDetail';

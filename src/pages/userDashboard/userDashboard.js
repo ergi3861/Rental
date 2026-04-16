@@ -106,7 +106,6 @@ export default function UserDashboard() {
   const initials = `${user?.first_name?.[0] || ''}${user?.last_name?.[0] || ''}`.toUpperCase();
   const pct = profile?.completion_percent || 0;
 
-  // ── Save profile ──────────────────────────────────────────
   const handleSave = async (e) => {
     e.preventDefault();
     setSaving(true);
@@ -133,7 +132,6 @@ export default function UserDashboard() {
     }
   };
 
-  // ── Upload license ────────────────────────────────────────
   const handleLicense = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -151,7 +149,6 @@ export default function UserDashboard() {
     }
   };
 
-  // ── Upload photo ──────────────────────────────────────────
   const handlePhoto = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -167,7 +164,6 @@ export default function UserDashboard() {
     }
   };
 
-  // ✅ Accept / Decline ofertën e adminit
   const handleRespondOffer = async (id, action) => {
     try {
       await API.patch(`/sell-requests/${id}/respond`, { action });
@@ -196,7 +192,6 @@ export default function UserDashboard() {
       <Navigimi />
       <div className="ud-page">
 
-        {/* ── Hero ── */}
         <div className="ud-hero">
           <div className="ud-hero__inner">
             <div className="ud-hero__avatar-wrap">
@@ -265,7 +260,6 @@ export default function UserDashboard() {
             ))}
           </div>
 
-          {/* ── OVERVIEW ── */}
           {tab === 'overview' && (
             <div className="ud-section ud-overview">
               <div className="ud-overview__grid">
@@ -392,7 +386,6 @@ export default function UserDashboard() {
             </div>
           )}
 
-          {/* ── PROFILE ── */}
           {tab === 'profile' && (
             <div className="ud-section">
               <form className="ud-profile-form" onSubmit={handleSave}>
@@ -521,7 +514,6 @@ export default function UserDashboard() {
             </div>
           )}
 
-          {/* ── RESERVATIONS ── */}
           {tab === 'reservations' && (
             <div className="ud-section">
               <h2 className="ud-section-title">Rezervimet e mia</h2>
@@ -570,7 +562,6 @@ export default function UserDashboard() {
             </div>
           )}
 
-          {/* ── SELL REQUESTS ── */}
           {tab === 'sell' && (
             <div className="ud-section">
               <div className="ud-section-header">
@@ -616,7 +607,6 @@ export default function UserDashboard() {
                           {s.status}
                         </span>
 
-                        {/* ✅ Butonat Accept/Decline — vetëm kur status është 'offered' */}
                         {s.status === 'offered' && (
                           <div className="ud-sell-item__actions">
                             <button

@@ -173,7 +173,7 @@ export default function Contact() {
         <div className="contactStrip">
           <h2>Gati për të rezervuar?</h2>
           <p>Shiko flotën dhe merr makinën që të duhet sot.</p>
-          <button className="primaryBtn large">Shiko Makinat</button>
+          <button className="primaryBtn large" onClick={() => {window.location.href = "/cars"}}>Shiko Makinat</button>
         </div>
       </section>
       <Footer />

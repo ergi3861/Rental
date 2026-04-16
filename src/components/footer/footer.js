@@ -25,7 +25,7 @@ export default function Footer({ variant }) {
       <div className="footerCta">
         <div className="ctaBox">
           <h2>Rezervo makinën tënde tani</h2>
-          <Link to="/" className="ctaBtn">
+          <Link to="/rental" className="ctaBtn">
             Rezervo
           </Link>
         </div>
