@@ -11,7 +11,8 @@ const Nav = [
   { path: '/admin/sell-requests', label: 'Kërkesat shitje', icon: '🤝', exact: false },
   { path: '/admin/users',         label: 'Userat',          icon: '👥', exact: false },
   { path: '/admin/contacts',      label: 'Kontaktet',       icon: '✉️', exact: false },
-  { path: '/admin/searchLogs',    label: 'Kërkimet',        icon: '🔍', exact: false }, // ✅ E re
+  { path: '/admin/searchLogs',    label: 'Kërkimet',        icon: '🔍', exact: false }, 
+  { path: '/admin/auditLogs',     label: 'Veprimet',        icon: 'AL', exact: false }
 ];
 
 function useDebounce(value, delay = 20) {
@@ -99,6 +100,7 @@ function GlobalSearch() {
     results.sellRequests?.forEach(() => items.push({ path: '/admin/sell-requests' }));
     results.contacts?.forEach(() => items.push({ path: '/admin/contacts' }));
     results.searchLogs?.forEach(() => items.push({ path: '/admin/searchLogs'}))
+    results.auditLogs?.forEach(() => items.push({ path: '/admin/auditLogs'}))
     return items;
   }, [results]);
 
