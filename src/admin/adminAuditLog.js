@@ -1,4 +1,3 @@
-// pages/admin/AdminAuditLogs.jsx
 import { useEffect, useState, useCallback } from 'react';
 import adminAPI from '../admin/adminAPI';
 
@@ -125,7 +124,6 @@ export default function AdminAuditLogs() {
   useEffect(() => { load(); }, [load]);
   useEffect(() => { setPage(1); }, [action, entity, from, to]);
 
-  // Stats lokale nga rows
   useEffect(() => {
     const today = new Date().toDateString();
     const todayCount = rows.filter(r =>
@@ -143,9 +141,7 @@ export default function AdminAuditLogs() {
 
   const totalPages = Math.ceil(total / LIMIT);
 
-  const actionCounts = rows.reduce((acc, r) => {
-    acc[r.action] = (acc[r.action] || 0) + 1; return acc;
-  }, {});
+  
   const uniqueActions = [...new Set(rows.map(r => r.action))];
   const uniqueEntities = [...new Set(rows.map(r => r.entity))];
 
@@ -158,7 +154,6 @@ export default function AdminAuditLogs() {
         </div>
       </div>
 
-      {/* Stats */}
       <div className="alStats">
         <div className="alStat">
           <div className="alStatLbl">Gjithsej</div>
@@ -186,7 +181,6 @@ export default function AdminAuditLogs() {
         </div>
       </div>
 
-      {/* Filters */}
       <div className="alFilters">
         <select className="alSel" value={action} onChange={e => setAction(e.target.value)}>
           <option value="">Të gjitha veprimet</option>
@@ -224,7 +218,6 @@ export default function AdminAuditLogs() {
         )}
       </div>
 
-      {/* Table */}
       <div className="alTableWrap">
         {loading ? (
           <div className="alLoading">Duke ngarkuar...</div>
@@ -294,7 +287,6 @@ export default function AdminAuditLogs() {
         )}
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="alPagination">
           <button disabled={page === 1} onClick={() => setPage(p => p - 1)}>‹</button>
@@ -303,7 +295,6 @@ export default function AdminAuditLogs() {
         </div>
       )}
 
-      {/* Diff Modal */}
       {modal && <DiffModal log={modal} onClose={() => setModal(null)} />}
     </div>
   );
